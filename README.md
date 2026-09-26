@@ -15,12 +15,12 @@ A personal, Typeform-style builder for **lead qualification and appointment-sett
 
 ```bash
 npm install
-cp .env.example .env        # then set ADMIN_PASSWORD and SESSION_SECRET
-npx prisma db push          # creates the local SQLite database
 npm run dev                 # http://localhost:3000
 ```
 
-Sign in with your `ADMIN_PASSWORD`. In development, if the password isn't set, it's `admin`. Create a form from a template, then:
+The first `npm run dev` sets everything up automatically on Windows, macOS and Linux. It creates `.env` with a random session secret and creates the local database. The default password is `change-me`. Change `ADMIN_PASSWORD` in `.env`, then restart. To rebuild the database later, run `npm run setup`.
+
+Sign in and create a form from a template, then:
 
 1. Edit questions and endings in **Build**. Use **Form → Qualification** to set your score threshold.
 2. Paste your Calendly or Cal.com event link under **Form → Booking**.
