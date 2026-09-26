@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-panel: #101010;
+  --color-raised: #161616;
+  --color-hover: #1c1c1c;
+  --color-line: #232323;
+  --color-line-strong: #2f2f2f;
+  --color-fg: #ededed;
+  --color-dim: #a1a1a1;
+  --color-faint: #6b6b6b;
+  --color-good: #7fd4a0;
+  --color-warn: #e6c07b;
+  --color-bad: #e5868a;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a transparent;
+}
+
+:focus-visible {
+  outline: 1.5px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Admin primitives                                                    */
+/* ------------------------------------------------------------------ */
+
+@utility btn {
+  @apply inline-flex h-9 select-none items-center justify-center gap-2 rounded-lg px-3.5 text-[13px] font-medium whitespace-nowrap transition-all duration-200 disabled:pointer-events-none disabled:opacity-40;
+}
+
+@utility btn-primary {
+  @apply btn bg-white text-black hover:bg-neutral-200 active:scale-[0.98];
+}
+
+@utility btn-secondary {
+  @apply btn border border-line-strong bg-raised text-fg hover:border-neutral-600 hover:bg-hover active:scale-[0.98];
+}
+
+@utility btn-ghost {
+  @apply btn text-dim hover:bg-hover hover:text-fg;
+}
+
+@utility btn-icon {
+  @apply inline-flex size-8 items-center justify-center rounded-md text-dim transition-colors hover:bg-hover hover:text-fg;
+}
+
+@utility input {
+  @apply h-9 w-full rounded-lg border border-line bg-ink px-3 text-[13px] text-fg transition-colors placeholder:text-faint hover:border-line-strong focus:border-neutral-500 focus:outline-none;
+}
+
+@utility textarea {
+  @apply input h-auto min-h-[76px] resize-y py-2 leading-relaxed;
+}
+
+@utility label {
+  @apply mb-1.5 block text-[12px] font-medium text-dim;
+}
+
+@utility card {
+  @apply rounded-2xl border border-line bg-panel;
+}
+
+@utility kbd {
+  @apply inline-flex h-5 min-w-5 items-center justify-center rounded border border-line-strong bg-raised px-1 font-mono text-[10px] text-dim;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(-4%, -2%, 0) scale(1); }
+  50% { transform: translate3d(4%, 3%, 0) scale(1.08); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 25%, rgba(0, 0, 0, 0.09) 50%, rgba(0, 0, 0, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Monochrome film grain: dithers the soft glow so gradients don't band. */
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Public form                                                         */
+/* ------------------------------------------------------------------ */
+
+.form-root {
+  background: var(--f-bg);
+  color: var(--f-text);
+  font-family: var(--f-body);
+}
+
+.form-root ::selection {
+  background: var(--f-accent-soft);
+}
+
+.form-heading {
+  font-family: var(--f-heading);
+  letter-spacing: -0.02em;
+}
+
+.form-root[data-font="editorial"] .form-heading {
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+.form-root[data-font="mono"] .form-heading {
+  letter-spacing: -0.04em;
+}
+
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--f-accent-line);
+  color: var(--f-text);
+  caret-color: var(--f-accent);
+  padding: 0.4em 0 0.35em;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.form-input::placeholder {
+  color: var(--f-muted);
+  opacity: 0.55;
+}
+
+.form-input:focus {
+  border-bottom-color: var(--f-accent);
+}
+
+.form-root input[type="number"]::-webkit-inner-spin-button,
+.form-root input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-shell {
+  container-type: inline-size;
+}
+
+.q-title {
+  font-size: clamp(1.35rem, 0.95rem + 2.3cqi, 2.1rem);
+  line-height: 1.22;
+}
+
+.form-root[data-font="editorial"] .q-title {
+  font-size: clamp(1.7rem, 1.1rem + 3cqi, 2.75rem);
+  line-height: 1.12;
+}
+
+.q-hero {
+  font-size: clamp(2rem, 1.2rem + 4.2cqi, 3.6rem);
+  line-height: 1.05;
+}
+
+.form-root[data-font="editorial"] .q-hero {
+  font-size: clamp(2.4rem, 1.4rem + 5.2cqi, 4.4rem);
+  line-height: 1;
+}
+
+.q-desc {
+  font-size: clamp(0.95rem, 0.85rem + 0.5cqi, 1.1rem);
+  line-height: 1.55;
+}
+
+.q-input-text {
+  font-size: clamp(1.2rem, 0.95rem + 1.4cqi, 1.7rem);
+}

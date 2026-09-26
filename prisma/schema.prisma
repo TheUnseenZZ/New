@@ -1,0 +1,52 @@
+// Local development uses SQLite. To deploy on Postgres (Vercel, Neon, Supabase,
+// Railway...), change provider to "postgresql" and set DATABASE_URL.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Form {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  // Working copy edited in the builder (JSON-encoded FormSchema).
+  draft       String
+  // Snapshot served on the public link; null until first publish.
+  published   String?
+  publishedAt DateTime?
+  views       Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  responses   Response[]
+}
+
+model Response {
+  id          String    @id @default(cuid())
+  formId      String
+  form        Form      @relation(fields: [formId], references: [id], onDelete: Cascade)
+  // JSON-encoded Record<questionId, answer>.
+  answers     String    @default("{}")
+  // Question ids in the order the respondent saw them (for drop-off analytics).
+  path        String    @default("[]")
+  lastStepId  String?
+  score       Int       @default(0)
+  // "partial" | "qualified" | "disqualified" | "completed"
+  status      String    @default("partial")
+  endingId    String?
+  name        String?
+  email       String?
+  phone       String?
+  company     String?
+  userAgent   String?
+  referrer    String?
+  utm         String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+
+  @@index([formId, createdAt])
+}
