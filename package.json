@@ -6,13 +6,13 @@
   "scripts": {
     "dev": "next dev",
     "predev": "node scripts/setup.mjs",
-    "build": "prisma generate && next build",
+    "build": "node scripts/db.mjs build && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio",
-    "postinstall": "prisma generate",
+    "db:push": "node scripts/db.mjs push",
+    "db:studio": "node scripts/db.mjs studio",
+    "postinstall": "node scripts/db.mjs generate",
     "setup": "node scripts/setup.mjs --force"
   },
   "dependencies": {

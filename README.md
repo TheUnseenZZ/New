@@ -29,18 +29,22 @@ Sign in and create a form from a template, then:
 
 After publishing, keep editing freely. Changes only go live when you click **Publish changes**.
 
-## Deploying
+## Deploying (Vercel + Neon, both free)
 
-The app is a standard Next.js 15 app. For production, use Postgres (Neon, Supabase, Railway, Vercel Postgres, and so on):
+Locally the app uses a SQLite file. Online it uses Postgres. `scripts/db.mjs` picks the right one automatically from `DATABASE_URL`, and the build creates the tables for you.
 
-1. In `prisma/schema.prisma`, change `provider = "sqlite"` to `provider = "postgresql"`.
-2. Set the environment variables `DATABASE_URL`, `ADMIN_PASSWORD`, and `SESSION_SECRET` (`openssl rand -hex 32`).
-3. Run `npx prisma db push` once against the production database, then deploy (`npm run build`, `npm start`, or push to Vercel).
+1. **Vercel → Add New → Project →** import this repository. Name the project carefully: it becomes your URL (`your-name.vercel.app`).
+2. Under **Environment Variables**, set `ADMIN_PASSWORD` (your login) and `SESSION_SECRET` (any long random string). Delete the `DATABASE_URL` row. The database adds it in the next step.
+3. Click **Deploy**. The build succeeds but warns that a database is missing.
+4. In the project, go to **Storage → Create Database → Neon (Postgres) → Connect**. This adds `DATABASE_URL` automatically.
+5. Go to **Deployments → ⋯ → Redeploy**. Your builder is now at `https://your-name.vercel.app`, and your forms at `/f/<link>`.
+
+Every push to the connected branch redeploys automatically. To use your own domain, go to **Settings → Domains**.
 
 ## Project layout
 
 ```
-prisma/schema.prisma          Form + Response models
+prisma/schema.prisma          Form + Response models (Postgres; prisma/sqlite/ mirrors it for local dev)
 src/lib/engine.ts             Scoring, validation, conditional logic, routing (shared client/server)
 src/lib/templates.ts          Starter templates and block factories
 src/components/form/          Public form renderer (views + runner with animations)

@@ -1,7 +1,7 @@
-// Production schema (Postgres). Local development uses prisma/sqlite/schema.prisma —
+// Local development schema (SQLite). Keep models in sync with ../schema.prisma —
 // scripts/db.mjs picks the right one based on DATABASE_URL.
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
