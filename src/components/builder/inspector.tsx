@@ -414,11 +414,13 @@ export function EndingInspector({
   ending,
   schema,
   onChange,
+  onCalendarUrlChange,
   onDelete,
 }: {
   ending: Ending;
   schema: FormSchema;
   onChange: (e: Ending) => void;
+  onCalendarUrlChange: (url: string | undefined) => void;
   onDelete?: () => void;
 }) {
   const set = <K extends keyof Ending>(k: K, v: Ending[K]) => onChange({ ...ending, [k]: v });
@@ -455,11 +457,22 @@ export function EndingInspector({
           checked={ending.showCalendar}
           onChange={(v) => set("showCalendar", v)}
         />
-        {ending.showCalendar && !schema.settings.calendarUrl && (
-          <p className="flex items-start gap-2 rounded-lg border border-warn/20 bg-warn/5 px-3 py-2 text-[12px] text-warn">
-            <CircleAlert className="mt-px size-3.5 shrink-0" />
-            Add your calendar link under Form → Booking.
-          </p>
+        {ending.showCalendar && (
+          <Field
+            label="Calendar link"
+            hint={
+              schema.settings.calendarUrl
+                ? "Shared by every ending that shows the calendar. Also under Form → Booking."
+                : "Paste your Calendly or Cal.com event link, e.g. https://calendly.com/you/30min"
+            }
+          >
+            <input
+              className={`input ${schema.settings.calendarUrl ? "" : "border-warn/40"}`}
+              placeholder="https://calendly.com/you/30min"
+              value={schema.settings.calendarUrl ?? ""}
+              onChange={(e) => onCalendarUrlChange(e.target.value.trim() || undefined)}
+            />
+          </Field>
         )}
         <div className="grid grid-cols-2 gap-3">
           <Field label="Button label">

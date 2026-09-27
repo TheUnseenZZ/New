@@ -304,6 +304,7 @@ export function Builder({ initial }: { initial: SerializedForm }) {
                     ending={selectedEnding}
                     schema={schema}
                     onChange={(e) => setSchema({ ...schema, endings: schema.endings.map((x) => (x.id === e.id ? e : x)) })}
+                    onCalendarUrlChange={(calendarUrl) => setSchema({ ...schema, settings: { ...schema.settings, calendarUrl } })}
                     onDelete={schema.endings.length > 1 ? () => removeEnding(selectedEnding.id) : undefined}
                   />
                 ) : null}
