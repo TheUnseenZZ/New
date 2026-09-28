@@ -3,6 +3,8 @@ export interface Word {
   text: string;
   start: number;
   end: number;
+  /** Payoff override for this word: true = always a payoff, false = never, missing = automatic. */
+  emph?: boolean;
 }
 
 /** A lyric line as shown in the editor. Templates may split it further (chunks / single words). */
@@ -23,9 +25,22 @@ export type EnterAnim =
   | 'drop'
   | 'spin'
   | 'glitch'
-  | 'typewriter';
+  | 'typewriter'
+  | 'flyIn'
+  | 'flip'
+  | 'stretch'
+  | 'swing';
 
-export type ExitAnim = 'none' | 'fade' | 'blur' | 'slideUp' | 'shrink';
+export type ExitAnim = 'none' | 'fade' | 'blur' | 'slideUp' | 'shrink' | 'scatter' | 'fall' | 'pop';
+
+/**
+ * Where words go on screen.
+ * block = normal centered text · scatter = words spread around the frame in mixed sizes
+ * stairs = each word steps diagonally · zigzag = words alternate left/right edges
+ * orbit = words circle the center · wander = each group lands somewhere new
+ * bounce = the text drifts and bounces off the edges like the DVD logo
+ */
+export type Placement = 'block' | 'scatter' | 'stairs' | 'zigzag' | 'orbit' | 'wander' | 'bounce';
 
 export type Easing = 'linear' | 'easeOut' | 'easeInOut' | 'back' | 'elastic' | 'bounce';
 
@@ -63,6 +78,8 @@ export interface Template {
     stroke?: { color: string; width: number };
     shadow?: { color: string; blur: number; x: number; y: number };
     glow?: { color: string; blur: number };
+    /** Cycles colors letter by letter. */
+    letterPalette?: string[];
     /**
      * Canvas blend mode for the text, e.g. "multiply" makes dark text look projected onto a
      * bright wall; "overlay"/"screen"/"difference" for other looks. Default normal.
@@ -78,7 +95,8 @@ export interface Template {
    * Marked words always count, whatever the trigger.
    */
   emphasis?: {
-    trigger: 'lineEnd' | 'marked';
+    /** "none" = only words the user explicitly turns on */
+    trigger: 'lineEnd' | 'marked' | 'none';
     /** Fill the whole frame with this color while the word is on screen (e.g. "#000" blackout). */
     background?: string;
     fill?: string;
@@ -99,6 +117,12 @@ export interface Template {
     maxLines?: number;
     /** Spread each row's words evenly across the full width ("NOW    WE    AIN'T"). */
     spread?: boolean;
+    /** Where words go on screen. Default block. */
+    placement?: Placement;
+    /** 0–1 random size variation per word (great with scatter). */
+    sizeJitter?: number;
+    /** orbit: turns per second · bounce: speed multiplier. Default 1 */
+    speed?: number;
   };
 
   /** all = whole group appears at once, word = each word appears as it's sung, char = typewriter */
@@ -126,9 +150,16 @@ export interface Template {
     easing?: Easing;
     /** ms between words when reveal = "all" */
     stagger?: number;
+    /** ms between letters: animates each letter separately (letters pop/fly/drop in one by one). */
+    letterStagger?: number;
   };
 
-  exit: { anim: ExitAnim; duration: number };
+  exit: {
+    anim: ExitAnim;
+    duration: number;
+    /** Let the exit keep playing while the next group comes in (words fly/fall away behind it). */
+    overlap?: boolean;
+  };
 
   timing?: {
     /** Seconds the text appears before it is sung. Default 0.05 */
@@ -154,6 +185,12 @@ export interface Template {
     float?: number;
     /** px of constant blur, for soft projected/out-of-focus text */
     soften?: number;
+    /** px amplitude of a wave running through the letters */
+    wave?: number;
+    /** 0–1 squash-and-stretch wobble when a word lands */
+    jelly?: number;
+    /** px per second each word slowly drifts in its own direction */
+    drift?: number;
   };
 
   /** Effects applied to the video frame itself. */
@@ -183,6 +220,22 @@ export interface Settings {
   stripPunctuation: boolean;
   showSafeZone: boolean;
   colorOverride: { enabled: boolean; fill: string; accent: string };
+  /** Per-style customizations from the UI. Reset when switching templates. */
+  style: StyleOverrides;
+}
+
+export interface StyleOverrides {
+  fontFamily?: string;
+  fontWeight?: number;
+  italic?: boolean;
+  case?: 'upper' | 'lower' | 'none';
+  mode?: 'line' | 'chunk' | 'word';
+  enter?: EnterAnim;
+  placement?: Placement;
+  /** When payoff moments happen: template default, every line end, or only words you pick */
+  payoffs?: 'template' | 'lineEnd' | 'picked';
+  /** Payoff background: template default, keep the video, or a color ("accent" = accent color) */
+  payoffBg?: 'template' | 'none' | 'accent' | string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -194,4 +247,5 @@ export const DEFAULT_SETTINGS: Settings = {
   stripPunctuation: true,
   showSafeZone: true,
   colorOverride: { enabled: false, fill: '#ffffff', accent: '#ffe600' },
+  style: {},
 };

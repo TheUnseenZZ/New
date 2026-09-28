@@ -1,7 +1,8 @@
 import type { Template } from './types';
 
-const ENTER = ['none', 'fade', 'pop', 'slam', 'zoom', 'slideUp', 'slideDown', 'blur', 'drop', 'spin', 'glitch', 'typewriter'];
-const EXIT = ['none', 'fade', 'blur', 'slideUp', 'shrink'];
+const ENTER = ['none', 'fade', 'pop', 'slam', 'zoom', 'slideUp', 'slideDown', 'blur', 'drop', 'spin', 'glitch', 'typewriter', 'flyIn', 'flip', 'stretch', 'swing'];
+const EXIT = ['none', 'fade', 'blur', 'slideUp', 'shrink', 'scatter', 'fall', 'pop'];
+const PLACEMENTS = ['block', 'scatter', 'stairs', 'zigzag', 'orbit', 'wander', 'bounce'];
 const EASINGS = ['linear', 'easeOut', 'easeInOut', 'back', 'elastic', 'bounce'];
 
 /** Returns a list of problems; empty means the template is usable. */
@@ -27,7 +28,8 @@ export function validateTemplate(t: unknown): string[] {
   if (o.color?.blend && !['normal', 'multiply', 'screen', 'overlay', 'difference', 'soft-light'].includes(o.color.blend)) {
     e.push('color.blend must be normal | multiply | screen | overlay | difference | soft-light');
   }
-  if (o.emphasis && !['lineEnd', 'marked'].includes(o.emphasis.trigger)) e.push('emphasis.trigger must be lineEnd | marked');
+  if (o.emphasis && !['lineEnd', 'marked', 'none'].includes(o.emphasis.trigger)) e.push('emphasis.trigger must be lineEnd | marked | none');
+  if (o.layout?.placement && !PLACEMENTS.includes(o.layout.placement)) e.push(`layout.placement must be one of ${PLACEMENTS.join(', ')}`);
   return e;
 }
 
@@ -37,6 +39,15 @@ const ORDER = [
   'red-card',
   'statement',
   'solitude',
+  'scatterbrain',
+  'wavy',
+  'zigzag',
+  'orbit',
+  'dvd-bounce',
+  'wander',
+  'staircase',
+  'falling-letters',
+  'jelly-pop',
   'pop-karaoke',
   'highlight-box',
   'karaoke-fill',

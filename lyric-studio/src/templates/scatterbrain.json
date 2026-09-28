@@ -1,0 +1,18 @@
+{
+  "id": "scatterbrain",
+  "name": "Scatterbrain",
+  "vibe": "Words land all over the frame in mixed sizes and angles, then blast away",
+  "tags": ["playful", "experimental", "chaos"],
+  "font": { "family": "Bagel Fat One", "weight": 400, "size": 112, "lineHeight": 1.0, "case": "lower" },
+  "color": {
+    "fill": "#FFFFFF",
+    "palette": ["#FFFFFF", "#FFE600", "#FF4FD8", "#7CF6FF"],
+    "stroke": { "color": "#000000", "width": 6 }
+  },
+  "layout": { "mode": "line", "anchor": "center", "placement": "scatter", "sizeJitter": 0.45 },
+  "reveal": "word",
+  "enter": { "anim": "pop", "duration": 260 },
+  "exit": { "anim": "scatter", "duration": 450, "overlap": true },
+  "timing": { "hold": 0.4 },
+  "fx": { "tilt": 14, "jelly": 0.25 }
+}

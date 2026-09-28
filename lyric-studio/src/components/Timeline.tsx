@@ -348,6 +348,26 @@ export const Timeline = memo(function Timeline(p: Props) {
             else w.end = Math.max(now, w.start + MIN);
           });
         }
+      } else if (e.key.toLowerCase() === 'p' && sel.word !== null && !s.tap.on) {
+        e.preventDefault();
+        const cur = line.words[sel.word]?.emph;
+        const next = cur === undefined ? true : cur === true ? false : undefined;
+        s.checkpoint();
+        s.live((prev) =>
+          prev.map((l) =>
+            l.id !== line.id
+              ? l
+              : {
+                  ...l,
+                  words: l.words.map((w, i) => {
+                    if (i !== sel.word) return w;
+                    const { emph: _drop, ...rest } = w;
+                    void _drop;
+                    return next === undefined ? rest : { ...rest, emph: next };
+                  }),
+                },
+          ),
+        );
       } else if (e.key === 'Tab' && sel.word !== null) {
         e.preventDefault();
         const i = flat.findIndex((f) => f.lineId === sel.lineId && f.wi === sel.word);
@@ -377,6 +397,27 @@ export const Timeline = memo(function Timeline(p: Props) {
       window.removeEventListener('keyup', onUp);
     };
   }, [flat]);
+
+  const selWord = sel && sel.word !== null ? p.lines.find((l) => l.id === sel.lineId)?.words[sel.word] : undefined;
+  const setPayoff = (v: boolean | undefined) => {
+    if (!sel || sel.word === null) return;
+    p.checkpoint();
+    p.live((prev) =>
+      prev.map((l) =>
+        l.id !== sel.lineId
+          ? l
+          : {
+              ...l,
+              words: l.words.map((w, i) => {
+                if (i !== sel.word) return w;
+                const { emph: _drop, ...rest } = w;
+                void _drop;
+                return v === undefined ? rest : { ...rest, emph: v };
+              }),
+            },
+      ),
+    );
+  };
 
   const startTap = () => {
     if (tap.on) return setTap({ on: false, idx: 0 });
@@ -441,11 +482,32 @@ export const Timeline = memo(function Timeline(p: Props) {
             Hold <kbd>T</kbd> while each word is sung · next: <b>{tapWord ?? 'done ✓'}</b>
           </span>
         )}
+        {selWord && (
+          <>
+            <span className="tl-sep" />
+            <span className="muted small-text">
+              Payoff “{selWord.text.replace(/\*/g, '')}”
+            </span>
+            <div className="seg tl-speed" title="Give this word its own moment (P cycles)">
+              {(
+                [
+                  [undefined, 'Auto'],
+                  [true, '★ On'],
+                  [false, 'Off'],
+                ] as const
+              ).map(([v, label]) => (
+                <button key={label} className={selWord.emph === v ? 'on' : ''} onClick={() => setPayoff(v)}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
         <span className="spacer" />
         <span className="small-text muted tl-help">
           Drag blocks · drag edges to trim · <kbd>Alt</kbd> no snap · <kbd>←</kbd>
           <kbd>→</kbd> nudge · <kbd>[</kbd>
-          <kbd>]</kbd> set start/end at playhead
+          <kbd>]</kbd> set start/end · <kbd>P</kbd> payoff
         </span>
         <span className="time" ref={timeRef} />
       </div>
@@ -503,7 +565,7 @@ export const Timeline = memo(function Timeline(p: Props) {
                   return (
                     <Block
                       key={wi}
-                      className={`tl-word${isSel ? ' sel' : ''}${isTap ? ' tap' : ''}`}
+                      className={`tl-word${isSel ? ' sel' : ''}${isTap ? ' tap' : ''}${w.emph === true ? ' payoff-on' : w.emph === false ? ' payoff-off' : ''}`}
                       left={x(ws)}
                       width={x(we) - x(ws)}
                       top={WORD_Y}

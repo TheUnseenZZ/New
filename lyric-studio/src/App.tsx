@@ -3,12 +3,13 @@ import { ImportTemplate } from './components/ImportTemplate';
 import { LyricsEditor } from './components/LyricsEditor';
 import { Preview } from './components/Preview';
 import { TemplateGallery } from './components/TemplateGallery';
+import { StylePanel } from './components/StylePanel';
 import { Timeline } from './components/Timeline';
 import { computePeaks, type Peaks } from './lib/waveform';
 import { parseSubtitles } from './lib/subtitles';
 import { ensureFont } from './lib/fonts';
 import { toSrt } from './lib/lyrics';
-import { CaptionRenderer } from './lib/render';
+import { applyOverrides, CaptionRenderer } from './lib/render';
 import { BUILT_IN, loadCustomTemplates, saveCustomTemplates } from './lib/templates';
 import { LANGUAGES, MODELS, transcribe } from './lib/transcribe';
 import { DEFAULT_SETTINGS, type Line, type Settings, type Template } from './lib/types';
@@ -77,13 +78,16 @@ export default function App() {
     return Math.random();
   }, [renderer, lines, template, settings, fontTick]);
 
+  // Load whatever font the (customized) style ends up using.
+  const effectiveFont = useMemo(() => applyOverrides(template, settings).font, [template, settings]);
+  const fontKey = `${effectiveFont.family}|${effectiveFont.weight}|${effectiveFont.italic}`;
   useEffect(() => {
     let alive = true;
-    ensureFont(template.font).then(() => alive && setFontTick((x) => x + 1));
+    ensureFont(effectiveFont).then(() => alive && setFontTick((x) => x + 1));
     return () => {
       alive = false;
     };
-  }, [template]);
+  }, [fontKey]);
 
   useEffect(() => writeJSON(SETTINGS_KEY, settings), [settings]);
   useEffect(() => {
@@ -353,7 +357,7 @@ export default function App() {
             templates={templates}
             customIds={customIds}
             selected={template.id}
-            onSelect={(id) => set('templateId', id)}
+            onSelect={(id) => id !== settings.templateId && setSettings((s) => ({ ...s, templateId: id, style: {} }))}
             onDelete={(id) => {
               const next = custom.filter((t) => t.id !== id);
               setCustom(next);
@@ -370,6 +374,8 @@ export default function App() {
               Copy JSON
             </button>
           </div>
+
+          <StylePanel template={template} style={settings.style} onChange={(st) => set('style', st)} />
 
           <div className="section-title">Adjust</div>
           <label className="field">
@@ -515,7 +521,7 @@ export default function App() {
             const next = [...custom, t];
             setCustom(next);
             saveCustomTemplates(next);
-            set('templateId', t.id);
+            setSettings((s) => ({ ...s, templateId: t.id, style: {} }));
             setImporting(false);
           }}
         />

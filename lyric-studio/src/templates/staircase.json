@@ -1,0 +1,14 @@
+{
+  "id": "staircase",
+  "name": "Staircase",
+  "vibe": "Each word swings in one step lower and further right, like falling down stairs",
+  "tags": ["experimental", "editorial"],
+  "font": { "family": "Syne", "weight": 800, "size": 118, "lineHeight": 1.0, "case": "lower" },
+  "color": { "fill": "#F2F2F2", "shadow": { "color": "rgba(0,0,0,0.45)", "blur": 16, "x": 0, "y": 3 } },
+  "layout": { "mode": "line", "anchor": "center", "placement": "stairs" },
+  "reveal": "word",
+  "active": { "mode": "color", "color": "#FF7A45" },
+  "enter": { "anim": "swing", "duration": 500 },
+  "exit": { "anim": "fade", "duration": 250 },
+  "frame": { "dim": 0.15 }
+}

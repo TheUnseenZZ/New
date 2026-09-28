@@ -36,6 +36,10 @@ const DEFAULT_EASING: Record<EnterAnim, Easing> = {
   spin: 'back',
   glitch: 'linear',
   typewriter: 'linear',
+  flyIn: 'easeOut',
+  flip: 'back',
+  stretch: 'elastic',
+  swing: 'elastic',
 };
 
 export interface Xf {
@@ -47,9 +51,12 @@ export interface Xf {
   blur: number;
   /** extra rgb split during glitch-in */
   split: number;
+  /** non-uniform scale (squash & stretch, flips) on top of `scale` */
+  sx: number;
+  sy: number;
 }
 
-export const identity = (): Xf => ({ alpha: 1, scale: 1, dx: 0, dy: 0, rot: 0, blur: 0, split: 0 });
+export const identity = (): Xf => ({ alpha: 1, scale: 1, dx: 0, dy: 0, rot: 0, blur: 0, split: 0, sx: 1, sy: 1 });
 
 /** Deterministic hash → [0,1). Export must look identical to preview, so no Math.random. */
 export function hash(a: number, b = 0, c = 0) {
@@ -112,6 +119,30 @@ export function enterXf(anim: EnterAnim, rawP: number, easing: Easing | undefine
       }
       break;
     }
+    case 'flyIn': {
+      // Each element flies in from its own direction, spinning into place.
+      const a = hash(seed, 3, 7) * Math.PI * 2;
+      const dist = size * 9 * (1 - p);
+      x.dx = Math.cos(a) * dist;
+      x.dy = Math.sin(a) * dist;
+      x.rot = (hash(seed, 4, 7) - 0.5) * 2.4 * (1 - p);
+      x.alpha = clamp01(lin * 4);
+      break;
+    }
+    case 'flip':
+      x.sx = Math.max(0.02, p);
+      x.alpha = clamp01(lin * 3);
+      break;
+    case 'stretch':
+      x.sy = 1 + 1.4 * (1 - p);
+      x.sx = 1 - 0.45 * (1 - p);
+      x.alpha = clamp01(lin * 4);
+      break;
+    case 'swing':
+      x.rot = -0.9 * (1 - p);
+      x.dy = -size * 0.2 * (1 - p);
+      x.alpha = clamp01(lin * 4);
+      break;
     case 'none':
     case 'typewriter':
       break;
@@ -132,16 +163,26 @@ export function readyTime(anim: EnterAnim, durationMs: number, easing: Easing | 
   for (let i = 0; i <= 50; i++) {
     const p = i / 50;
     const x = enterXf(anim, p, easing, size, 0, 0);
-    if (x.alpha >= 0.85 && Math.abs(x.scale - 1) <= 0.12 && x.blur <= 3 && Math.abs(x.dy) <= size * 0.12 && Math.abs(x.rot) < 0.1) {
+    if (
+      x.alpha >= 0.85 &&
+      Math.abs(x.scale - 1) <= 0.12 &&
+      Math.abs(x.sx - 1) <= 0.15 &&
+      Math.abs(x.sy - 1) <= 0.15 &&
+      x.blur <= 3 &&
+      Math.abs(x.dy) <= size * 0.12 &&
+      Math.abs(x.dx) <= size * 0.12 &&
+      Math.abs(x.rot) < 0.1
+    ) {
       return p * dur;
     }
   }
   return dur;
 }
 
-export function exitXf(anim: ExitAnim, q: number, size: number): Xf {
+export function exitXf(anim: ExitAnim, q: number, size: number, seed = 0): Xf {
   const x = identity();
   const p = EASE.easeInOut(clamp01(q));
+  const lin = clamp01(q);
   switch (anim) {
     case 'fade':
       x.alpha = 1 - p;
@@ -158,6 +199,26 @@ export function exitXf(anim: ExitAnim, q: number, size: number): Xf {
       x.alpha = 1 - p;
       x.scale = 1 - 0.4 * p;
       break;
+    case 'scatter': {
+      // Words blast outward in different directions.
+      const a = hash(seed, 5, 11) * Math.PI * 2;
+      const dist = size * 8 * lin * lin;
+      x.dx = Math.cos(a) * dist;
+      x.dy = Math.sin(a) * dist;
+      x.rot = (hash(seed, 6, 11) - 0.5) * 3 * lin;
+      x.alpha = 1 - clamp01((lin - 0.5) * 2);
+      break;
+    }
+    case 'fall':
+      // Gravity: accelerate down with a little spin.
+      x.dy = size * 14 * lin * lin;
+      x.dx = (hash(seed, 7, 13) - 0.5) * size * 2 * lin;
+      x.rot = (hash(seed, 8, 13) - 0.5) * 1.6 * lin;
+      break;
+    case 'pop':
+      x.scale = 1 + 0.5 * lin;
+      x.alpha = 1 - lin;
+      break;
     case 'none':
       break;
   }
@@ -173,5 +234,7 @@ export function combine(a: Xf, b: Xf): Xf {
     rot: a.rot + b.rot,
     blur: a.blur + b.blur,
     split: a.split + b.split,
+    sx: a.sx * b.sx,
+    sy: a.sy * b.sy,
   };
 }

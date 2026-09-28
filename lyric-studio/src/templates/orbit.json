@@ -1,0 +1,14 @@
+{
+  "id": "orbit",
+  "name": "Orbit",
+  "vibe": "The line's words circle each other around the center like a spinning ring",
+  "tags": ["experimental", "dreamy"],
+  "font": { "family": "Unbounded", "weight": 800, "size": 70, "lineHeight": 1.1, "case": "upper" },
+  "color": { "fill": "#FFFFFF", "glow": { "color": "#A78BFA", "blur": 24 } },
+  "layout": { "mode": "chunk", "maxWords": 4, "anchor": "center", "placement": "orbit", "speed": 1 },
+  "reveal": "word",
+  "active": { "mode": "color", "color": "#C4B5FD", "scale": 1.15 },
+  "enter": { "anim": "zoom", "duration": 260 },
+  "exit": { "anim": "pop", "duration": 250 },
+  "frame": { "vignette": 0.35 }
+}

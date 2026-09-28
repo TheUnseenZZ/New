@@ -1,0 +1,19 @@
+{
+  "id": "jelly-pop",
+  "name": "Jelly Pop",
+  "vibe": "One chunky word at a time that squashes and wobbles like jelly, in candy colors",
+  "tags": ["playful", "punchy"],
+  "font": { "family": "Titan One", "weight": 400, "size": 150, "lineHeight": 1.0, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "palette": ["#FF7AB6", "#FFD166", "#6EE7B7", "#93C5FD"],
+    "stroke": { "color": "#1F1147", "width": 8 }
+  },
+  "layout": { "mode": "word", "anchor": "center", "maxWidth": 0.95 },
+  "reveal": "all",
+  "enter": { "anim": "stretch", "duration": 420 },
+  "exit": { "anim": "pop", "duration": 150 },
+  "timing": { "hold": 0.35 },
+  "fx": { "jelly": 0.45 },
+  "frame": { "punchZoom": 0.04 }
+}

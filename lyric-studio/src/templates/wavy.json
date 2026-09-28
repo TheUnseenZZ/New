@@ -1,0 +1,17 @@
+{
+  "id": "wavy",
+  "name": "Wavy",
+  "vibe": "Candy-colored letters pop in one by one and ride a wave",
+  "tags": ["playful", "letters", "pop"],
+  "font": { "family": "Fredoka", "weight": 700, "size": 120, "lineHeight": 1.1, "case": "lower" },
+  "color": {
+    "fill": "#FFFFFF",
+    "letterPalette": ["#FF5E5B", "#FFED66", "#00CECB", "#FFFFFF", "#B388FF"],
+    "stroke": { "color": "#000000", "width": 7 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center" },
+  "reveal": "word",
+  "enter": { "anim": "pop", "duration": 260, "letterStagger": 45 },
+  "exit": { "anim": "pop", "duration": 200 },
+  "fx": { "wave": 14 }
+}

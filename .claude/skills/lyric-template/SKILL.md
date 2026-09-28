@@ -19,6 +19,9 @@ Templates are pure JSON in `lyric-studio/src/templates/<id>.json`. The app picks
 
    Match the energy: fast/rap → `word` + `slam` + `shake` + `punchZoom`. Ballad/sad → serif/handwritten, `blur`, `dim`.
    Glitch/Y2K → mono/pixel, `glitch`, `rgbSplit`, `grain`.
+   Playful/experimental → `layout.placement` (scatter, zigzag, stairs, orbit, wander, bounce), `sizeJitter`,
+   `enter.letterStagger`, `fx.wave` / `jelly` / `drift`, `color.letterPalette`, exits `scatter` / `fall` with `exit.overlap`.
+   Cinematic → condensed caps, `layout.spread`, hard cuts, `emphasis` payoffs (black screen on the line's last word).
 3. Readability on TikTok matters more than novelty:
    - white or light text needs a `stroke`, `shadow` or `frame.dim`
    - avoid font sizes under ~52

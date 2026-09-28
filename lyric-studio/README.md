@@ -32,8 +32,14 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
    - keyboard: <kbd>[</kbd> <kbd>]</kbd> set the selected block's start/end to the playhead, <kbd>←</kbd> <kbd>→</kbd> nudge by a frame
      (<kbd>Shift</kbd> = 0.1 s), <kbd>Tab</kbd> selects the next word, <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes
    - the *Lyric timing* slider shifts everything if all the lyrics are equally early or late
-4. **Pick a style** from the gallery (hover a thumbnail to see it animate). Then adjust size, position,
-   framing (fill or fit + blurred background) and colors.
+4. **Pick a style** from the gallery (hover a thumbnail to see it animate). Then **Customize** it:
+   - **Text:** any font from the list or any Google Font by name, weight, caps, italic
+   - **Motion:** words on screen (line / 2–3 words / one word), entrance animation, and movement
+     (centered, scatter, zigzag, staircase, orbit, wander, DVD bounce)
+   - **Payoff moments** (a word gets its own full moment, like Blackout's black screen): when they happen
+     (template default / every line end / only words you pick) and the background (black, white, accent, keep video).
+     Pick exact words in the timeline: select a word → **Payoff Auto / On / Off**, or press <kbd>P</kbd>.
+   - plus size, position, framing (fill or fit + blurred background) and colors
 5. **Export MP4.** It renders at the clip's frame rate with the original audio.
 
 Captions autosave in the browser per video. *Save project* / *Load project* move them between machines,

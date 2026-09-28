@@ -1,0 +1,13 @@
+{
+  "id": "wander",
+  "name": "Wander",
+  "vibe": "Every phrase stretches in somewhere new, drifts and jiggles, then blows apart",
+  "tags": ["playful", "experimental"],
+  "font": { "family": "Bricolage Grotesque", "weight": 800, "size": 120, "lineHeight": 1.0, "case": "lower" },
+  "color": { "fill": "#FFE600", "shadow": { "color": "#000000", "blur": 0, "x": 6, "y": 6 } },
+  "layout": { "mode": "chunk", "maxWords": 2, "anchor": "center", "placement": "wander", "maxWidth": 0.8 },
+  "reveal": "all",
+  "enter": { "anim": "stretch", "duration": 450 },
+  "exit": { "anim": "scatter", "duration": 400, "overlap": true },
+  "fx": { "drift": 18, "jelly": 0.3, "tilt": 8 }
+}

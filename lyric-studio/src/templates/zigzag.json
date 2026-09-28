@@ -1,0 +1,15 @@
+{
+  "id": "zigzag",
+  "name": "Zigzag",
+  "vibe": "Words fly in from nowhere, bounce between the left and right edges, then fall off screen",
+  "tags": ["playful", "experimental"],
+  "font": { "family": "Rubik Mono One", "weight": 400, "size": 96, "lineHeight": 1.25, "case": "upper" },
+  "color": { "fill": "#FFFFFF", "stroke": { "color": "#000000", "width": 6 } },
+  "layout": { "mode": "line", "anchor": "center", "placement": "zigzag", "sizeJitter": 0.25 },
+  "reveal": "word",
+  "active": { "mode": "color", "color": "#FFE600" },
+  "enter": { "anim": "flyIn", "duration": 420 },
+  "exit": { "anim": "fall", "duration": 650, "overlap": true },
+  "timing": { "hold": 0.4 },
+  "frame": { "punchZoom": 0.03 }
+}

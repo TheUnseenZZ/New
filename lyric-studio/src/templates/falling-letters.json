@@ -1,0 +1,13 @@
+{
+  "id": "falling-letters",
+  "name": "Falling Letters",
+  "vibe": "Letters rain down and bounce into place, then the whole phrase drops off screen",
+  "tags": ["playful", "letters"],
+  "font": { "family": "Shrikhand", "weight": 400, "size": 116, "lineHeight": 1.15, "case": "lower" },
+  "color": { "fill": "#FFFFFF", "stroke": { "color": "#3B1D8F", "width": 6 } },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center" },
+  "reveal": "word",
+  "enter": { "anim": "drop", "duration": 500, "letterStagger": 40 },
+  "exit": { "anim": "fall", "duration": 700, "overlap": true },
+  "timing": { "hold": 0.4 }
+}

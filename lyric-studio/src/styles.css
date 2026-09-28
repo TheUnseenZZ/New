@@ -529,6 +529,47 @@ input[type='range'] {
   margin: 6px 0 -2px;
 }
 
+.sub-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: -4px;
+}
+
+.style-panel {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.style-panel select,
+.style-panel input[type='text'] {
+  background: var(--panel);
+}
+
+.tl-word.payoff-on::after,
+.tl-word.payoff-off::after {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 10px;
+}
+
+.tl-word.payoff-on {
+  border-color: #ffd166;
+}
+
+.tl-word.payoff-on::after {
+  content: '★';
+  color: #ffd166;
+}
+
+.tl-word.payoff-off::after {
+  content: '⊘';
+  color: var(--muted);
+}
+
 .two {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -545,6 +586,7 @@ input[type='range'] {
 
 .seg button {
   flex: 1;
+  white-space: nowrap;
   border: none;
   background: none;
   border-radius: 7px;
