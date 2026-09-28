@@ -42,7 +42,14 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
    - plus size, position, framing (fill or fit + blurred background) and colors
 5. **Export MP4.** It renders at the clip's frame rate with the original audio.
 
-Captions autosave in the browser per video. *Save project* / *Load project* move them between machines,
+**Saved subtitles (reuse a synced song):** after syncing, click **💾 Save current** and name it (e.g. the song title).
+In a future project with the same song, click **Use**. The app compares the audio and finds where the new clip sits
+in the song, then moves the lyrics there automatically. If it can't match confidently, it says so and you can
+nudge with the *Shift all lyrics* buttons (all changes are undoable). Tick *Also load the style* to bring back the
+template and customizations too. The library lives in your browser; use **Export library** to back it up or move it
+to another computer, and **Import library** to bring it back.
+
+Captions also autosave in the browser per video. *Save project* / *Load project* move one project between machines,
 and *.srt* gives you a plain subtitle file.
 
 ## New animation styles

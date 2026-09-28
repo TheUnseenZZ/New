@@ -3,10 +3,12 @@ import { ImportTemplate } from './components/ImportTemplate';
 import { LyricsEditor } from './components/LyricsEditor';
 import { Preview } from './components/Preview';
 import { TemplateGallery } from './components/TemplateGallery';
+import { LibraryPanel } from './components/LibraryPanel';
 import { StylePanel } from './components/StylePanel';
 import { Timeline } from './components/Timeline';
 import { computePeaks, type Peaks } from './lib/waveform';
 import { parseSubtitles } from './lib/subtitles';
+import { shiftLines } from './lib/library';
 import { ensureFont } from './lib/fonts';
 import { toSrt } from './lib/lyrics';
 import { applyOverrides, CaptionRenderer } from './lib/render';
@@ -327,6 +329,19 @@ export default function App() {
           />
           {!asr.busy && asr.message && <div className="note">{asr.message}</div>}
           {asr.error && <div className="error">{asr.error}</div>}
+
+          <LibraryPanel
+            lines={lines}
+            peaks={peaks}
+            settings={settings}
+            defaultName={baseName}
+            hasVideo={!!file}
+            onUse={(l, saved) => {
+              setLines(() => l);
+              if (saved) setSettings((cur) => ({ ...DEFAULT_SETTINGS, ...saved, showSafeZone: cur.showSafeZone }));
+            }}
+            onShift={(dt) => setLines((prev) => shiftLines(prev, dt))}
+          />
 
           <div className="section-title">Lyrics</div>
           <LyricsEditor lines={lines} setLines={setLines} time={time} seek={seek} />
