@@ -9,6 +9,7 @@ import { Timeline } from './components/Timeline';
 import { computePeaks, type Peaks } from './lib/waveform';
 import { parseSubtitles } from './lib/subtitles';
 import { shiftLines } from './lib/library';
+import { codecName, fpsLabel, mbps, outputSize, targetBitrate, type SourceInfo } from './lib/exportInfo';
 import { ensureFont } from './lib/fonts';
 import { toSrt } from './lib/lyrics';
 import { applyOverrides, CaptionRenderer } from './lib/render';
@@ -59,7 +60,8 @@ export default function App() {
   const [language, setLanguage] = useState<string | null>(null);
   const [asr, setAsr] = useState<{ busy: boolean; message?: string; progress?: number; error?: string }>({ busy: false });
 
-  const [exp, setExp] = useState<{ busy: boolean; progress: number; url?: string; error?: string; warnings?: string[] }>({
+  const [sourceInfo, setSourceInfo] = useState<SourceInfo | null>(null);
+  const [exp, setExp] = useState<{ busy: boolean; progress: number; phase?: string; url?: string; error?: string; warnings?: string[]; summary?: string }>({
     busy: false,
     progress: 0,
   });
@@ -141,6 +143,20 @@ export default function App() {
   }, [undo, redo]);
 
   const [duration, setDuration] = useState(0);
+  useEffect(() => {
+    setSourceInfo(null);
+    if (!file) return;
+    let alive = true;
+    import('./lib/export')
+      .then(({ probeVideo }) => probeVideo(file))
+      .then((info) => alive && setSourceInfo(info))
+      .catch(() => {
+        /* unreadable container: export will report the problem */
+      });
+    return () => {
+      alive = false;
+    };
+  }, [file]);
   const [peaks, setPeaks] = useState<Peaks | null>(null);
   useEffect(() => {
     setPeaks(null);
@@ -218,8 +234,14 @@ export default function App() {
       const r = new CaptionRenderer();
       r.setData(lines, template, settings);
       const { exportVideo } = await import('./lib/export');
-      const { blob, warnings } = await exportVideo(file, r, (p) => setExp((s) => ({ ...s, progress: p })), ac.signal);
-      setExp({ busy: false, progress: 1, url: URL.createObjectURL(blob), warnings });
+      const { blob, warnings, summary } = await exportVideo(
+        file,
+        r,
+        settings.exportOpts ?? DEFAULT_SETTINGS.exportOpts,
+        (p, phase) => setExp((s) => ({ ...s, progress: p, phase: phase ?? s.phase })),
+        ac.signal,
+      );
+      setExp({ busy: false, progress: 1, url: URL.createObjectURL(blob), warnings, summary });
     } catch (e) {
       const err = e as Error;
       setExp({ busy: false, progress: 0, error: err.name === 'AbortError' ? undefined : err.message });
@@ -447,13 +469,18 @@ export default function App() {
           )}
 
           <div className="section-title">Export</div>
+          <ExportSettings
+            info={sourceInfo}
+            opts={settings.exportOpts ?? DEFAULT_SETTINGS.exportOpts}
+            onChange={(o) => set('exportOpts', o)}
+          />
           {!exp.busy ? (
             <button className="btn primary block" onClick={runExport} disabled={!file}>
               ⬇ Export MP4 (1080×1920)
             </button>
           ) : (
             <div className="status">
-              Rendering… {Math.round(exp.progress * 100)}%
+              {exp.phase ?? 'Rendering…'} {Math.round(exp.progress * 100)}%
               <div className="progress">
                 <div style={{ width: `${exp.progress * 100}%` }} />
               </div>
@@ -466,6 +493,7 @@ export default function App() {
           {exp.url && (
             <div className="stack">
               <video className="result-video" src={exp.url} controls playsInline />
+              {exp.summary && <div className="note">✓ {exp.summary}</div>}
               <a className="btn block" href={exp.url} download={`${baseName}-lyrics.mp4`} style={{ textAlign: 'center', textDecoration: 'none' }}>
                 Save {baseName}-lyrics.mp4
               </a>
@@ -541,6 +569,104 @@ export default function App() {
           }}
         />
       )}
+    </div>
+  );
+}
+
+function ExportSettings({
+  info,
+  opts,
+  onChange,
+}: {
+  info: SourceInfo | null;
+  opts: import('./lib/exportInfo').ExportOptions;
+  onChange: (o: import('./lib/exportInfo').ExportOptions) => void;
+}) {
+  const out = outputSize(info, opts.resolution);
+  const br = targetBitrate(info, opts, out);
+  const srcOut = outputSize(info, 'source');
+  return (
+    <div className="export-box">
+      {info ? (
+        <div className="small-text">
+          <span className="muted">Your clip: </span>
+          {info.width}×{info.height} · {fpsLabel(info.fps)} fps{info.variableFps ? ' (variable)' : ''} · {codecName(info.videoCodec)}{' '}
+          {mbps(info.videoBitrate)}
+          {info.audioCodec && ` · ${codecName(info.audioCodec)} ${info.audioBitrate ? Math.round(info.audioBitrate / 1000) + ' kbps' : ''}`}
+          {info.hdr && ' · HDR'}
+        </div>
+      ) : (
+        <div className="small-text muted">Open a video to see its quality settings.</div>
+      )}
+      <div className="two">
+        <label className="field">
+          Resolution
+          <select
+            value={String(opts.resolution)}
+            onChange={(e) => onChange({ ...opts, resolution: e.target.value === 'source' ? 'source' : (Number(e.target.value) as 1080 | 1440 | 2160) })}
+          >
+            <option value="source">Match clip ({srcOut.width}×{srcOut.height})</option>
+            <option value="1080">1080×1920</option>
+            <option value="1440">1440×2560</option>
+            <option value="2160">2160×3840 (4K)</option>
+          </select>
+        </label>
+        <label className="field">
+          Codec
+          <select value={opts.codec} onChange={(e) => onChange({ ...opts, codec: e.target.value as 'source' | 'avc' | 'hevc' })}>
+            <option value="source">Same as clip ({codecName(info?.videoCodec ?? 'avc')})</option>
+            <option value="avc">H.264 (most compatible)</option>
+            <option value="hevc">HEVC / H.265</option>
+          </select>
+        </label>
+      </div>
+      <label className="field">
+        Video bitrate
+        <div className="row">
+          <select
+            value={opts.bitrate === 'source' ? 'source' : 'custom'}
+            onChange={(e) =>
+              onChange({ ...opts, bitrate: e.target.value === 'source' ? 'source' : Math.round(((br ?? 12e6) / 1e6) * 10) / 10 })
+            }
+            style={{ flex: 1 }}
+          >
+            <option value="source">
+              Match clip
+              {br && opts.bitrate === 'source'
+                ? info?.videoBitrate && Math.abs(br - info.videoBitrate) / info.videoBitrate > 0.03
+                  ? ` (${mbps(br)}, same quality per pixel at ${out.width}×${out.height})`
+                  : ` (${mbps(br)})`
+                : ''}
+            </option>
+            <option value="custom">Custom</option>
+          </select>
+          {opts.bitrate !== 'source' && (
+            <>
+              <input
+                type="number"
+                min={1}
+                max={200}
+                step={0.5}
+                value={opts.bitrate}
+                onChange={(e) => onChange({ ...opts, bitrate: Math.max(1, Number(e.target.value) || 1) })}
+                style={{ width: 80 }}
+              />
+              <span className="muted small-text">Mbps</span>
+            </>
+          )}
+        </div>
+      </label>
+      <div className="muted small-text">
+        Frame rate: {info ? `${fpsLabel(info.fps)} fps, every original frame kept` : 'same as clip'} · Audio: copied from the clip untouched
+      </div>
+      <label className="check small-text">
+        <input
+          type="checkbox"
+          checked={(opts.bitrateMode ?? 'constant') === 'constant'}
+          onChange={(e) => onChange({ ...opts, bitrateMode: e.target.checked ? 'constant' : 'variable' })}
+        />
+        Constant bitrate (hit the number exactly, like your editor's CBR)
+      </label>
     </div>
   );
 }

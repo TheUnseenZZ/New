@@ -1,3 +1,5 @@
+import { DEFAULT_EXPORT, type ExportOptions } from './exportInfo';
+
 /** A single sung word with its timing, in seconds from the start of the video. */
 export interface Word {
   text: string;
@@ -222,6 +224,8 @@ export interface Settings {
   colorOverride: { enabled: boolean; fill: string; accent: string };
   /** Per-style customizations from the UI. Reset when switching templates. */
   style: StyleOverrides;
+  /** Output quality (resolution / bitrate / codec). */
+  exportOpts: ExportOptions;
 }
 
 export interface StyleOverrides {
@@ -248,4 +252,5 @@ export const DEFAULT_SETTINGS: Settings = {
   showSafeZone: true,
   colorOverride: { enabled: false, fill: '#ffffff', accent: '#ffe600' },
   style: {},
+  exportOpts: DEFAULT_EXPORT,
 };

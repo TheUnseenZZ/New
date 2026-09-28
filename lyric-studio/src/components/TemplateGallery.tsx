@@ -56,6 +56,7 @@ function Thumb({ template }: { template: Template }) {
   const [fontReady, setFontReady] = useState(0);
   const renderer = useMemo(() => {
     const r = new CaptionRenderer();
+    r.pixelScale = 0.2; // thumbnails are drawn at 20% size
     r.setData(SAMPLE, template, { ...DEFAULT_SETTINGS, templateId: template.id });
     return r;
   }, [template]);

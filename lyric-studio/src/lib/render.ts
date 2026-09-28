@@ -244,6 +244,11 @@ export class CaptionRenderer {
   tpl!: Template;
   settings!: Settings;
   groups: Group[] = [];
+  /**
+   * Canvas pixels per layout pixel (2 when exporting 4K, 0.2 for gallery thumbnails). Shadows and
+   * blur filters ignore the canvas transform, so they're multiplied by this to look the same at any size.
+   */
+  pixelScale = 1;
   private layouts = new Map<number, Layout>();
   private grain = new WeakMap<CanvasRenderingContext2D, CanvasPattern>();
 
@@ -482,7 +487,7 @@ export class CaptionRenderer {
     const cover = Math.max(W / sw, H / sh);
     if (this.settings.fit === 'contain') {
       ctx.save();
-      ctx.filter = 'blur(40px) brightness(0.6)';
+      ctx.filter = `blur(${40 * this.pixelScale}px) brightness(0.6)`;
       const s = cover * 1.15;
       ctx.drawImage(src, (W - sw * s) / 2, (H - sh * s) / 2, sw * s, sh * s);
       ctx.restore();
@@ -726,7 +731,7 @@ export class CaptionRenderer {
     ctx.rotate(x.rot + pw.r);
     ctx.scale(x.scale * x.sx * pw.s, x.scale * x.sy * pw.s);
     const blur = x.blur + (T.fx?.soften ?? 0);
-    if (blur > 0.3) ctx.filter = `blur(${blur.toFixed(1)}px)`;
+    if (blur > 0.3) ctx.filter = `blur(${(blur * this.pixelScale).toFixed(1)}px)`;
     if (o.blend && o.blend !== 'normal') ctx.globalCompositeOperation = o.blend as GlobalCompositeOperation;
     ctx.font = L.font;
     ctx.letterSpacing = L.spacing;
@@ -743,12 +748,14 @@ export class CaptionRenderer {
     }
 
     const { stroke, shadow, glow } = T.color;
+    // Shadows are in device pixels and also ignore our scale transforms: compensate for both.
+    const ps = this.pixelScale * Math.abs(x.scale * pw.s);
     const setShadow = () => {
       if (shadow) {
         ctx.shadowColor = shadow.color;
-        ctx.shadowBlur = shadow.blur;
-        ctx.shadowOffsetX = shadow.x;
-        ctx.shadowOffsetY = shadow.y;
+        ctx.shadowBlur = shadow.blur * ps;
+        ctx.shadowOffsetX = shadow.x * ps;
+        ctx.shadowOffsetY = shadow.y * ps;
       }
     };
     const clearShadow = () => {
@@ -772,7 +779,7 @@ export class CaptionRenderer {
       if (glow) {
         ctx.save();
         ctx.shadowColor = glow.color;
-        ctx.shadowBlur = glow.blur;
+        ctx.shadowBlur = glow.blur * ps;
         ctx.fillStyle = glow.color;
         ctx.fillText(str, lx, 0);
         ctx.restore();
@@ -822,7 +829,7 @@ export class CaptionRenderer {
         ctx.translate(x0 + left + cw / 2 + lx.dx, wy + lx.dy);
         ctx.rotate(lx.rot);
         ctx.scale(lx.scale * lx.sx, lx.scale * lx.sy);
-        if (lx.blur > 0.3) ctx.filter = `blur(${lx.blur.toFixed(1)}px)`;
+        if (lx.blur > 0.3) ctx.filter = `blur(${(lx.blur * this.pixelScale).toFixed(1)}px)`;
         paint(ch, -cw / 2, pal?.length ? pal[(i + o.letters!.offset) % pal.length] : fillStyle);
         ctx.restore();
       });

@@ -40,7 +40,14 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
      (template default / every line end / only words you pick) and the background (black, white, accent, keep video).
      Pick exact words in the timeline: select a word → **Payoff Auto / On / Off**, or press <kbd>P</kbd>.
    - plus size, position, framing (fill or fit + blurred background) and colors
-5. **Export MP4.** It renders at the clip's frame rate with the original audio.
+5. **Export MP4** at the same quality as your clip:
+   - **Frame rate:** every original frame is kept at its exact timestamp (29.97, 59.94, 120 fps and variable-rate phone footage are preserved)
+   - **Resolution:** matches the clip (4K stays 2160×3840), or pick 1080/1440/2160
+   - **Bitrate:** your clip's bitrate by default (constant bitrate, so the number actually matches), or type your own Mbps.
+     The export measures what the encoder really produced and runs one corrective pass if it came in >10% low.
+   - **Codec:** same as your clip (H.264/HEVC) when the browser can encode it
+   - **Audio:** copied bit-for-bit from the clip, no re-encoding
+   - HDR clips (iPhone default) come out SDR, because browsers draw video in SDR. The app warns you.
 
 **Saved subtitles (reuse a synced song):** after syncing, click **💾 Save current** and name it (e.g. the song title).
 In a future project with the same song, click **Use**. The app compares the audio and finds where the new clip sits

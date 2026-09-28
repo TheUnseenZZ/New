@@ -536,6 +536,21 @@ input[type='range'] {
   margin-bottom: -4px;
 }
 
+.export-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.export-box select,
+.export-box input {
+  background: var(--panel);
+}
+
 .library {
   display: flex;
   flex-direction: column;
