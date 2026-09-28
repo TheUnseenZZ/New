@@ -31,7 +31,7 @@ and *.srt* gives you a plain subtitle file.
 
 ## New animation styles
 
-![All 14 built-in templates](docs/templates.png)
+![Some of the built-in templates](docs/templates.png)
 
 Templates are JSON files in `src/templates/`. See [TEMPLATES.md](TEMPLATES.md).
 With Claude Code open in this repo, just ask: *"make a lyric template that feels like a 2000s emo music video"*.

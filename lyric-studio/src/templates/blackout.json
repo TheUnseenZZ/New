@@ -1,0 +1,15 @@
+{
+  "id": "blackout",
+  "name": "Blackout",
+  "vibe": "White condensed caps spread across the frame, hard cuts, last word of each line on pure black",
+  "tags": ["cinematic", "minimal", "indie"],
+  "font": { "family": "Oswald", "weight": 600, "size": 140, "lineHeight": 1.0, "case": "upper" },
+  "color": { "fill": "#FFFFFF", "shadow": { "color": "rgba(0,0,0,0.35)", "blur": 20, "x": 0, "y": 2 } },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center", "spread": true, "maxWidth": 0.96, "maxLines": 1 },
+  "reveal": "word",
+  "enter": { "anim": "none", "duration": 1 },
+  "exit": { "anim": "none", "duration": 0 },
+  "timing": { "lead": 0, "hold": 0.5 },
+  "emphasis": { "trigger": "lineEnd", "background": "#000000", "fill": "#FFFFFF", "scale": 1.3 },
+  "frame": { "dim": 0.1 }
+}

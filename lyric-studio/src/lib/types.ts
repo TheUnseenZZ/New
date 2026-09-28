@@ -63,6 +63,28 @@ export interface Template {
     stroke?: { color: string; width: number };
     shadow?: { color: string; blur: number; x: number; y: number };
     glow?: { color: string; blur: number };
+    /**
+     * Canvas blend mode for the text, e.g. "multiply" makes dark text look projected onto a
+     * bright wall; "overlay"/"screen"/"difference" for other looks. Default normal.
+     */
+    blend?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'difference' | 'soft-light';
+    /** Solid card behind the whole group (e.g. white text on a red panel). */
+    card?: { color: string; padding?: number; radius?: number };
+  };
+
+  /**
+   * Payoff words get their own moment: optionally cut the frame to a solid color and restyle the word.
+   * trigger "lineEnd" = last word of every lyric line; "marked" = only words the user wraps in *stars*.
+   * Marked words always count, whatever the trigger.
+   */
+  emphasis?: {
+    trigger: 'lineEnd' | 'marked';
+    /** Fill the whole frame with this color while the word is on screen (e.g. "#000" blackout). */
+    background?: string;
+    fill?: string;
+    scale?: number;
+    /** Hide the card for the emphasized word. */
+    noCard?: boolean;
   };
 
   layout: {
@@ -75,6 +97,8 @@ export interface Template {
     maxWidth?: number;
     /** Max wrapped rows before the font shrinks. Default 3 */
     maxLines?: number;
+    /** Spread each row's words evenly across the full width ("NOW    WE    AIN'T"). */
+    spread?: boolean;
   };
 
   /** all = whole group appears at once, word = each word appears as it's sung, char = typewriter */
@@ -128,6 +152,8 @@ export interface Template {
     tilt?: number;
     /** px of gentle vertical floating */
     float?: number;
+    /** px of constant blur, for soft projected/out-of-focus text */
+    soften?: number;
   };
 
   /** Effects applied to the video frame itself. */
@@ -160,7 +186,7 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  templateId: 'pop-karaoke',
+  templateId: 'blackout',
   fit: 'cover',
   yOffset: 0,
   sizeScale: 1,

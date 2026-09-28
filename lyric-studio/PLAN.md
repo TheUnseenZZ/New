@@ -16,7 +16,7 @@ It should be usable by other artists, not just us.
 | Lyrics source | Auto-transcribe (Whisper) + manual edit pass | What you picked. Paste-and-align is the planned accuracy upgrade (Phase 2). |
 | Platform | Browser app, all processing local | $0 hosting, private, shareable by link, no installs. |
 | AI animations | Via Claude Code for now | Templates are JSON, so Claude writes new ones with no API cost. In-app for other users later. |
-| Styles | All four families | Karaoke pop, punchy single words, aesthetic/editorial, glitch/Y2K. 14 built in. |
+| Styles | All four families + your references | 18 built in, led by the zachdoaa-inspired Blackout / Red Card / Statement / Solitude. |
 
 ## Phase 1: MVP ✅ (this branch)
 
@@ -37,7 +37,8 @@ It should be usable by other artists, not just us.
    This is the biggest accuracy win for sung vocals.
 2. **Word-level timing editor.** A waveform lane with draggable word blocks, plus a "tap to sync" mode (tap spacebar on each word).
 3. **Beat sync.** Detect beats (local onset detection) so punch-zoom/flash/shake hit the drums, not just word starts.
-4. **Templates from your references.** Once you share screenshots or screen recordings of the Instagram posts, clone those looks.
+4. ✅ **Templates from your references** (zachdoaa-style): Blackout, Red Card, Statement, Solitude, plus renderer support for
+   spread words, text cards, blend modes and payoff words (`*starred*` or last word of each line). Next: the pink glitter-burst accent.
 5. **Per-line style overrides.** E.g. the hook line in a different template or color.
 6. Emoji/sticker accents and keyword emphasis (auto-bigger words for "love", "money", the song title…).
 
@@ -85,7 +86,6 @@ Asking for new templates via the skill is cheap (a small fraction of a session e
 
 ## Open questions for you
 
-1. Screenshots or screen recordings of the two Instagram references. The links were blocked from my sandbox.
-2. Mostly your own songs, or should other artists be able to use this soon? That decides when Phase 3 happens.
-3. Which languages do you sing in? I added Greek + 11 others. Whisper's accuracy varies a lot by language.
-4. Do you have stems (an acapella track)? Transcribing the acapella gives much better lyrics. We could add an optional "vocal track" upload.
+1. Mostly your own songs, or should other artists be able to use this soon? That decides when Phase 3 happens.
+2. Which languages do you sing in? I added Greek + 11 others. Whisper's accuracy varies a lot by language.
+3. Do you have stems (an acapella track)? Transcribing the acapella gives much better lyrics. We could add an optional "vocal track" upload.

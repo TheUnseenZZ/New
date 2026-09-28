@@ -25,6 +25,10 @@ function validate(o) {
   if (o.active && !['none', 'color', 'sung', 'box', 'underline'].includes(o.active.mode)) {
     e.push('active.mode must be none | color | sung | box | underline');
   }
+  if (o.color?.blend && !['normal', 'multiply', 'screen', 'overlay', 'difference', 'soft-light'].includes(o.color.blend)) {
+    e.push('color.blend must be normal | multiply | screen | overlay | difference | soft-light');
+  }
+  if (o.emphasis && !['lineEnd', 'marked'].includes(o.emphasis.trigger)) e.push('emphasis.trigger must be lineEnd | marked');
   return e;
 }
 

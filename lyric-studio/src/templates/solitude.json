@@ -1,0 +1,14 @@
+{
+  "id": "solitude",
+  "name": "Solitude",
+  "vibe": "Quiet lowercase serif, centered, fades in and out. Keep periods on for the full effect",
+  "tags": ["aesthetic", "minimal", "serif"],
+  "font": { "family": "EB Garamond", "weight": 500, "size": 84, "lineHeight": 1.15, "case": "lower" },
+  "color": { "fill": "#F4F1EA", "shadow": { "color": "rgba(0,0,0,0.45)", "blur": 20, "x": 0, "y": 2 } },
+  "layout": { "mode": "line", "anchor": "center", "maxWidth": 0.8 },
+  "reveal": "all",
+  "enter": { "anim": "fade", "duration": 350 },
+  "exit": { "anim": "fade", "duration": 350 },
+  "timing": { "lead": 0.1, "hold": 1.2 },
+  "frame": { "dim": 0.2 }
+}

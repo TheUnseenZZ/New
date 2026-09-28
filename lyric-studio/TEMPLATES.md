@@ -67,6 +67,13 @@ Leave out anything you don't use (`gradient`, `palette`, `glow`, `fx`, …).
 | `fx.wobble` | degrees | Continuous sway. |
 | `fx.tilt` | degrees | Random fixed rotation per group (sticker look). |
 | `fx.float` | px | Gentle vertical bobbing. |
+| `layout.spread` | `true` | Spread each row's words evenly across the full width ("NOW    WE    AIN'T"). |
+| `color.blend` | `normal` `multiply` `screen` `overlay` `difference` `soft-light` | Blend text into the footage. `multiply` + dark text = projected onto a bright wall. |
+| `color.card` | `{ color, padding, radius }` | Solid panel behind the words (e.g. white text on red). |
+| `fx.soften` | px | Constant slight blur, for projected / out-of-focus text. |
+| `emphasis.trigger` | `lineEnd` `marked` | Which words are "payoff" words: the last word of every lyric line, or only words the user wraps in `*stars*` (starred words always count). Each payoff word gets its own moment. |
+| `emphasis.background` | color | Cuts the whole frame to this color while the payoff word shows (e.g. `#000` blackout). |
+| `emphasis.fill` / `scale` / `noCard` | | Restyle the payoff word: its color, a size boost, and whether to hide the card. |
 | `frame.dim` | 0–1 | Darkens the video so text pops. |
 | `frame.punchZoom` | e.g. `0.05` | Camera "kick" zoom on every new group. |
 | `frame.flash` | 0–1 | White flash on every new group. |
@@ -78,6 +85,8 @@ Leave out anything you don't use (`gradient`, `palette`, `glow`, `fx`, …).
 - **High energy / rap:** `layout.mode: word`, `enter.anim: slam`, `fx.shake`, `frame.punchZoom`, a `palette`.
 - **Karaoke:** `layout.mode: line` or `chunk`, `reveal: all`, `active.mode: sung` or `color`, `upcoming.opacity: 0.5`.
 - **Sad / aesthetic:** serif or handwritten font, `case: lower`, `reveal: word`, `enter.anim: blur`, `frame.dim` + `vignette`.
+- **Cinematic / indie:** condensed caps (`Oswald`, `Roboto Condensed`), `layout.spread`, `reveal: word`,
+  no enter animation (hard cuts), `emphasis: { trigger: lineEnd, background: "#000" }`. Add `color.card` for the red-panel look.
 - **Glitch / Y2K:** mono or pixel font, `enter.anim: glitch`, `fx.rgbSplit`, `fx.flicker`, `frame.grain`.
 
 Check your changes with `npm run validate-templates`.

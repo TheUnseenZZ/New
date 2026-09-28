@@ -53,6 +53,10 @@ export function LyricsEditor({ lines, setLines, time, seek }: Props) {
           Edit timings
         </label>
       </div>
+      <div className="muted small-text">
+        Tip: wrap a word in stars like <code>*strangers*</code> to make it a payoff word (styles like Blackout and
+        Projector give it its own moment).
+      </div>
       <div className="lines" ref={listRef}>
         {lines.map((l, i) => (
           <LineRow

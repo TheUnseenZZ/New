@@ -1,0 +1,15 @@
+{
+  "id": "statement",
+  "name": "Statement",
+  "vibe": "Tall stacked caps that build word by word, like a manifesto poster",
+  "tags": ["poster", "bold", "indie"],
+  "font": { "family": "Oswald", "weight": 700, "size": 150, "lineHeight": 0.98, "case": "upper" },
+  "color": { "fill": "#FFFFFF", "shadow": { "color": "rgba(0,0,0,0.4)", "blur": 18, "x": 0, "y": 3 } },
+  "layout": { "mode": "line", "anchor": "center", "maxWidth": 0.62, "maxLines": 6 },
+  "reveal": "word",
+  "enter": { "anim": "fade", "duration": 80 },
+  "exit": { "anim": "none", "duration": 0 },
+  "timing": { "lead": 0, "hold": 1.0 },
+  "fx": { "tilt": 2 },
+  "frame": { "dim": 0.3 }
+}

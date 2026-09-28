@@ -11,6 +11,8 @@ export interface Group {
   showFrom: number;
   /** when it disappears (before the next group or end + hold) */
   showUntil: number;
+  /** payoff word (template emphasis) */
+  emph: boolean;
 }
 
 interface Placed {
@@ -30,9 +32,14 @@ interface Layout {
   /** block center, the pivot for group-level transforms */
   bx: number;
   by: number;
+  /** text block bounds, for cards */
+  box: { x: number; y: number; w: number; h: number };
 }
 
 const EDGE_PUNCT = /^[.,;:"“”«»…]+|[.,;:"“”«»…]+$/g;
+/** Users mark payoff words in the editor by wrapping them in stars: *strangers* */
+export const isMarked = (text: string) => /^\*.+\*[.,!?;:]*$/.test(text) || /^\*[^*]+$/.test(text);
+const stripMarks = (text: string) => text.replace(/\*/g, '');
 
 export function fontString(f: Template['font'], px: number) {
   return `${f.italic ? 'italic ' : ''}${f.weight} ${Math.round(px * 10) / 10}px "${f.family}", sans-serif`;
@@ -52,10 +59,10 @@ export function applyOverrides(tpl: Template, s: Settings): Template {
 /** Split lyric lines into on-screen groups according to the template's layout mode. */
 export function buildGroups(lines: Line[], tpl: Template, offset: number): Group[] {
   const chunks: Word[][] = [];
+  const emphChunks = new Set<Word[]>();
   const maxWords = Math.max(1, tpl.layout.maxWords ?? 3);
-  for (const line of lines) {
-    const ws = line.words.map((w) => ({ ...w, start: w.start + offset, end: w.end + offset }));
-    if (!ws.length) continue;
+  const pushSegment = (ws: Word[]) => {
+    if (!ws.length) return;
     if (tpl.layout.mode === 'line') {
       chunks.push(ws);
     } else if (tpl.layout.mode === 'word') {
@@ -68,11 +75,32 @@ export function buildGroups(lines: Line[], tpl: Template, offset: number): Group
         phrases[phrases.length - 1].push(w);
       });
       for (const ph of phrases) {
+        if (!ph.length) continue;
         const n = Math.ceil(ph.length / maxWords);
         const size = Math.ceil(ph.length / n);
         for (let i = 0; i < ph.length; i += size) chunks.push(ph.slice(i, i + size));
       }
     }
+  };
+  for (const line of lines) {
+    const ws = line.words.map((w) => ({ ...w, start: w.start + offset, end: w.end + offset }));
+    if (!ws.length) continue;
+    if (!tpl.emphasis) {
+      pushSegment(ws);
+      continue;
+    }
+    // Payoff words become their own group; everything between them groups normally.
+    let seg: Word[] = [];
+    ws.forEach((w, i) => {
+      const emph = isMarked(w.text) || (tpl.emphasis!.trigger === 'lineEnd' && i === ws.length - 1 && ws.length > 1);
+      if (!emph) return void seg.push(w);
+      pushSegment(seg);
+      seg = [];
+      const single = [w];
+      chunks.push(single);
+      emphChunks.add(single);
+    });
+    pushSegment(seg);
   }
   chunks.sort((a, b) => a[0].start - b[0].start);
 
@@ -85,6 +113,7 @@ export function buildGroups(lines: Line[], tpl: Template, offset: number): Group
     end: words[words.length - 1].end,
     showFrom: Math.max(0, words[0].start - lead),
     showUntil: 0,
+    emph: emphChunks.has(words),
   }));
   groups.forEach((g, i) => {
     const next = groups[i + 1];
@@ -145,8 +174,9 @@ export class CaptionRenderer {
   }
 
   displayText(text: string) {
-    let t = this.settings.stripPunctuation ? text.replace(EDGE_PUNCT, '') : text;
-    if (!t) t = text;
+    const raw = stripMarks(text) || text;
+    let t = this.settings.stripPunctuation ? raw.replace(EDGE_PUNCT, '') : raw;
+    if (!t) t = raw;
     const c = this.tpl.font.case;
     if (c === 'upper') t = t.toLocaleUpperCase();
     else if (c === 'lower') t = t.toLocaleLowerCase();
@@ -162,7 +192,7 @@ export class CaptionRenderer {
     const maxLines = T.layout.maxLines ?? 3;
     const texts = g.words.map((w) => this.displayText(w.text));
 
-    let px = f.size * this.settings.sizeScale;
+    let px = f.size * this.settings.sizeScale * (g.emph ? (T.emphasis?.scale ?? 1) : 1);
     let rows: number[][] = [];
     let widths: number[] = [];
     let space = 0;
@@ -204,20 +234,29 @@ export class CaptionRenderer {
 
     const words: Placed[] = [];
     let bx = W / 2;
+    let minX = Infinity;
+    let maxX = -Infinity;
     rows.forEach((row, r) => {
-      const rowW = row.reduce((a, i) => a + widths[i], 0) + space * (row.length - 1);
+      const sum = row.reduce((a, i) => a + widths[i], 0);
+      const spread = T.layout.spread && row.length > 1;
+      // Spread rows use the full allowed width with even gaps between words.
+      const gap = spread ? (maxW - sum) / (row.length - 1) : space;
+      const rowW = sum + gap * (row.length - 1);
       let x =
         T.layout.align === 'left'
           ? S.x + 24
           : Math.min(Math.max(W / 2, S.x + rowW / 2), S.right - rowW / 2) - rowW / 2;
       if (r === 0) bx = T.layout.align === 'left' ? S.x + 24 + rowW / 2 : x + rowW / 2;
+      minX = Math.min(minX, x);
+      maxX = Math.max(maxX, x + rowW);
       const y = cy - blockH / 2 + lineH * (r + 0.5);
       for (const i of row) {
         words.push({ k: i, text: texts[i], x: x + widths[i] / 2, y, w: widths[i] });
-        x += widths[i] + space;
+        x += widths[i] + gap;
       }
     });
-    const out = { words, px, font, spacing, bx, by: cy };
+    const box = { x: minX, y: cy - blockH / 2, w: maxX - minX, h: blockH };
+    const out = { words, px, font, spacing, bx, by: cy, box };
     this.layouts.set(g.index, out);
     return out;
   }
@@ -249,6 +288,11 @@ export class CaptionRenderer {
       g.addColorStop(0, 'rgba(0,0,0,0)');
       g.addColorStop(1, `rgba(0,0,0,${fr.vignette})`);
       ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+    const emphBg = this.tpl.emphasis?.background;
+    if (emphBg && this.groups.some((g) => g.emph && g.showFrom <= t && t < g.showUntil)) {
+      ctx.fillStyle = emphBg;
       ctx.fillRect(0, 0, W, H);
     }
     if (fr.flash && since < 0.15) {
@@ -344,8 +388,12 @@ export class CaptionRenderer {
     const nextWord = g.words[activeIdx + 1];
     const activeLive = activeWord && t < Math.max(activeWord.end + 0.2, nextWord ? nextWord.start : 0);
 
-    const baseFill = T.color.palette?.length ? T.color.palette[g.index % T.color.palette.length] : T.color.fill;
-    const useGradient = !T.color.palette?.length && T.color.gradient && T.color.gradient.length > 1;
+    const emph = g.emph ? T.emphasis : undefined;
+    const baseFill =
+      emph?.fill ?? (T.color.palette?.length ? T.color.palette[g.index % T.color.palette.length] : T.color.fill);
+    const useGradient = !emph?.fill && !T.color.palette?.length && T.color.gradient && T.color.gradient.length > 1;
+    // On a solid emphasis background, blend modes would just wash the text out.
+    const blend = emph?.background ? undefined : T.color.blend;
     const act = T.active ?? { mode: 'none' as const };
 
     ctx.save();
@@ -353,6 +401,18 @@ export class CaptionRenderer {
     ctx.rotate(gx.rot);
     ctx.scale(gx.scale, gx.scale);
     ctx.translate(-L.bx, -L.by);
+
+    const card = T.color.card;
+    if (card && !(emph && emph.noCard) && L.words.some((pw) => t >= (T.reveal === 'all' ? g.showFrom : g.words[pw.k].start - lead))) {
+      const pad = card.padding ?? L.px * 0.35;
+      ctx.save();
+      ctx.globalAlpha *= clamp01(gx.alpha);
+      ctx.fillStyle = card.color;
+      ctx.beginPath();
+      ctx.roundRect(L.box.x - pad, L.box.y - pad * 0.6, L.box.w + pad * 2, L.box.h + pad * 1.2, card.radius ?? 0);
+      ctx.fill();
+      ctx.restore();
+    }
 
     for (const pw of L.words) {
       const w = g.words[pw.k];
@@ -404,6 +464,7 @@ export class CaptionRenderer {
         gradient: useGradient && fill === baseFill ? T.color.gradient : undefined,
         box: act.mode === 'box' && isActive ? act : undefined,
         underline: act.mode === 'underline' && isActive ? (act.color ?? fill) : undefined,
+        blend,
       });
     }
     ctx.restore();
@@ -415,7 +476,7 @@ export class CaptionRenderer {
     text: string,
     x: Xf,
     L: Layout,
-    o: { fill: string; gradient?: string[]; box?: Template['active']; underline?: string },
+    o: { fill: string; gradient?: string[]; box?: Template['active']; underline?: string; blend?: string },
   ) {
     if (x.alpha <= 0.001) return;
     const T = this.tpl;
@@ -427,7 +488,9 @@ export class CaptionRenderer {
     ctx.translate(pw.x + x.dx, pw.y + x.dy);
     ctx.rotate(x.rot);
     ctx.scale(x.scale, x.scale);
-    if (x.blur > 0.3) ctx.filter = `blur(${x.blur.toFixed(1)}px)`;
+    const blur = x.blur + (T.fx?.soften ?? 0);
+    if (blur > 0.3) ctx.filter = `blur(${blur.toFixed(1)}px)`;
+    if (o.blend && o.blend !== 'normal') ctx.globalCompositeOperation = o.blend as GlobalCompositeOperation;
     ctx.font = L.font;
     ctx.letterSpacing = L.spacing;
     ctx.textBaseline = 'middle';

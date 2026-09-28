@@ -24,11 +24,19 @@ export function validateTemplate(t: unknown): string[] {
   if (o.active && !['none', 'color', 'sung', 'box', 'underline'].includes(o.active.mode)) {
     e.push('active.mode must be none | color | sung | box | underline');
   }
+  if (o.color?.blend && !['normal', 'multiply', 'screen', 'overlay', 'difference', 'soft-light'].includes(o.color.blend)) {
+    e.push('color.blend must be normal | multiply | screen | overlay | difference | soft-light');
+  }
+  if (o.emphasis && !['lineEnd', 'marked'].includes(o.emphasis.trigger)) e.push('emphasis.trigger must be lineEnd | marked');
   return e;
 }
 
 // Hand-picked gallery order; unknown ids (new templates) go last, alphabetically.
 const ORDER = [
+  'blackout',
+  'red-card',
+  'statement',
+  'solitude',
   'pop-karaoke',
   'highlight-box',
   'karaoke-fill',

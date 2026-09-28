@@ -1,0 +1,14 @@
+{
+  "id": "red-card",
+  "name": "Red Card",
+  "vibe": "White caps on a red panel; the payoff word lands in red straight on the footage",
+  "tags": ["bold", "indie", "poster"],
+  "font": { "family": "Oswald", "weight": 600, "size": 120, "lineHeight": 1.05, "case": "upper" },
+  "color": { "fill": "#FFFFFF", "card": { "color": "#E01E26", "padding": 56, "radius": 4 } },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center", "spread": true, "maxWidth": 0.86, "maxLines": 1 },
+  "reveal": "word",
+  "enter": { "anim": "none", "duration": 1 },
+  "exit": { "anim": "none", "duration": 0 },
+  "timing": { "lead": 0, "hold": 0.5 },
+  "emphasis": { "trigger": "lineEnd", "fill": "rgba(224,30,38,0.92)", "scale": 1.35, "noCard": true }
+}
