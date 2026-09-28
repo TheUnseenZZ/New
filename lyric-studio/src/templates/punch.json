@@ -13,7 +13,7 @@
   "reveal": "all",
   "enter": { "anim": "slam", "duration": 140 },
   "exit": { "anim": "none", "duration": 0 },
-  "timing": { "lead": 0.02, "hold": 0.35 },
+  "timing": { "hold": 0.35 },
   "fx": { "shake": 16, "shakeDuration": 200, "tilt": 4 },
   "frame": { "punchZoom": 0.06, "flash": 0.12 }
 }

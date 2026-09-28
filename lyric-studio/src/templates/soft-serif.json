@@ -12,7 +12,7 @@
   "reveal": "word",
   "enter": { "anim": "blur", "duration": 520 },
   "exit": { "anim": "blur", "duration": 420 },
-  "timing": { "lead": 0.1, "hold": 1.0 },
+  "timing": { "hold": 1.0 },
   "fx": { "float": 4 },
   "frame": { "dim": 0.12, "vignette": 0.4 }
 }

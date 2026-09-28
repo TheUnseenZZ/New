@@ -5,6 +5,7 @@ import { Preview } from './components/Preview';
 import { TemplateGallery } from './components/TemplateGallery';
 import { Timeline } from './components/Timeline';
 import { computePeaks, type Peaks } from './lib/waveform';
+import { parseSubtitles } from './lib/subtitles';
 import { ensureFont } from './lib/fonts';
 import { toSrt } from './lib/lyrics';
 import { CaptionRenderer } from './lib/render';
@@ -63,6 +64,7 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const projectInput = useRef<HTMLInputElement>(null);
+  const subsInput = useRef<HTMLInputElement>(null);
 
   const templates = useMemo(() => [...BUILT_IN, ...custom], [custom]);
   const customIds = useMemo(() => new Set(custom.map((t) => t.id)), [custom]);
@@ -290,6 +292,35 @@ export default function App() {
               </div>
             </div>
           )}
+          <button className="btn block" onClick={() => subsInput.current?.click()} disabled={!file}>
+            ⤓ Import subtitles (.srt / .vtt / .lrc)
+          </button>
+          <input
+            ref={subsInput}
+            type="file"
+            accept=".srt,.vtt,.lrc,text/plain"
+            hidden
+            onChange={async (e) => {
+              const f = e.target.files?.[0];
+              e.target.value = '';
+              if (!f) return;
+              if (lines.length && !confirm('Replace your current lyrics with the imported subtitles?')) return;
+              try {
+                const res = parseSubtitles(await f.text(), duration);
+                setLines(() => res.lines);
+                const words = res.lines.reduce((a, l) => a + l.words.length, 0);
+                setAsr({
+                  busy: false,
+                  message:
+                    `Imported ${res.lines.length} lines (${words} words) from ${res.format}.` +
+                    (res.shifted ? ` Removed the ${res.shifted / 3600}h timeline offset (DaVinci starts at 01:00:00:00).` : '') +
+                    (res.wordTimed ? '' : ' Word timings inside each subtitle are estimated. Fine-tune in the timeline or with Tap-sync.'),
+                });
+              } catch (err) {
+                setAsr({ busy: false, error: (err as Error).message });
+              }
+            }}
+          />
           {!asr.busy && asr.message && <div className="note">{asr.message}</div>}
           {asr.error && <div className="error">{asr.error}</div>}
 

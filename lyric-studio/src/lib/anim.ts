@@ -119,6 +119,26 @@ export function enterXf(anim: EnterAnim, rawP: number, easing: Easing | undefine
   return x;
 }
 
+/**
+ * Seconds from the start of an enter animation until the text is readable (mostly opaque, near
+ * full size, not blurred, roughly in place). The renderer starts animations this much before a
+ * word is sung, so every template shows the word at the same moment regardless of its animation.
+ */
+export function readyTime(anim: EnterAnim, durationMs: number, easing: Easing | undefined): number {
+  const dur = Math.max(0, durationMs) / 1000;
+  if (!dur || anim === 'none' || anim === 'typewriter') return 0;
+  if (anim === 'glitch') return dur * 0.5;
+  const size = 100;
+  for (let i = 0; i <= 50; i++) {
+    const p = i / 50;
+    const x = enterXf(anim, p, easing, size, 0, 0);
+    if (x.alpha >= 0.85 && Math.abs(x.scale - 1) <= 0.12 && x.blur <= 3 && Math.abs(x.dy) <= size * 0.12 && Math.abs(x.rot) < 0.1) {
+      return p * dur;
+    }
+  }
+  return dur;
+}
+
 export function exitXf(anim: ExitAnim, q: number, size: number): Xf {
   const x = identity();
   const p = EASE.easeInOut(clamp01(q));

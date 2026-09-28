@@ -12,6 +12,6 @@
   "reveal": "word",
   "enter": { "anim": "slideUp", "duration": 450 },
   "exit": { "anim": "fade", "duration": 500 },
-  "timing": { "lead": 0.08, "hold": 1.2 },
+  "timing": { "hold": 1.2 },
   "frame": { "dim": 0.22, "vignette": 0.3 }
 }

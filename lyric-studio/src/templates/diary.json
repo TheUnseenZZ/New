@@ -12,6 +12,6 @@
   "reveal": "char",
   "enter": { "anim": "fade", "duration": 120 },
   "exit": { "anim": "fade", "duration": 300 },
-  "timing": { "lead": 0.02, "hold": 1.0 },
+  "timing": { "hold": 1.0 },
   "fx": { "tilt": 3, "wobble": 1.2 }
 }

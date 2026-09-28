@@ -1,4 +1,4 @@
-import { clamp01, combine, EASE, enterXf, exitXf, hash, identity, type Xf } from './anim';
+import { clamp01, combine, EASE, enterXf, exitXf, hash, identity, readyTime, type Xf } from './anim';
 import { H, SAFE_RECT, W } from './tiktok';
 import type { Line, Settings, Template, Word } from './types';
 
@@ -104,14 +104,17 @@ export function buildGroups(lines: Line[], tpl: Template, offset: number): Group
   }
   chunks.sort((a, b) => a[0].start - b[0].start);
 
-  const lead = tpl.timing?.lead ?? 0.05;
+  // Every template makes the first word readable exactly when it's sung: start the entrance early by
+  // its "ready" time. `lead` only pre-shows whole groups (reveal "all", e.g. karaoke lines).
+  const ready = readyTime(tpl.enter.anim, tpl.enter.duration, tpl.enter.easing);
+  const lead = tpl.reveal === 'all' ? (tpl.timing?.lead ?? 0) : 0;
   const hold = tpl.timing?.hold ?? 0.6;
   const groups: Group[] = chunks.map((words, index) => ({
     index,
     words,
     start: words[0].start,
     end: words[words.length - 1].end,
-    showFrom: Math.max(0, words[0].start - lead),
+    showFrom: Math.max(0, words[0].start - lead - ready),
     showUntil: 0,
     emph: emphChunks.has(words),
   }));
@@ -362,7 +365,8 @@ export class CaptionRenderer {
     const T = this.tpl;
     const L = this.layout(ctx, g);
     const fx = T.fx ?? {};
-    const lead = T.timing?.lead ?? 0.05;
+    // Words start entering early by the animation's ready time, so they're readable as they're sung.
+    const ready = readyTime(T.enter.anim, T.enter.duration, T.enter.easing);
     const enterDur = Math.max(0.001, T.enter.duration / 1000);
     const exitDur = T.exit.anim === 'none' ? 0 : Math.max(0.001, T.exit.duration / 1000);
     const stagger = (T.enter.stagger ?? 0) / 1000;
@@ -403,7 +407,7 @@ export class CaptionRenderer {
     ctx.translate(-L.bx, -L.by);
 
     const card = T.color.card;
-    if (card && !(emph && emph.noCard) && L.words.some((pw) => t >= (T.reveal === 'all' ? g.showFrom : g.words[pw.k].start - lead))) {
+    if (card && !(emph && emph.noCard) && L.words.some((pw) => t >= (T.reveal === 'all' ? g.showFrom : g.words[pw.k].start - ready))) {
       const pad = card.padding ?? L.px * 0.35;
       ctx.save();
       ctx.globalAlpha *= clamp01(gx.alpha);
@@ -416,7 +420,7 @@ export class CaptionRenderer {
 
     for (const pw of L.words) {
       const w = g.words[pw.k];
-      const appear = T.reveal === 'all' ? g.showFrom + pw.k * stagger : Math.max(g.showFrom, w.start - lead);
+      const appear = T.reveal === 'all' ? g.showFrom + pw.k * stagger : Math.max(g.showFrom, w.start - ready);
       if (t < appear) continue;
       const age = t - appear;
 

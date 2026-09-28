@@ -59,7 +59,7 @@ Leave out anything you don't use (`gradient`, `palette`, `glow`, `fx`, …).
 | `enter.easing` | `linear` `easeOut` `easeInOut` `back` `elastic` `bounce` | Optional; each anim has a sensible default. |
 | `enter.stagger` | ms | For `reveal: all`: delay between words so they cascade in. |
 | `exit.anim` | `none` `fade` `blur` `slideUp` `shrink` | Plays after the last word is sung, only when there's a pause before the next group. |
-| `timing.lead` | seconds | How early text appears before it's sung. |
+| `timing.lead` | seconds | Only for `reveal: all`: show the whole group this early (karaoke-style pre-show). Word timing itself is automatic: every entrance is started early enough that the word is readable exactly when it's sung, so all templates stay in sync. |
 | `timing.hold` | seconds | Max linger after the last word if nothing follows. |
 | `fx.shake` | px | Jitter when text lands. |
 | `fx.rgbSplit` | px | Red/cyan chromatic copies (glitch look). |

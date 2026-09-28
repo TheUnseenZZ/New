@@ -9,6 +9,6 @@
   "reveal": "all",
   "enter": { "anim": "fade", "duration": 350 },
   "exit": { "anim": "fade", "duration": 350 },
-  "timing": { "lead": 0.1, "hold": 1.2 },
+  "timing": { "hold": 1.2 },
   "frame": { "dim": 0.2 }
 }

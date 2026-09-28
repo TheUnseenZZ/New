@@ -20,6 +20,10 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
 1. **Drop a video** (MP4/MOV/WebM, ideally vertical).
 2. **Auto-caption.** The first run downloads the speech model (~80 MB for Fast, ~250 MB for Accurate). After that it's cached.
    Pick the language if auto-detect guesses wrong.
+   **Or import subtitles** (.srt / .vtt / .lrc) from DaVinci Resolve, Premiere, CapCut or a lyrics site.
+   DaVinci's 01:00:00:00 timeline offset is removed automatically. Word-timed files (YouTube VTT, enhanced LRC)
+   keep exact word timings; otherwise words are spread inside each subtitle. Tip: in Resolve, keep subtitles
+   short (1–3 words) for the tightest timing.
 3. **Fix the lyrics.** Edit words in the left panel. Fix sync in the **timeline** under the preview:
    - drag word or line blocks to move them, drag their edges to trim (touching words share an edge)
    - blocks snap to the playhead and other lines (hold <kbd>Alt</kbd> for free movement)
