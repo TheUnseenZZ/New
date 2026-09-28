@@ -3,6 +3,8 @@ import { ImportTemplate } from './components/ImportTemplate';
 import { LyricsEditor } from './components/LyricsEditor';
 import { Preview } from './components/Preview';
 import { TemplateGallery } from './components/TemplateGallery';
+import { Timeline } from './components/Timeline';
+import { computePeaks, type Peaks } from './lib/waveform';
 import { ensureFont } from './lib/fonts';
 import { toSrt } from './lib/lyrics';
 import { CaptionRenderer } from './lib/render';
@@ -86,7 +88,65 @@ export default function App() {
     if (file) writeJSON(projectKey(file), { lines });
   }, [file, lines]);
 
-  const setLines = useCallback((fn: (prev: Line[]) => Line[]) => setLinesState(fn), []);
+  // Undo history: snapshot lines before each edit. Timeline drags update "live" and snapshot once per drag.
+  const linesRef = useRef(lines);
+  linesRef.current = lines;
+  const past = useRef<Line[][]>([]);
+  const future = useRef<Line[][]>([]);
+  const checkpoint = useCallback(() => {
+    past.current.push(linesRef.current);
+    if (past.current.length > 200) past.current.shift();
+    future.current = [];
+  }, []);
+  const undo = useCallback(() => {
+    const prev = past.current.pop();
+    if (!prev) return;
+    future.current.push(linesRef.current);
+    setLinesState(prev);
+  }, []);
+  const redo = useCallback(() => {
+    const next = future.current.pop();
+    if (!next) return;
+    past.current.push(linesRef.current);
+    setLinesState(next);
+  }, []);
+  const setLines = useCallback(
+    (fn: (prev: Line[]) => Line[]) => {
+      checkpoint();
+      setLinesState(fn);
+    },
+    [checkpoint],
+  );
+  const liveLines = useCallback((fn: (prev: Line[]) => Line[]) => setLinesState(fn), []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== 'z' && e.key.toLowerCase() !== 'y') return;
+      e.preventDefault();
+      if (e.key.toLowerCase() === 'y' || e.shiftKey) redo();
+      else undo();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [undo, redo]);
+
+  const [duration, setDuration] = useState(0);
+  const [peaks, setPeaks] = useState<Peaks | null>(null);
+  useEffect(() => {
+    setPeaks(null);
+    if (!file) return;
+    let alive = true;
+    computePeaks(file)
+      .then((pk) => alive && setPeaks(pk))
+      .catch(() => {
+        /* no audio or undecodable: timeline just shows no waveform */
+      });
+    return () => {
+      alive = false;
+    };
+  }, [file]);
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setSettings((s) => ({ ...s, [k]: v }));
   const seek = useCallback((t: number) => {
     const v = videoRef.current;
@@ -104,6 +164,8 @@ export default function App() {
     setVideoUrl(URL.createObjectURL(f));
     setExp({ busy: false, progress: 0 });
     setAsr({ busy: false });
+    past.current = [];
+    future.current = [];
     const saved = readJSON<{ lines: Line[] }>(projectKey(f));
     if (saved?.lines?.length) {
       setLinesState(saved.lines);
@@ -122,6 +184,7 @@ export default function App() {
       const result = await transcribe(file, { model, language }, (message, progress) =>
         setAsr({ busy: true, message, progress }),
       );
+      checkpoint();
       setLinesState(result);
       setAsr({
         busy: false,
@@ -243,6 +306,7 @@ export default function App() {
         version={version}
         showSafeZone={settings.showSafeZone}
         onTime={setTime}
+        onDuration={setDuration}
       />
 
       {/* Right: style + export */}
@@ -387,7 +451,7 @@ export default function App() {
                 if (!f) return;
                 try {
                   const data = JSON.parse(await f.text());
-                  if (Array.isArray(data.lines)) setLinesState(data.lines);
+                  if (Array.isArray(data.lines)) setLines(() => data.lines);
                   if (data.settings) setSettings({ ...DEFAULT_SETTINGS, ...data.settings });
                 } catch {
                   setNotice('That project file could not be read.');
@@ -398,6 +462,19 @@ export default function App() {
           <div className="muted small-text">Best in desktop Chrome or Edge. Export runs on your machine and can take about as long as the clip.</div>
         </div>
       </section>
+
+      <Timeline
+        lines={lines}
+        live={liveLines}
+        checkpoint={checkpoint}
+        undo={undo}
+        redo={redo}
+        videoRef={videoRef}
+        duration={duration}
+        peaks={peaks}
+        offset={settings.timingOffset}
+        seek={seek}
+      />
 
       {importing && (
         <ImportTemplate

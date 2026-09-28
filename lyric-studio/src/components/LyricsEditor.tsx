@@ -54,8 +54,8 @@ export function LyricsEditor({ lines, setLines, time, seek }: Props) {
         </label>
       </div>
       <div className="muted small-text">
-        Tip: wrap a word in stars like <code>*strangers*</code> to make it a payoff word (styles like Blackout and
-        Projector give it its own moment).
+        Fix sync in the timeline below. Wrap a word in stars like <code>*strangers*</code> to make it a payoff word
+        (Blackout and Red Card give it its own moment).
       </div>
       <div className="lines" ref={listRef}>
         {lines.map((l, i) => (

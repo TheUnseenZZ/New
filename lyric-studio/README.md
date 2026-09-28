@@ -20,8 +20,14 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
 1. **Drop a video** (MP4/MOV/WebM, ideally vertical).
 2. **Auto-caption.** The first run downloads the speech model (~80 MB for Fast, ~250 MB for Accurate). After that it's cached.
    Pick the language if auto-detect guesses wrong.
-3. **Fix the lyrics.** Click a timestamp to jump there, edit the text, merge or delete lines. Turn on
-   *Edit timings* for start/end, or use the global *Lyric timing* slider if everything is a bit early or late.
+3. **Fix the lyrics.** Edit words in the left panel. Fix sync in the **timeline** under the preview:
+   - drag word or line blocks to move them, drag their edges to trim (touching words share an edge)
+   - blocks snap to the playhead and other lines (hold <kbd>Alt</kbd> for free movement)
+   - <kbd>Ctrl</kbd>+scroll zooms, and 0.5× / 0.75× playback helps you hear exactly where words land
+   - **Tap-sync:** press *Tap-sync*, play the song and hold <kbd>T</kbd> while each word is sung
+   - keyboard: <kbd>[</kbd> <kbd>]</kbd> set the selected block's start/end to the playhead, <kbd>←</kbd> <kbd>→</kbd> nudge by a frame
+     (<kbd>Shift</kbd> = 0.1 s), <kbd>Tab</kbd> selects the next word, <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes
+   - the *Lyric timing* slider shifts everything if all the lyrics are equally early or late
 4. **Pick a style** from the gallery (hover a thumbnail to see it animate). Then adjust size, position,
    framing (fill or fit + blurred background) and colors.
 5. **Export MP4.** It renders at the clip's frame rate with the original audio.

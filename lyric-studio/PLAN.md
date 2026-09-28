@@ -35,7 +35,8 @@ It should be usable by other artists, not just us.
 
 1. **Paste lyrics + auto-align.** Paste the real lyrics; match them to Whisper's word timings (fuzzy alignment).
    This is the biggest accuracy win for sung vocals.
-2. **Word-level timing editor.** A waveform lane with draggable word blocks, plus a "tap to sync" mode (tap spacebar on each word).
+2. ✅ **Timeline timing editor.** Waveform, draggable/trimmable line and word blocks, snapping, zoom, slow playback,
+   hold-T tap-sync and undo/redo.
 3. **Beat sync.** Detect beats (local onset detection) so punch-zoom/flash/shake hit the drums, not just word starts.
 4. ✅ **Templates from your references** (zachdoaa-style): Blackout, Red Card, Statement, Solitude, plus renderer support for
    spread words, text cards, blend modes and payoff words (`*starred*` or last word of each line). Next: the pink glitter-burst accent.

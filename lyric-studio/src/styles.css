@@ -45,7 +45,7 @@ button {
 .app {
   display: grid;
   grid-template-columns: minmax(300px, 1fr) auto minmax(300px, 1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100%;
   gap: 16px;
   padding: 0 16px 16px;
@@ -319,8 +319,8 @@ input[type='range'] {
 
 .canvas-wrap {
   position: relative;
-  height: calc(100vh - 150px);
-  min-height: 420px;
+  height: calc(100vh - 390px);
+  min-height: 360px;
   max-height: 900px;
   aspect-ratio: 9 / 16;
   border-radius: 18px;
@@ -597,6 +597,179 @@ input[type='range'] {
   aspect-ratio: 9 / 16;
   background: #000;
   max-height: 360px;
+}
+
+/* Timeline */
+.timeline {
+  grid-column: 1 / -1;
+}
+
+.tl-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.tl-toolbar .spacer {
+  flex: 1;
+}
+
+.tl-toolbar .time {
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  min-width: 52px;
+  text-align: right;
+}
+
+.tl-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+
+.tl-toolbar input.tl-zoom {
+  width: 120px;
+}
+
+.tl-speed button {
+  padding: 3px 8px;
+}
+
+.tl-tap {
+  color: var(--accent-2);
+}
+
+.tl-help {
+  white-space: nowrap;
+}
+
+kbd {
+  font: 600 10px/1 ui-monospace, Menlo, monospace;
+  border: 1px solid #3a3a48;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: 0 1px;
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.tl-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  outline: none;
+  cursor: text;
+}
+
+.tl-content {
+  position: relative;
+}
+
+.tl-wave {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+}
+
+.tl-lane-label {
+  position: absolute;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a5a6a;
+  pointer-events: none;
+  transform: translateY(-11px);
+}
+
+.tl-line,
+.tl-word {
+  position: absolute;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.tl-line:active,
+.tl-word:active {
+  cursor: grabbing;
+}
+
+.tl-line {
+  background: rgba(37, 244, 238, 0.14);
+  border: 1px solid rgba(37, 244, 238, 0.45);
+}
+
+.tl-word {
+  background: #2a2a38;
+  border: 1px solid #454558;
+}
+
+.tl-line.sel,
+.tl-word.sel {
+  background: rgba(255, 45, 85, 0.3);
+  border-color: var(--accent);
+  z-index: 2;
+}
+
+.tl-word.tap {
+  box-shadow: 0 0 0 2px var(--accent-2);
+  z-index: 3;
+}
+
+.tl-label {
+  font-size: 11px;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.tl-h {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  cursor: ew-resize;
+}
+
+.tl-h.l {
+  left: 0;
+}
+
+.tl-h.r {
+  right: 0;
+}
+
+.tl-h:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.tl-playhead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.tl-playhead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5px;
+  border: 6px solid transparent;
+  border-top-color: var(--accent);
 }
 
 @media (max-width: 1100px) {

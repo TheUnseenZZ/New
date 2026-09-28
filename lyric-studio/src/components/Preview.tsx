@@ -11,13 +11,18 @@ interface Props {
   version: number;
   showSafeZone: boolean;
   onTime: (t: number) => void;
+  onDuration?: (d: number) => void;
 }
 
-export function Preview({ videoRef, videoUrl, renderer, version, showSafeZone, onTime }: Props) {
+export function Preview({ videoRef, videoUrl, renderer, version, showSafeZone, onTime, onDuration }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDurationState] = useState(0);
+  const setDuration = (d: number) => {
+    setDurationState(d);
+    onDuration?.(d);
+  };
   const stateRef = useRef({ version, showSafeZone });
   stateRef.current = { version, showSafeZone };
   // Bumped when the video element has a new frame ready while paused (after seek/load).
