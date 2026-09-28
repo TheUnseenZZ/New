@@ -1,0 +1,15 @@
+{
+  "id": "glitch",
+  "name": "Glitch",
+  "vibe": "Monospace caps with RGB split, flicker and film grain",
+  "tags": ["glitch", "y2k", "dark"],
+  "font": { "family": "Space Mono", "weight": 700, "size": 76, "lineHeight": 1.15, "letterSpacing": 0.04, "case": "upper" },
+  "color": { "fill": "#FFFFFF" },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center" },
+  "reveal": "all",
+  "active": { "mode": "color", "color": "#19E6FF" },
+  "enter": { "anim": "glitch", "duration": 260 },
+  "exit": { "anim": "none", "duration": 0 },
+  "fx": { "rgbSplit": 5, "flicker": 0.05 },
+  "frame": { "grain": 0.14, "vignette": 0.35, "flash": 0.08 }
+}

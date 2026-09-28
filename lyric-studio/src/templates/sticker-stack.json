@@ -1,0 +1,19 @@
+{
+  "id": "sticker-stack",
+  "name": "Sticker Stack",
+  "vibe": "Two-word stacks in loud colors, tilted like stickers",
+  "tags": ["punchy", "playful"],
+  "font": { "family": "Bebas Neue", "weight": 400, "size": 200, "lineHeight": 0.92, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "palette": ["#FFE600", "#FFFFFF", "#FF4FD8", "#7CF6FF"],
+    "shadow": { "color": "#000000", "blur": 0, "x": 7, "y": 7 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 2, "anchor": "center", "maxLines": 2 },
+  "reveal": "word",
+  "enter": { "anim": "slam", "duration": 150 },
+  "exit": { "anim": "none", "duration": 0 },
+  "timing": { "lead": 0.03, "hold": 0.4 },
+  "fx": { "tilt": 6, "shake": 8, "shakeDuration": 140 },
+  "frame": { "punchZoom": 0.04 }
+}

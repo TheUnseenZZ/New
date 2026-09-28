@@ -1,0 +1,19 @@
+{
+  "id": "punch",
+  "name": "Punch",
+  "vibe": "One giant word at a time, slams in with a camera kick",
+  "tags": ["punchy", "high-energy", "rap"],
+  "font": { "family": "Anton", "weight": 400, "size": 230, "lineHeight": 0.95, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "palette": ["#FFFFFF", "#FFFFFF", "#FF2D55", "#FFFFFF", "#FFE600"],
+    "shadow": { "color": "#000000", "blur": 0, "x": 8, "y": 8 }
+  },
+  "layout": { "mode": "word", "anchor": "center", "maxWidth": 0.95 },
+  "reveal": "all",
+  "enter": { "anim": "slam", "duration": 140 },
+  "exit": { "anim": "none", "duration": 0 },
+  "timing": { "lead": 0.02, "hold": 0.35 },
+  "fx": { "shake": 16, "shakeDuration": 200, "tilt": 4 },
+  "frame": { "punchZoom": 0.06, "flash": 0.12 }
+}

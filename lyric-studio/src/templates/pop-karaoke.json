@@ -1,0 +1,17 @@
+{
+  "id": "pop-karaoke",
+  "name": "Pop Karaoke",
+  "vibe": "Bold white caps, the sung word pops in yellow",
+  "tags": ["karaoke", "bold"],
+  "font": { "family": "Montserrat", "weight": 900, "size": 92, "lineHeight": 1.08, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "stroke": { "color": "#000000", "width": 9 },
+    "shadow": { "color": "rgba(0,0,0,0.45)", "blur": 0, "x": 0, "y": 8 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "lower" },
+  "reveal": "all",
+  "active": { "mode": "color", "color": "#FFE600", "scale": 1.12 },
+  "enter": { "anim": "pop", "duration": 220 },
+  "exit": { "anim": "none", "duration": 0 }
+}

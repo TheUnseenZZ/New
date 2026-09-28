@@ -1,0 +1,18 @@
+{
+  "id": "pixel-arcade",
+  "name": "Pixel Arcade",
+  "vibe": "8-bit pixel font, hard cuts, current word goes toxic green",
+  "tags": ["y2k", "gaming", "glitch"],
+  "font": { "family": "Press Start 2P", "weight": 400, "size": 58, "lineHeight": 1.6, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "stroke": { "color": "#000000", "width": 6 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "lower" },
+  "reveal": "word",
+  "active": { "mode": "color", "color": "#39FF14" },
+  "enter": { "anim": "none", "duration": 1 },
+  "exit": { "anim": "none", "duration": 0 },
+  "fx": { "shake": 6, "shakeDuration": 120 },
+  "frame": { "grain": 0.08 }
+}

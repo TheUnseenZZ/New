@@ -1,0 +1,16 @@
+{
+  "id": "bounce",
+  "name": "Bounce",
+  "vibe": "Chunky words drop in and bounce, current word glows cyan",
+  "tags": ["playful", "pop"],
+  "font": { "family": "Rubik", "weight": 900, "size": 108, "lineHeight": 1.1, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "stroke": { "color": "#000000", "width": 8 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "lower" },
+  "reveal": "word",
+  "active": { "mode": "color", "color": "#7CF6FF", "scale": 1.1 },
+  "enter": { "anim": "drop", "duration": 480 },
+  "exit": { "anim": "shrink", "duration": 140 }
+}

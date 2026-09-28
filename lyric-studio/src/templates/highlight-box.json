@@ -1,0 +1,16 @@
+{
+  "id": "highlight-box",
+  "name": "Highlight Box",
+  "vibe": "Words land one by one, a purple box chases the beat",
+  "tags": ["karaoke", "creator"],
+  "font": { "family": "Poppins", "weight": 800, "size": 84, "lineHeight": 1.25, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "shadow": { "color": "rgba(0,0,0,0.55)", "blur": 18, "x": 0, "y": 6 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center" },
+  "reveal": "word",
+  "active": { "mode": "box", "boxColor": "#8B5CF6", "boxRadius": 18, "scale": 1.06 },
+  "enter": { "anim": "pop", "duration": 170 },
+  "exit": { "anim": "none", "duration": 0 }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "karaoke-fill",
+  "name": "Karaoke Fill",
+  "vibe": "Full line up front, words turn neon green as they're sung",
+  "tags": ["karaoke", "singalong"],
+  "font": { "family": "Archivo Black", "weight": 400, "size": 78, "lineHeight": 1.12, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "stroke": { "color": "#000000", "width": 7 }
+  },
+  "layout": { "mode": "line", "anchor": "lower", "maxLines": 3 },
+  "reveal": "all",
+  "upcoming": { "opacity": 0.85 },
+  "active": { "mode": "sung", "color": "#3DFF8B", "scale": 1.08 },
+  "enter": { "anim": "slideUp", "duration": 260 },
+  "exit": { "anim": "fade", "duration": 180 },
+  "timing": { "lead": 0.25, "hold": 0.8 }
+}

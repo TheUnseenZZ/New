@@ -1,0 +1,18 @@
+{
+  "id": "soft-serif",
+  "name": "Soft Serif",
+  "vibe": "Italic serif lines blur in word by word, moody and cinematic",
+  "tags": ["aesthetic", "ballad", "sad"],
+  "font": { "family": "Playfair Display", "weight": 500, "italic": true, "size": 72, "lineHeight": 1.22, "case": "none" },
+  "color": {
+    "fill": "#F7F1E8",
+    "shadow": { "color": "rgba(0,0,0,0.55)", "blur": 24, "x": 0, "y": 4 }
+  },
+  "layout": { "mode": "line", "anchor": "lower", "maxWidth": 0.85 },
+  "reveal": "word",
+  "enter": { "anim": "blur", "duration": 520 },
+  "exit": { "anim": "blur", "duration": 420 },
+  "timing": { "lead": 0.1, "hold": 1.0 },
+  "fx": { "float": 4 },
+  "frame": { "dim": 0.12, "vignette": 0.4 }
+}

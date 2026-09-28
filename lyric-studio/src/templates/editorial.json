@@ -1,0 +1,17 @@
+{
+  "id": "editorial",
+  "name": "Editorial",
+  "vibe": "Big italic serif in lowercase, staggered blur-in like a magazine cover",
+  "tags": ["aesthetic", "editorial"],
+  "font": { "family": "Instrument Serif", "weight": 400, "italic": true, "size": 124, "lineHeight": 0.98, "case": "lower" },
+  "color": {
+    "fill": "#FFFFFF",
+    "shadow": { "color": "rgba(0,0,0,0.35)", "blur": 30, "x": 0, "y": 0 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 3, "anchor": "center", "maxWidth": 0.9 },
+  "reveal": "all",
+  "active": { "mode": "color", "color": "#FFD7A8" },
+  "enter": { "anim": "blur", "duration": 480, "stagger": 90 },
+  "exit": { "anim": "fade", "duration": 220 },
+  "frame": { "dim": 0.1, "grain": 0.06 }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "y2k-chrome",
+  "name": "Y2K Chrome",
+  "vibe": "Chrome-gradient futuristic caps with a cyan glow, floating",
+  "tags": ["y2k", "hyperpop"],
+  "font": { "family": "Orbitron", "weight": 900, "size": 96, "lineHeight": 1.15, "letterSpacing": 0.02, "case": "upper" },
+  "color": {
+    "fill": "#FFFFFF",
+    "gradient": ["#FFFFFF", "#D9E4F5", "#7F8FB5", "#F4F7FF"],
+    "stroke": { "color": "#1B1340", "width": 3 },
+    "glow": { "color": "#7DF9FF", "blur": 28 }
+  },
+  "layout": { "mode": "chunk", "maxWords": 2, "anchor": "center" },
+  "reveal": "word",
+  "enter": { "anim": "zoom", "duration": 240, "easing": "back" },
+  "exit": { "anim": "fade", "duration": 160 },
+  "fx": { "float": 6 },
+  "frame": { "vignette": 0.3 }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "whisper",
+  "name": "Whisper",
+  "vibe": "Small lowercase sans, drifts up softly. Alt / bedroom-pop energy",
+  "tags": ["aesthetic", "minimal", "sad"],
+  "font": { "family": "Inter", "weight": 500, "size": 54, "lineHeight": 1.3, "letterSpacing": 0.01, "case": "lower" },
+  "color": {
+    "fill": "#FFFFFF",
+    "shadow": { "color": "rgba(0,0,0,0.6)", "blur": 16, "x": 0, "y": 2 }
+  },
+  "layout": { "mode": "line", "anchor": "center", "maxWidth": 0.8 },
+  "reveal": "word",
+  "enter": { "anim": "slideUp", "duration": 450 },
+  "exit": { "anim": "fade", "duration": 500 },
+  "timing": { "lead": 0.08, "hold": 1.2 },
+  "frame": { "dim": 0.22, "vignette": 0.3 }
+}
