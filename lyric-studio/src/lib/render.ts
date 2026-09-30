@@ -249,6 +249,8 @@ export class CaptionRenderer {
    * blur filters ignore the canvas transform, so they're multiplied by this to look the same at any size.
    */
   pixelScale = 1;
+  /** In transparent (overlay) mode, also draw the style's darkening and vignette layers. */
+  overlayShading = false;
   private layouts = new Map<number, Layout>();
   private grain = new WeakMap<CanvasRenderingContext2D, CanvasPattern>();
 
@@ -439,7 +441,19 @@ export class CaptionRenderer {
   }
 
   /** Draw one complete output frame at time t (seconds). */
-  drawFrame(ctx: CanvasRenderingContext2D, t: number, src: CanvasImageSource | null, sw: number, sh: number) {
+  /**
+   * `transparent` draws only what belongs on top of the footage (captions, dim, vignette, payoff
+   * backgrounds, flashes) on a clear canvas, for overlaying in an editor. Effects that need the video
+   * pixels themselves (camera punch-zoom, blurred fit background, film grain) are left out.
+   */
+  drawFrame(
+    ctx: CanvasRenderingContext2D,
+    t: number,
+    src: CanvasImageSource | null,
+    sw: number,
+    sh: number,
+    transparent = false,
+  ) {
     const fr = this.tpl.frame ?? {};
     // Most recent group start drives frame punches/flashes.
     let last: Group | undefined;
@@ -450,17 +464,22 @@ export class CaptionRenderer {
     const since = last ? t - last.showFrom : 99;
 
     ctx.save();
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, W, H);
-    if (src && sw && sh) {
+    if (transparent) {
+      ctx.clearRect(0, 0, W, H);
+    } else {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, W, H);
+    }
+    if (!transparent && src && sw && sh) {
       const zoom = 1 + (fr.punchZoom ?? 0) * (1 - EASE.easeOut(clamp01(since / 0.28)));
       this.drawSource(ctx, src, sw, sh, zoom);
     }
-    if (fr.dim) {
+    const shade = !transparent || this.overlayShading;
+    if (fr.dim && shade) {
       ctx.fillStyle = `rgba(0,0,0,${fr.dim})`;
       ctx.fillRect(0, 0, W, H);
     }
-    if (fr.vignette) {
+    if (fr.vignette && shade) {
       const g = ctx.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
       g.addColorStop(0, 'rgba(0,0,0,0)');
       g.addColorStop(1, `rgba(0,0,0,${fr.vignette})`);
@@ -480,7 +499,17 @@ export class CaptionRenderer {
 
     this.drawCaptions(ctx, t);
 
-    if (fr.grain) this.drawGrain(ctx, fr.grain, t);
+    if (fr.grain && !transparent) this.drawGrain(ctx, fr.grain, t);
+  }
+
+  /**
+   * Whether anything time-dependent is drawn at t (captions, payoff backgrounds, flashes). Frames where
+   * this is false all look identical, which lets the overlay export encode them only once.
+   */
+  hasContent(t: number) {
+    if (this.groups.some((g) => g.showFrom <= t && t < g.hideAt)) return true;
+    const flash = this.tpl.frame?.flash;
+    return !!flash && this.groups.some((g) => g.showFrom <= t && t - g.showFrom < 0.15);
   }
 
   private drawSource(ctx: CanvasRenderingContext2D, src: CanvasImageSource, sw: number, sh: number, zoom: number) {

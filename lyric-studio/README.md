@@ -40,7 +40,15 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
      (template default / every line end / only words you pick) and the background (black, white, accent, keep video).
      Pick exact words in the timeline: select a word → **Payoff Auto / On / Off**, or press <kbd>P</kbd>.
    - plus size, position, framing (fill or fit + blurred background) and colors
-5. **Export MP4** at the same quality as your clip:
+5. **Export transparent captions for your editor (recommended for best quality).** Export → *Transparent captions*
+   gives a ZIP with a PNG sequence (one transparent frame per video frame, matching your clip's frame rate and size).
+   In DaVinci Resolve: unzip → Media Pool → Import the folder (it comes in as one clip) → put it on Video 2 above
+   your clip, both starting on the same frame → export from DaVinci with your usual settings. Your footage is
+   never re-encoded by the browser. Premiere and After Effects import it as an image sequence. Full steps are in
+   the README inside the ZIP. Effects that alter the video itself (punch-zoom, blurred fit background, grain) aren't
+   included; darkening/vignette are optional.
+
+   **Or export a finished MP4** at the same quality as your clip:
    - **Frame rate:** every original frame is kept at its exact timestamp (29.97, 59.94, 120 fps and variable-rate phone footage are preserved)
    - **Resolution:** matches the clip (4K stays 2160×3840), or pick 1080/1440/2160
    - **Bitrate:** your clip's bitrate by default (constant bitrate, so the number actually matches), or type your own Mbps.

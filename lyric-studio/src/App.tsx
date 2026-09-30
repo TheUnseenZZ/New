@@ -4,6 +4,7 @@ import { LyricsEditor } from './components/LyricsEditor';
 import { Preview } from './components/Preview';
 import { TemplateGallery } from './components/TemplateGallery';
 import { LibraryPanel } from './components/LibraryPanel';
+import { OverlayExport } from './components/OverlayExport';
 import { StylePanel } from './components/StylePanel';
 import { Timeline } from './components/Timeline';
 import { computePeaks, type Peaks } from './lib/waveform';
@@ -469,6 +470,18 @@ export default function App() {
           )}
 
           <div className="section-title">Export</div>
+          <OverlayExport
+            info={sourceInfo}
+            duration={duration}
+            baseName={baseName}
+            disabled={!file || !lines.length}
+            makeRenderer={() => {
+              const r = new CaptionRenderer();
+              r.setData(lines, template, settings);
+              return r;
+            }}
+          />
+          <div className="sub-title">Or a finished MP4 (video + captions)</div>
           <ExportSettings
             info={sourceInfo}
             opts={settings.exportOpts ?? DEFAULT_SETTINGS.exportOpts}
