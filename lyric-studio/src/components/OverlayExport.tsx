@@ -123,9 +123,9 @@ export function OverlayExport({ info, duration, baseName, disabled, makeRenderer
             Save {baseName}_captions.zip
           </a>
           <div className="note">
-            ✓ {state.frames} transparent frames. In DaVinci: unzip → in the Media Pool click <b>⋯ → Frame Display Mode →
-            Sequence</b> → drag the folder in (it must come in as <b>one</b> clip) → put it on Video 2 above your clip, both
-            starting on the same frame. Full steps are in the README inside the zip.
+            ✓ {state.frames} transparent frames. In DaVinci: unzip → <b>Media page</b> → Media Storage panel <b>⋯ → Frame
+            Display Mode → Sequence</b> → browse to the folder (it shows as <b>one</b> clip) → drag it into the Media Pool →
+            put it on Video 2 above your clip, both starting on the same frame. Full steps are in the README inside the zip.
           </div>
         </>
       )}

@@ -150,15 +150,16 @@ Frame 0 = the first frame of your clip.
 
 DaVinci Resolve
 1. Unzip this file.
-2. FIRST: in the Media Pool, click the ⋯ menu (top right) → Frame Display Mode → Sequence.
-   Then drag the "${folder}" folder into the Media Pool (or Import Media… and pick the folder).
-   It must appear as ONE clip (an image sequence), not hundreds of images.
-   If you already got hundreds of images: select them all (click first, Shift+click last), Delete,
-   switch to Sequence mode as above, and import again.
-3. Right-click the clip → Clip Attributes → Video Frame Rate = ${fpsText}, if it isn't already.
-4. Put your video on Video 1 and the captions on Video 2, both starting on the same frame.
+2. Go to the Media page (first tab at the bottom of the screen).
+   In the Media Storage panel (top left), click its ⋯ menu → Frame Display Mode → Sequence.
+3. Still in Media Storage, browse to the "${folder}" folder. It shows as ONE clip,
+   e.g. captions_[000000-${String(frames - 1).padStart(digits, '0')}].png. Drag it into the Media Pool.
+   (If you imported it before and got hundreds of separate images: select them all in the Media Pool,
+   click the first then Shift+click the last, press Delete, then do steps 2–3.)
+4. Right-click the clip → Clip Attributes → Video Frame Rate = ${fpsText}, if it isn't already.
+5. Put your video on Video 1 and the captions on Video 2, both starting on the same frame.
    Timeline resolution ${opts.width}×${opts.height} (vertical), frame rate ${fpsText}.
-5. Keep the captions clip at 100% size. If your video isn't 9:16, set it to "Scale to fill"
+6. Keep the captions clip at 100% size. If your video isn't 9:16, set it to "Scale to fill"
    so it's cropped the same way as the preview.
 
 Premiere Pro: File → Import → select the first PNG → tick "Image Sequence".

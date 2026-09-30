@@ -42,8 +42,9 @@ npm run dev        # http://localhost:5173 (use desktop Chrome or Edge)
    - plus size, position, framing (fill or fit + blurred background) and colors
 5. **Export transparent captions for your editor (recommended for best quality).** Export → *Transparent captions*
    gives a ZIP with a PNG sequence (one transparent frame per video frame, matching your clip's frame rate and size).
-   In DaVinci Resolve: unzip → Media Pool → Import the folder (it comes in as one clip) → put it on Video 2 above
-   your clip, both starting on the same frame → export from DaVinci with your usual settings. Your footage is
+   In DaVinci Resolve: unzip → **Media page** → Media Storage panel **⋯ → Frame Display Mode → Sequence** → browse to
+   the folder (it shows as one clip) → drag it into the Media Pool → put it on Video 2 above your clip, both starting
+   on the same frame → export from DaVinci with your usual settings. Your footage is
    never re-encoded by the browser. Premiere and After Effects import it as an image sequence. Full steps are in
    the README inside the ZIP. Effects that alter the video itself (punch-zoom, blurred fit background, grain) aren't
    included; darkening/vignette are optional.
