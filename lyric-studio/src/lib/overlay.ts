@@ -133,7 +133,8 @@ export async function exportOverlay(
         png = new Uint8Array(await (await toPng(canvas)).arrayBuffer());
         if (blank) emptyPng = png;
       }
-      zip.add(`${folder}/${folder}_${String(i).padStart(digits, '0')}.png`, png);
+      // Plain ASCII frame names: editors detect numbered sequences most reliably from simple names.
+      zip.add(`${folder}/captions_${String(i).padStart(digits, '0')}.png`, png);
       if (i % 5 === 0) onProgress(i / frames);
     }
   } finally {
@@ -149,9 +150,11 @@ Frame 0 = the first frame of your clip.
 
 DaVinci Resolve
 1. Unzip this file.
-2. Media Pool → right-click → Import Media… → pick the "${folder}" folder.
-   It appears as ONE clip (an image sequence).
-   (If you see single images instead: Media Pool ⋯ menu → Frame Display Mode → Sequence.)
+2. FIRST: in the Media Pool, click the ⋯ menu (top right) → Frame Display Mode → Sequence.
+   Then drag the "${folder}" folder into the Media Pool (or Import Media… and pick the folder).
+   It must appear as ONE clip (an image sequence), not hundreds of images.
+   If you already got hundreds of images: select them all (click first, Shift+click last), Delete,
+   switch to Sequence mode as above, and import again.
 3. Right-click the clip → Clip Attributes → Video Frame Rate = ${fpsText}, if it isn't already.
 4. Put your video on Video 1 and the captions on Video 2, both starting on the same frame.
    Timeline resolution ${opts.width}×${opts.height} (vertical), frame rate ${fpsText}.
