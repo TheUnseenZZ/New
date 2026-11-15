@@ -4,15 +4,18 @@ Subject: a CBT psychologist (MSc, AUTH) with a newly furnished private office in
 Audience: adults in Thermi and east Thessaloniki, parents of teens, and young women. Most arrive on a phone, are hesitant and have never phoned a therapist.
 Primary job: get that hesitant person to call or send a Viber message.
 
-## Palette (sampled from her office photo)
+## Palette (brand colours sampled from her logo, plus her office)
+
+Revised after finding her logo: navy and grey-sage replace the deep green as the dark brand colour.
 | token | hex | where it comes from | role |
 |---|---|---|---|
 | wall | `#E2E6D7` | pale sage wall behind the bookshelf | light section base (not cream) |
 | mist | `#F6F7F1` | bouclé armchair / sofa | cards, solid nav |
-| sage | `#4A5843` | deep version of the wall | headings on light, dark sections |
+| navy (`--sage` token) | `#272B3E` | logo infinity loop and sprout | headings, dark sections, primary buttons |
+| leaf | `#8E918A` | logo grey-sage loop and wordmark | illustration fills, fine detail |
 | ink | `#20261E` | — | body text (green-black, not #111) |
 | oak | `#A47B4C` | desk and shelves | fine detail, step numbers, arrows |
-| cushion | `#C63F28` | the red cushion on the sofa | primary action, quote marks, active state |
+| cushion | `#C63F28` | the red cushion on the sofa | small accent only: active dot, today badge, quote marks |
 
 ## Type
 - Literata (variable, opsz): headlines, node text, quotes. Chosen by Giorgos from the specimen.

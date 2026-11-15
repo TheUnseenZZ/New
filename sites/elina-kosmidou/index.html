@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ελίνα Κοσμίδου, Ψυχολόγος MSc στη Θέρμη | Γνωστική Συμπεριφορική Ψυχοθεραπεία</title>
 <meta name="description" content="Ψυχολόγος MSc στη Θέρμη Θεσσαλονίκης. Γνωστική συμπεριφορική ψυχοθεραπεία (CBT) για άγχος, κατάθλιψη, αυτοπεποίθηση, σχέσεις, εφήβους και γονείς. Συνεδρίες στο γραφείο ή online.">
-<meta name="theme-color" content="#4A5843">
+<meta name="theme-color" content="#272B3E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="el_GR">
 <meta property="og:title" content="Ελίνα Κοσμίδου, Ψυχολόγος MSc στη Θέρμη">
@@ -20,13 +20,14 @@
 @font-face{font-family:"Commissioner";src:url(fonts/commissioner.woff2) format("woff2");font-weight:100 900;font-display:swap}
 
 :root{
-  --wall:#E2E6D7;
-  --wall-2:#D5DBC6;
-  --mist:#F6F7F1;
-  --sage:#4A5843;
-  --sage-ink:#2F3A2C;
-  --ink:#20261E;
-  --ink-soft:#4C554A;
+  --wall:#E4E7DF;
+  --wall-2:#D6DAD0;
+  --mist:#F7F8F4;
+  --sage:#272B3E;      /* brand navy (logo) */
+  --sage-ink:#1F2234;
+  --leaf:#8E918A;      /* brand grey-sage (logo) */
+  --ink:#22263A;
+  --ink-soft:#4E5263;
   --oak:#A47B4C;
   --cushion:#C63F28;
   --cushion-dark:#A93420;
@@ -55,8 +56,10 @@ p{margin:0}
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:54px;padding:0 28px;border-radius:999px;font:600 1.02rem/1.2 var(--sans);text-decoration:none;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .2s,border-color .2s,color .2s}
 .btn svg{width:20px;height:20px;flex:none}
-.btn-call{background:var(--cushion);color:#fff}
-.btn-call:hover{background:var(--cushion-dark)}
+.btn-call{background:var(--sage);color:#fff}
+.btn-call:hover{background:#363B55}
+.hero .btn-call,.contact .btn-call,.nav:not(.solid) .btn-call{background:var(--mist);color:var(--sage)}
+.hero .btn-call:hover,.contact .btn-call:hover,.nav:not(.solid) .btn-call:hover{background:#fff}
 .btn-ghost{border-color:rgba(255,255,255,.72);color:#fff}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
 .btn-line{border-color:var(--sage);color:var(--sage)}
@@ -87,6 +90,7 @@ p{margin:0}
 .drawer li a{display:block;padding:14px 0;font:500 1.35rem/1.2 var(--serif);text-decoration:none;border-bottom:1px solid rgba(32,38,30,.1)}
 .drawer .btn{width:100%}
 .menu-open .nav{background:var(--mist);color:var(--ink)}
+.menu-open .nav .btn-call{background:var(--sage);color:#fff}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:#2a2620}
@@ -100,7 +104,7 @@ p{margin:0}
 .hero .lede{font-size:clamp(1.08rem,1.5vw,1.25rem);line-height:1.55;max-width:30em;opacity:.94;margin-bottom:34px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
 .status{display:flex;align-items:center;gap:10px;font-size:.98rem;margin-bottom:10px}
-.status .dot{width:9px;height:9px;border-radius:50%;background:#9CCB8E;box-shadow:0 0 0 4px rgba(156,203,142,.22);flex:none}
+.status .dot{width:9px;height:9px;border-radius:50%;background:#A9D39B;box-shadow:0 0 0 4px rgba(169,211,155,.22);flex:none}
 .status.closed .dot{background:#E3A27F;box-shadow:0 0 0 4px rgba(227,162,127,.2)}
 .proof{font-size:.92rem;opacity:.82;max-width:34em}
 .proof .stars{color:#F2C48D;letter-spacing:1px}
@@ -132,7 +136,7 @@ p{margin:0}
 .card svg.ill{width:100%;height:auto;aspect-ratio:120/88;margin-bottom:18px;background:var(--wall);border-radius:12px}
 .card h3{font-size:1.28rem;line-height:1.2;color:var(--sage-ink);margin-bottom:8px}
 .card p{color:var(--ink-soft);font-size:.97rem;line-height:1.5;margin-bottom:18px}
-.more{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0;font-weight:600;font-size:.95rem;color:var(--cushion);cursor:pointer;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px}
+.more{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0;font-weight:600;font-size:.95rem;color:var(--sage);cursor:pointer;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px}
 .dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
 .dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(74,88,67,.3);cursor:pointer;transition:width .3s var(--ease),background-color .3s}
 .dots button[aria-current="true"]{width:24px;border-radius:5px;background:var(--cushion)}
@@ -188,7 +192,7 @@ p{margin:0}
 .n-think{left:27%;top:0}
 .n-feel{right:0;bottom:4%}
 .n-do{left:0;bottom:4%}
-.diagram[data-mode="after"] .node{background:#E4EADB}
+.diagram[data-mode="after"] .node{background:#E1E5EE}
 .diagram[data-mode="after"] .node .k i{background:var(--sage)}
 .loop-caption{text-align:center;font-size:.92rem;color:var(--ink-soft);margin-top:64px}
 
@@ -344,14 +348,14 @@ p{margin:0}
 
     <!-- flat illustrations: sage blob, office colours, 2px ink outline -->
     <symbol id="il-anx" viewBox="0 0 120 88">
-      <path d="M22 60c-6-20 8-42 34-44 22-2 44 8 44 30 0 20-20 32-44 31-18 0-30-4-34-17Z" fill="#CBD3BC"/>
+      <path d="M22 60c-6-20 8-42 34-44 22-2 44 8 44 30 0 20-20 32-44 31-18 0-30-4-34-17Z" fill="#D7DBD1"/>
       <path d="M78 58c10 4 16 2 22-4" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
       <circle cx="56" cy="46" r="22" fill="#D9573F" stroke="#20261E" stroke-width="2"/>
       <path d="M38 38c10-6 26-6 36 4M36 50c12-4 28-2 40 6M44 64c4-12 16-24 28-26M50 25c-2 12 0 28 10 42" fill="none" stroke="#20261E" stroke-width="1.6" stroke-linecap="round" opacity=".75"/>
       <path d="M76 56c6 2 10 6 12 10" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
     </symbol>
     <symbol id="il-mood" viewBox="0 0 120 88">
-      <path d="M18 54c-4-22 14-40 40-40 24 0 46 10 44 32-2 22-24 30-46 30-20 0-34-6-38-22Z" fill="#CBD3BC"/>
+      <path d="M18 54c-4-22 14-40 40-40 24 0 46 10 44 32-2 22-24 30-46 30-20 0-34-6-38-22Z" fill="#D7DBD1"/>
       <rect x="34" y="16" width="52" height="58" rx="3" fill="#FFFFFF" stroke="#20261E" stroke-width="2"/>
       <path d="M34 24h52M34 31h52M34 38h52" stroke="#20261E" stroke-width="1.6"/>
       <circle cx="62" cy="58" r="10" fill="#E2B373" stroke="#20261E" stroke-width="2"/>
@@ -359,7 +363,7 @@ p{margin:0}
       <path d="M34 44h52" stroke="#20261E" stroke-width="2"/>
     </symbol>
     <symbol id="il-self" viewBox="0 0 120 88">
-      <path d="M24 58c-8-22 10-44 36-44s44 14 40 36c-4 20-22 28-42 28-16 0-30-6-34-20Z" fill="#CBD3BC"/>
+      <path d="M24 58c-8-22 10-44 36-44s44 14 40 36c-4 20-22 28-42 28-16 0-30-6-34-20Z" fill="#D7DBD1"/>
       <rect x="55" y="58" width="10" height="24" rx="3" fill="#C99A66" stroke="#20261E" stroke-width="2"/>
       <ellipse cx="60" cy="38" rx="21" ry="25" fill="#C99A66" stroke="#20261E" stroke-width="2"/>
       <ellipse cx="60" cy="38" rx="15" ry="19" fill="#EEF2E6" stroke="#20261E" stroke-width="2"/>
@@ -367,16 +371,16 @@ p{margin:0}
       <path d="M92 20l2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="#D9573F" stroke="#20261E" stroke-width="1.5" stroke-linejoin="round"/>
     </symbol>
     <symbol id="il-rel" viewBox="0 0 120 88">
-      <path d="M16 58c-4-22 16-40 42-40 26 0 48 10 46 32-2 20-24 28-46 28-20 0-38-4-42-20Z" fill="#CBD3BC"/>
-      <path d="M24 44h26v22a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8Z" fill="#8FA085" stroke="#20261E" stroke-width="2"/>
+      <path d="M16 58c-4-22 16-40 42-40 26 0 48 10 46 32-2 20-24 28-46 28-20 0-38-4-42-20Z" fill="#D7DBD1"/>
+      <path d="M24 44h26v22a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8Z" fill="#9AA096" stroke="#20261E" stroke-width="2"/>
       <path d="M24 50h-4a5 5 0 0 0 0 10h4" fill="none" stroke="#20261E" stroke-width="2"/>
       <path d="M70 44h26v22a8 8 0 0 1-8 8H78a8 8 0 0 1-8-8Z" fill="#D9573F" stroke="#20261E" stroke-width="2"/>
       <path d="M96 50h4a5 5 0 0 1 0 10h-4" fill="none" stroke="#20261E" stroke-width="2"/>
       <path d="M37 38c0-6 6-8 6-14M83 38c0-6-6-8-6-14M43 24c4-8 12-12 17-12s13 4 17 12" fill="none" stroke="#20261E" stroke-width="1.8" stroke-linecap="round"/>
     </symbol>
     <symbol id="il-teen" viewBox="0 0 120 88">
-      <path d="M14 60c-4-24 16-44 44-44s50 12 48 36c-2 18-10 24-20 30H30c-10-4-14-12-16-22Z" fill="#CBD3BC"/>
-      <path d="M18 92c0-18 10-28 24-28s24 10 24 28" fill="#8FA085" stroke="#20261E" stroke-width="2"/>
+      <path d="M14 60c-4-24 16-44 44-44s50 12 48 36c-2 18-10 24-20 30H30c-10-4-14-12-16-22Z" fill="#D7DBD1"/>
+      <path d="M18 92c0-18 10-28 24-28s24 10 24 28" fill="#9AA096" stroke="#20261E" stroke-width="2"/>
       <circle cx="42" cy="44" r="14" fill="#F0D2BA" stroke="#20261E" stroke-width="2"/>
       <path d="M28 42c0-10 7-16 15-16 9 0 15 6 14 14-6-1-12-4-16-9-3 5-8 9-13 11Z" fill="#6E4A2E" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
       <circle cx="37.5" cy="46" r="1.5" fill="#20261E"/><circle cx="46.5" cy="46" r="1.5" fill="#20261E"/>
@@ -388,7 +392,7 @@ p{margin:0}
       <path d="M81 62c1.4 1.2 2.6 1.2 4 0" fill="none" stroke="#20261E" stroke-width="1.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="il-lamp" viewBox="0 0 120 88">
-      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#CBD3BC"/>
+      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#D7DBD1"/>
       <path d="M38 44a22 22 0 0 1 44 0Z" fill="#F3DDB0" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
       <path d="M44 44v-4M52 44V31M60 44V24M68 44V31M76 44v-4" stroke="#20261E" stroke-width="1.2" opacity=".35"/>
       <path d="M60 44v26" stroke="#C99A66" stroke-width="4"/><path d="M58 44h4v26h-4Z" fill="none" stroke="#20261E" stroke-width="1.6"/>
@@ -396,20 +400,20 @@ p{margin:0}
       <path d="M30 30l-6-4M90 30l6-4M24 46h-7M96 46h7" stroke="#D9573F" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
     <symbol id="il-food" viewBox="0 0 120 88">
-      <path d="M18 54c-4-22 16-40 42-40s46 12 44 34c-2 20-22 28-44 28-22 0-38-6-42-22Z" fill="#CBD3BC"/>
+      <path d="M18 54c-4-22 16-40 42-40s46 12 44 34c-2 20-22 28-44 28-22 0-38-6-42-22Z" fill="#D7DBD1"/>
       <ellipse cx="58" cy="50" rx="30" ry="22" fill="#FFFFFF" stroke="#20261E" stroke-width="2"/>
       <ellipse cx="58" cy="50" rx="19" ry="13" fill="none" stroke="#20261E" stroke-width="1.6" opacity=".5"/>
-      <path d="M50 54c4-10 14-14 20-12-2 8-10 14-20 12Z" fill="#8FA085" stroke="#20261E" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M50 54c4-10 14-14 20-12-2 8-10 14-20 12Z" fill="#9AA096" stroke="#20261E" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M52 52c5-3 9-5 13-7" fill="none" stroke="#20261E" stroke-width="1.3"/>
       <path d="M98 26v14a4 4 0 0 1-4 4v26M94 26v10M102 26v10" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
       <circle cx="47" cy="44" r="4" fill="#D9573F" stroke="#20261E" stroke-width="1.6"/>
     </symbol>
     <symbol id="il-seed" viewBox="0 0 120 88">
-      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#CBD3BC"/>
+      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#D7DBD1"/>
       <path d="M26 76c6-12 20-18 34-18s28 6 34 18Z" fill="#C99A66" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
       <path d="M60 60V36" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
-      <path d="M60 46c-4-10-14-14-22-12 2 10 12 16 22 12Z" fill="#8FA085" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M60 40c4-10 14-14 22-12-2 10-12 16-22 12Z" fill="#8FA085" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M60 46c-4-10-14-14-22-12 2 10 12 16 22 12Z" fill="#9AA096" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M60 40c4-10 14-14 22-12-2 10-12 16-22 12Z" fill="#9AA096" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
       <circle cx="60" cy="31" r="5" fill="#D9573F" stroke="#20261E" stroke-width="1.8"/>
     </symbol>
   </defs>
@@ -624,17 +628,17 @@ p{margin:0}
    details before the site goes live.
    ===================================================================== */
 const CONFIG = {
-  phone: "+306900000000",              // TODO: real number, international format
-  phoneDisplay: "69X XXX XXXX",        // TODO: how it reads on screen
-  viber: true,                          // true only if the number is a mobile with Viber
+  phone: "+306934942468",              // from her Google Maps listing
+  phoneDisplay: "693 494 2468",
+  viber: true,                          // mobile number: confirm she uses Viber on it
   email: "",                            // TODO (optional): e.g. "info@elinakosmidou.gr"
-  address: ["Θέρμη Θεσσαλονίκης", "570 01"], // TODO: street and number on the first line
-  directions: "https://www.google.com/maps/dir/?api=1&destination=40.5481831,23.019569",
+  address: ["Ταβάκη 7", "Θέρμη 570 01, Θεσσαλονίκη"],
+  directions: "https://www.google.com/maps/dir/?api=1&destination=%CE%A4%CE%B1%CE%B2%CE%AC%CE%BA%CE%B7%207%2C%20%CE%98%CE%AD%CF%81%CE%BC%CE%B7%20570%2001",
   maps: "https://www.google.com/maps/place/data=!4m2!3m1!1s0x14a8410d99679aab:0x2b9c4f6a53fb3b5d",
   geo: { lat: 40.5481831, lng: 23.019569 },
-  // TODO: real hours. 0 = Sunday … 6 = Saturday. [] = closed.
-  hours: { 1: [["10:00","21:00"]], 2: [["10:00","21:00"]], 3: [["10:00","21:00"]], 4: [["10:00","21:00"]], 5: [["10:00","18:00"]], 6: [], 0: [] },
-  // TODO: Google rating. Leave null to show credentials instead.
+  // Hours from her Google Maps listing. 0 = Sunday … 6 = Saturday. [] = closed.
+  hours: { 1: [["09:00","21:00"]], 2: [["09:00","21:00"]], 3: [["09:00","21:00"]], 4: [["09:00","21:30"]], 5: [["09:00","21:00"]], 6: [], 0: [] },
+  // No Google reviews yet (Nov 2026). Add them here when she has some.
   rating: null,                          // e.g. { value: 5.0, count: 12 }
   // TODO: real Google reviews, word for word. The section stays hidden while this is empty.
   reviews: [
