@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ελίνα Κοσμίδου, Ψυχολόγος MSc στη Θέρμη | Γνωστική Συμπεριφορική Ψυχοθεραπεία</title>
+<meta name="description" content="Ψυχολόγος MSc στη Θέρμη Θεσσαλονίκης. Γνωστική συμπεριφορική ψυχοθεραπεία (CBT) για άγχος, κατάθλιψη, αυτοπεποίθηση, σχέσεις, εφήβους και γονείς. Συνεδρίες στο γραφείο ή online.">
+<meta name="theme-color" content="#4A5843">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="el_GR">
+<meta property="og:title" content="Ελίνα Κοσμίδου, Ψυχολόγος MSc στη Θέρμη">
+<meta property="og:description" content="Γνωστική συμπεριφορική ψυχοθεραπεία για ενήλικες, εφήβους και γονείς. Στη Θέρμη ή online.">
+<meta property="og:image" content="img/office.jpg">
+<link rel="preload" href="fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/commissioner.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/office.jpg" as="image">
+<script type="application/ld+json" id="ld">{}</script>
+<style>
+@font-face{font-family:"Literata";src:url(fonts/literata.woff2) format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Commissioner";src:url(fonts/commissioner.woff2) format("woff2");font-weight:100 900;font-display:swap}
+
+:root{
+  --wall:#E2E6D7;
+  --wall-2:#D5DBC6;
+  --mist:#F6F7F1;
+  --sage:#4A5843;
+  --sage-ink:#2F3A2C;
+  --ink:#20261E;
+  --ink-soft:#4C554A;
+  --oak:#A47B4C;
+  --cushion:#C63F28;
+  --cushion-dark:#A93420;
+  --serif:"Literata",Georgia,serif;
+  --sans:"Commissioner","Segoe UI",system-ui,sans-serif;
+  --nav-h:72px;
+  --wrap:1180px;
+  --gutter:clamp(20px,4vw,48px);
+  --ease:cubic-bezier(.65,0,.35,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--wall);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance;font-optical-sizing:auto}
+p{margin:0}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--cushion);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--mist);padding:10px 16px;border-radius:8px}
+.skip:focus{top:12px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:54px;padding:0 28px;border-radius:999px;font:600 1.02rem/1.2 var(--sans);text-decoration:none;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .2s,border-color .2s,color .2s}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-call{background:var(--cushion);color:#fff}
+.btn-call:hover{background:var(--cushion-dark)}
+.btn-ghost{border-color:rgba(255,255,255,.72);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-line{border-color:var(--sage);color:var(--sage)}
+.btn-line:hover{background:var(--sage);color:#fff}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:var(--nav-h);color:#fff;transition:background-color .35s,color .35s,box-shadow .35s}
+.nav.solid{background:var(--mist);color:var(--ink);box-shadow:0 1px 0 rgba(32,38,30,.1)}
+.nav .wrap{height:100%;display:flex;align-items:center;gap:28px;max-width:1320px}
+.brand{text-decoration:none;display:flex;flex-direction:column;line-height:1.15;margin-right:auto}
+.brand b{font:500 1.28rem/1.1 var(--serif)}
+.brand span{font-size:.8rem;opacity:.82;margin-top:3px}
+.nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:.95rem;padding:6px 0;position:relative;opacity:.92}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav.solid .nav-links a.active::after{background:var(--cushion)}
+.nav-call{min-height:44px;padding:0 20px;font-size:.95rem}
+.burger{display:none;width:46px;height:46px;border:0;background:none;cursor:pointer;margin-right:-10px;position:relative}
+.burger i{position:absolute;left:12px;right:12px;height:2px;background:currentColor;border-radius:2px;transition:transform .35s var(--ease),opacity .2s}
+.burger i:nth-child(1){top:16px}.burger i:nth-child(2){top:22px}.burger i:nth-child(3){top:28px}
+.menu-open .burger i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-open .burger i:nth-child(2){opacity:0}
+.menu-open .burger i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.drawer{position:fixed;z-index:49;inset:0 0 auto;padding:calc(var(--nav-h) + 8px) 24px 28px;background:var(--mist);color:var(--ink);box-shadow:0 20px 40px rgba(32,38,30,.18);transform:translateY(-102%);transition:transform .45s var(--ease);visibility:hidden}
+.menu-open .drawer{transform:none;visibility:visible}
+.drawer ul{list-style:none;margin:0 0 20px;padding:0}
+.drawer li a{display:block;padding:14px 0;font:500 1.35rem/1.2 var(--serif);text-decoration:none;border-bottom:1px solid rgba(32,38,30,.1)}
+.drawer .btn{width:100%}
+.menu-open .nav{background:var(--mist);color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:#2a2620}
+.hero-photo{position:absolute;inset:0}
+.hero-photo img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:62% 50%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,27,21,.86) 0%,rgba(24,27,21,.7) 34%,rgba(24,27,21,.28) 66%,rgba(24,27,21,.12) 100%),linear-gradient(0deg,rgba(24,27,21,.45),transparent 40%)}
+.hero-in{position:relative;z-index:1;padding-top:calc(var(--nav-h) + 40px);padding-bottom:64px;max-width:1320px}
+.hero-copy{max-width:600px}
+.hero h1{font-size:clamp(2.7rem,5.6vw,4.6rem);line-height:1.04;letter-spacing:-.012em;font-weight:480;margin-bottom:26px}
+.hero h1 span{display:block}
+.hero .lede{font-size:clamp(1.08rem,1.5vw,1.25rem);line-height:1.55;max-width:30em;opacity:.94;margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+.status{display:flex;align-items:center;gap:10px;font-size:.98rem;margin-bottom:10px}
+.status .dot{width:9px;height:9px;border-radius:50%;background:#9CCB8E;box-shadow:0 0 0 4px rgba(156,203,142,.22);flex:none}
+.status.closed .dot{background:#E3A27F;box-shadow:0 0 0 4px rgba(227,162,127,.2)}
+.proof{font-size:.92rem;opacity:.82;max-width:34em}
+.proof .stars{color:#F2C48D;letter-spacing:1px}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero-photo img{animation:settle 2.2s var(--ease) both}
+  .hero [data-in]{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i) * 110ms + 250ms)}
+}
+@keyframes settle{from{transform:scale(1.06);opacity:.4}to{transform:none;opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(72px,10vw,128px) 0}
+.sec-head{max-width:640px;margin-bottom:clamp(32px,4vw,52px)}
+.sec-head h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.01em;color:var(--sage-ink);margin-bottom:16px}
+.sec-head p{color:var(--ink-soft);font-size:1.1rem;max-width:36em}
+
+/* ---------- help cards ---------- */
+.help{background:var(--wall)}
+.row-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.arrows{display:flex;gap:10px;margin-bottom:clamp(32px,4vw,52px)}
+.arrow{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--sage);background:transparent;color:var(--sage);cursor:pointer;display:grid;place-items:center;transition:background-color .2s,color .2s,opacity .2s}
+.arrow:hover:not(:disabled){background:var(--sage);color:#fff}
+.arrow:disabled{opacity:.3;cursor:default}
+.arrow svg{width:20px;height:20px}
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px max(var(--gutter),calc((100vw - var(--wrap)) / 2 + var(--gutter))) 8px;scroll-padding-inline:max(var(--gutter),calc((100vw - var(--wrap)) / 2 + var(--gutter)))}
+.track::-webkit-scrollbar{display:none}
+.card{position:relative;flex:0 0 270px;scroll-snap-align:start;background:var(--mist);border-radius:18px;padding:22px 22px 20px;display:flex;flex-direction:column}
+.card svg.ill{width:100%;height:auto;aspect-ratio:120/88;margin-bottom:18px;background:var(--wall);border-radius:12px}
+.card h3{font-size:1.28rem;line-height:1.2;color:var(--sage-ink);margin-bottom:8px}
+.card p{color:var(--ink-soft);font-size:.97rem;line-height:1.5;margin-bottom:18px}
+.more{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0;font-weight:600;font-size:.95rem;color:var(--cushion);cursor:pointer;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+.dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(74,88,67,.3);cursor:pointer;transition:width .3s var(--ease),background-color .3s}
+.dots button[aria-current="true"]{width:24px;border-radius:5px;background:var(--cushion)}
+.help-note{margin-top:34px;color:var(--ink-soft);font-size:.98rem}
+.help-note a{color:var(--sage-ink);font-weight:600}
+
+/* ---------- detail sheet ---------- */
+.sheet{border:0;padding:0;width:min(620px,100vw);max-width:100vw;max-height:88vh;border-radius:22px;background:var(--mist);color:var(--ink);box-shadow:0 30px 80px rgba(20,24,19,.35)}
+.sheet::backdrop{background:rgba(20,24,19,.55);opacity:0;transition:opacity .35s}
+.sheet[open]::backdrop{opacity:1}
+.sheet .sheet-in{padding:32px 32px 30px;overflow:auto;max-height:88vh}
+.sheet svg.ill{width:132px;height:auto;aspect-ratio:120/88;background:var(--wall);border-radius:12px;margin-bottom:20px}
+.sheet h3{font-size:1.9rem;line-height:1.12;color:var(--sage-ink);margin-bottom:14px}
+.sheet p{margin-bottom:14px;line-height:1.65}
+.sheet .how{border-left:2px solid var(--oak);padding-left:16px;color:var(--ink-soft)}
+.sheet .sheet-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.sheet .close{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:var(--wall);cursor:pointer;display:grid;place-items:center}
+.sheet .close svg{width:18px;height:18px}
+.sheet .crisis{font-size:.9rem;color:var(--ink-soft);margin-top:18px}
+@media (prefers-reduced-motion:no-preference){
+  .sheet[open]{animation:sheetIn .45s var(--ease)}
+  .sheet.closing{animation:sheetOut .3s var(--ease) forwards}
+  .sheet.closing::backdrop{opacity:0}
+}
+@keyframes sheetIn{from{opacity:0;transform:translateY(36px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes sheetOut{to{opacity:0;transform:translateY(36px) scale(.98)}}
+
+/* ---------- CBT loop ---------- */
+.loop{background:var(--mist)}
+.loop-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,88px);align-items:center}
+.loop .sec-head{margin-bottom:28px}
+.loop .sec-head h2{font-size:clamp(1.9rem,3vw,2.55rem)}
+.pick-label{font-weight:600;font-size:.95rem;margin-bottom:12px;color:var(--sage-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip{border:1.5px solid rgba(74,88,67,.35);background:transparent;border-radius:999px;padding:9px 16px;font-size:.95rem;cursor:pointer;text-align:left;line-height:1.3;transition:background-color .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--sage)}
+.chip[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:#fff}
+.switch{display:inline-grid;grid-template-columns:1fr 1fr;background:var(--wall);border-radius:999px;padding:4px;position:relative}
+.switch button{position:relative;z-index:1;border:0;background:none;padding:10px 18px;border-radius:999px;font-weight:600;font-size:.93rem;cursor:pointer;transition:color .3s}
+.switch .knob{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:var(--cushion);transition:transform .45s var(--ease),background-color .45s}
+.switch[data-mode="after"] .knob{transform:translateX(100%);background:var(--sage)}
+.switch button[aria-pressed="true"]{color:#fff}
+.loop-note{margin-top:22px;font-size:.88rem;color:var(--ink-soft);max-width:30em}
+
+.diagram{position:relative;aspect-ratio:1/0.92;max-width:640px;margin-left:auto;width:100%}
+.diagram svg.ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ring path{fill:none;stroke:var(--oak);stroke-width:1.6;stroke-dasharray:4 7;stroke-linecap:round}
+.node{position:absolute;width:46%;background:var(--wall);border-radius:20px;padding:20px 22px 22px;transition:background-color .5s}
+.node .k{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.88rem;color:var(--sage);margin-bottom:8px}
+.node .k i{width:8px;height:8px;border-radius:50%;background:var(--cushion);transition:background-color .5s}
+.node p{font:450 clamp(1.05rem,1.55vw,1.28rem)/1.35 var(--serif);color:var(--ink);transition:opacity .28s,transform .28s var(--ease)}
+.node p.swap{opacity:0;transform:translateY(6px)}
+.n-think{left:27%;top:0}
+.n-feel{right:0;bottom:4%}
+.n-do{left:0;bottom:4%}
+.diagram[data-mode="after"] .node{background:#E4EADB}
+.diagram[data-mode="after"] .node .k i{background:var(--sage)}
+.loop-caption{text-align:center;font-size:.92rem;color:var(--ink-soft);margin-top:64px}
+
+/* ---------- reviews ---------- */
+.reviews{background:var(--wall)}
+.rcard{flex:0 0 min(380px,82vw);scroll-snap-align:start;background:var(--mist);border-radius:18px;padding:28px 28px 24px;display:flex;flex-direction:column}
+.rcard .q{font:600 4.4rem/0.6 var(--serif);color:var(--cushion);height:34px;margin-bottom:14px}
+.rcard blockquote{margin:0 0 20px;font:400 1.08rem/1.6 var(--serif)}
+.rcard footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.88rem;color:var(--ink-soft)}
+.rcard .stars{color:var(--oak);letter-spacing:2px;font-size:1rem}
+
+/* ---------- about ---------- */
+.about{background:var(--mist);padding:0}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:640px}
+.about-photo{position:relative;min-height:420px}
+.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.about-copy{padding:clamp(56px,8vw,112px) var(--gutter) clamp(56px,8vw,112px) clamp(32px,6vw,88px);max-width:640px}
+.about-copy h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.1;color:var(--sage-ink);margin-bottom:22px}
+.about-copy p{margin-bottom:16px;line-height:1.7}
+.creds{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgba(74,88,67,.2)}
+.creds li{padding:13px 0;border-bottom:1px solid rgba(74,88,67,.2);display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:.96rem;line-height:1.45}
+.creds b{font-weight:600;color:var(--sage-ink)}
+.creds span{color:var(--ink-soft);grid-column:2}
+.creds svg{width:18px;height:18px;color:var(--oak);grid-row:span 2;margin-top:2px}
+
+/* ---------- start ---------- */
+.start{background:var(--wall)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);counter-reset:s}
+.steps li{counter-increment:s;border-top:2px solid var(--oak);padding-top:22px}
+.steps li::before{content:counter(s);display:block;font:500 2.6rem/1 var(--serif);color:var(--oak);margin-bottom:14px}
+.steps h3{font-size:1.35rem;line-height:1.2;color:var(--sage-ink);margin-bottom:10px}
+.steps p{color:var(--ink-soft)}
+.faq{margin-top:clamp(56px,7vw,88px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,5vw,72px)}
+.faq h2{font-size:clamp(1.7rem,2.8vw,2.3rem);line-height:1.15;color:var(--sage-ink)}
+.qa{border-top:1px solid rgba(74,88,67,.25)}
+.qa:last-child{border-bottom:1px solid rgba(74,88,67,.25)}
+.qa button{width:100%;background:none;border:0;text-align:left;padding:20px 44px 20px 0;font:500 1.15rem/1.35 var(--serif);cursor:pointer;position:relative;color:var(--ink)}
+.qa button::after{content:"";position:absolute;right:8px;top:50%;width:12px;height:12px;margin-top:-8px;border-right:2px solid var(--sage);border-bottom:2px solid var(--sage);transform:rotate(45deg);transition:transform .35s var(--ease)}
+.qa button[aria-expanded="true"]::after{transform:translateY(5px) rotate(-135deg)}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.qa .a>div{overflow:hidden}
+.qa .a p{padding:0 0 22px;color:var(--ink-soft);max-width:40em}
+.qa button[aria-expanded="true"]+.a{grid-template-rows:1fr}
+
+/* ---------- contact ---------- */
+.contact{background:var(--sage);color:#fff}
+.contact-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(40px,7vw,104px);align-items:start}
+.contact h2{font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:20px}
+.contact .lede{font-size:1.12rem;opacity:.9;max-width:30em;margin-bottom:32px}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.contact .small{font-size:.92rem;opacity:.78}
+.info{background:rgba(255,255,255,.07);border-radius:20px;padding:28px}
+.info h3{font-size:1.25rem;margin-bottom:14px}
+.hours{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:.98rem}
+.hours td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.hours td:last-child{text-align:right;opacity:.9}
+.hours tr.today td{font-weight:600;color:#fff}
+.hours tr.today td:first-child::after{content:"σήμερα";margin-left:10px;font-size:.78rem;font-weight:600;background:var(--cushion);padding:2px 9px;border-radius:999px;vertical-align:1px}
+.addr{font-style:normal;line-height:1.6;margin-bottom:16px}
+.info .btn-ghost{width:100%}
+.online{margin-top:20px;font-size:.95rem;opacity:.86}
+
+.foot{background:var(--sage-ink);color:rgba(255,255,255,.78);font-size:.9rem;padding:36px 0 40px}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 40px}
+.foot b{color:#fff;font:500 1.1rem var(--serif)}
+.foot .crisis{max-width:520px}
+.foot .crisis a{color:#fff}
+
+/* ---------- mobile sticky bar ---------- */
+.bar{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .nav-call{display:none}
+}
+@media (max-width:900px){
+  .loop-grid,.contact-grid,.faq{grid-template-columns:1fr}
+  .diagram{margin:0 auto}
+  .steps{grid-template-columns:1fr;gap:28px}
+  .about-grid{grid-template-columns:1fr;min-height:0}
+  .about-photo{min-height:0;aspect-ratio:4/3}
+  .about-copy{padding:48px var(--gutter) 64px;max-width:none}
+}
+@media (max-width:640px){
+  :root{--nav-h:64px}
+  body{font-size:1.03rem}
+  .brand b{font-size:1.15rem}
+  /* hero is its own page on phones: centred stack over a blurred, darkened room */
+  .hero{align-items:flex-end;text-align:center}
+  .hero-photo img{filter:blur(3px) saturate(.9);transform:scale(1.06);object-position:58% 50%}
+  @media (prefers-reduced-motion:no-preference){.hero-photo img{animation:settleM 2.2s var(--ease) both}}
+  .hero::after{background:linear-gradient(180deg,rgba(24,27,21,.55) 0%,rgba(24,27,21,.62) 40%,rgba(24,27,21,.86) 100%)}
+  .hero-in{padding-bottom:40px}
+  .hero-copy{margin:0 auto}
+  .hero h1{font-size:clamp(2.35rem,10.4vw,2.9rem);margin-bottom:18px}
+  .hero .lede{font-size:1.04rem;margin:0 auto 26px}
+  .hero-actions{flex-direction:column;align-items:center;gap:10px;margin-bottom:22px}
+  .hero-actions .btn{width:100%;max-width:320px}
+  .status{justify-content:center}
+  .proof{margin:0 auto;font-size:.86rem}
+  .sec-head,.row-head{text-align:center;margin-left:auto;margin-right:auto}
+  .row-head{display:block}
+  .arrows{display:none}
+  .card{flex-basis:78vw;max-width:300px}
+  .help-note{text-align:center}
+  .loop .sec-head{text-align:left}
+  .chips{flex-direction:column;align-items:stretch}
+  .chip{border-radius:14px;padding:12px 16px}
+  .switch{display:grid;width:100%}
+  .switch button{padding:10px 8px;font-size:.88rem}
+  .sheet{width:100vw;margin:auto 0 0;border-radius:22px 22px 0 0;max-height:90vh}
+  .sheet .sheet-in{padding:28px 22px calc(26px + env(safe-area-inset-bottom));max-height:90vh}
+  .sheet .sheet-cta .btn{width:100%}
+  .sheet h3{font-size:1.65rem;padding-right:40px}
+  .diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:30px;max-width:none}
+  .diagram svg.ring{display:none}
+  .node{position:relative;width:100%;left:auto;right:auto;top:auto;bottom:auto}
+  .node+.node::before{content:"";position:absolute;left:50%;top:-24px;width:2px;height:18px;margin-left:-1px;background:repeating-linear-gradient(var(--oak) 0 4px,transparent 4px 8px)}
+  .loop-caption{margin-top:18px}
+  .about-copy h2,.faq h2{text-align:center}
+  .steps li{text-align:center}
+  .contact{text-align:center}
+  .contact .lede{margin-left:auto;margin-right:auto}
+  .contact-actions{flex-direction:column;align-items:center}
+  .contact-actions .btn{width:100%;max-width:320px}
+  .info{text-align:left;padding:24px 20px}
+  .foot{padding-bottom:110px}
+  .foot .wrap{flex-direction:column;text-align:center}
+  .bar{display:flex;position:fixed;z-index:40;left:0;right:0;bottom:0;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--mist);box-shadow:0 -1px 0 rgba(32,38,30,.1),0 -10px 30px rgba(32,38,30,.12);transform:translateY(110%);transition:transform .4s var(--ease)}
+  .bar.show{transform:none}
+  .bar .btn{flex:1;min-height:50px;padding:0 12px;font-size:.98rem}
+  .bar .btn-line{flex:0 0 auto}
+}
+@keyframes settleM{from{transform:scale(1.14);opacity:.4}to{transform:scale(1.06);opacity:1}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+<!-- icon + illustration sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11.5 11.5 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.6A16.6 16.6 0 0 1 3.4 5.2 1.6 1.6 0 0 1 5 3.5Z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M12 3.6c4.9 0 8.6 3.2 8.6 7.3S16.9 18.2 12 18.2c-.9 0-1.8-.1-2.6-.3L5 20.4l1-3.9c-1.6-1.4-2.6-3.3-2.6-5.5C3.4 6.8 7.1 3.6 12 3.6Z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.9"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z M6.5 11v4.5c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11"/></symbol>
+
+    <!-- flat illustrations: sage blob, office colours, 2px ink outline -->
+    <symbol id="il-anx" viewBox="0 0 120 88">
+      <path d="M22 60c-6-20 8-42 34-44 22-2 44 8 44 30 0 20-20 32-44 31-18 0-30-4-34-17Z" fill="#CBD3BC"/>
+      <path d="M78 58c10 4 16 2 22-4" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="56" cy="46" r="22" fill="#D9573F" stroke="#20261E" stroke-width="2"/>
+      <path d="M38 38c10-6 26-6 36 4M36 50c12-4 28-2 40 6M44 64c4-12 16-24 28-26M50 25c-2 12 0 28 10 42" fill="none" stroke="#20261E" stroke-width="1.6" stroke-linecap="round" opacity=".75"/>
+      <path d="M76 56c6 2 10 6 12 10" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="il-mood" viewBox="0 0 120 88">
+      <path d="M18 54c-4-22 14-40 40-40 24 0 46 10 44 32-2 22-24 30-46 30-20 0-34-6-38-22Z" fill="#CBD3BC"/>
+      <rect x="34" y="16" width="52" height="58" rx="3" fill="#FFFFFF" stroke="#20261E" stroke-width="2"/>
+      <path d="M34 24h52M34 31h52M34 38h52" stroke="#20261E" stroke-width="1.6"/>
+      <circle cx="62" cy="58" r="10" fill="#E2B373" stroke="#20261E" stroke-width="2"/>
+      <path d="M60 45v-4M48 52l-3-2M76 52l3-2" stroke="#20261E" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M34 44h52" stroke="#20261E" stroke-width="2"/>
+    </symbol>
+    <symbol id="il-self" viewBox="0 0 120 88">
+      <path d="M24 58c-8-22 10-44 36-44s44 14 40 36c-4 20-22 28-42 28-16 0-30-6-34-20Z" fill="#CBD3BC"/>
+      <rect x="55" y="58" width="10" height="24" rx="3" fill="#C99A66" stroke="#20261E" stroke-width="2"/>
+      <ellipse cx="60" cy="38" rx="21" ry="25" fill="#C99A66" stroke="#20261E" stroke-width="2"/>
+      <ellipse cx="60" cy="38" rx="15" ry="19" fill="#EEF2E6" stroke="#20261E" stroke-width="2"/>
+      <path d="M53 30c2-4 5-6 9-6" fill="none" stroke="#20261E" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+      <path d="M92 20l2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="#D9573F" stroke="#20261E" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="il-rel" viewBox="0 0 120 88">
+      <path d="M16 58c-4-22 16-40 42-40 26 0 48 10 46 32-2 20-24 28-46 28-20 0-38-4-42-20Z" fill="#CBD3BC"/>
+      <path d="M24 44h26v22a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8Z" fill="#8FA085" stroke="#20261E" stroke-width="2"/>
+      <path d="M24 50h-4a5 5 0 0 0 0 10h4" fill="none" stroke="#20261E" stroke-width="2"/>
+      <path d="M70 44h26v22a8 8 0 0 1-8 8H78a8 8 0 0 1-8-8Z" fill="#D9573F" stroke="#20261E" stroke-width="2"/>
+      <path d="M96 50h4a5 5 0 0 1 0 10h-4" fill="none" stroke="#20261E" stroke-width="2"/>
+      <path d="M37 38c0-6 6-8 6-14M83 38c0-6-6-8-6-14M43 24c4-8 12-12 17-12s13 4 17 12" fill="none" stroke="#20261E" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="il-teen" viewBox="0 0 120 88">
+      <path d="M14 60c-4-24 16-44 44-44s50 12 48 36c-2 18-10 24-20 30H30c-10-4-14-12-16-22Z" fill="#CBD3BC"/>
+      <path d="M18 92c0-18 10-28 24-28s24 10 24 28" fill="#8FA085" stroke="#20261E" stroke-width="2"/>
+      <circle cx="42" cy="44" r="14" fill="#F0D2BA" stroke="#20261E" stroke-width="2"/>
+      <path d="M28 42c0-10 7-16 15-16 9 0 15 6 14 14-6-1-12-4-16-9-3 5-8 9-13 11Z" fill="#6E4A2E" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="37.5" cy="46" r="1.5" fill="#20261E"/><circle cx="46.5" cy="46" r="1.5" fill="#20261E"/>
+      <path d="M39 51c2 2 4 2 6 0" fill="none" stroke="#20261E" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M64 92c0-14 8-22 19-22s19 8 19 22" fill="#D9573F" stroke="#20261E" stroke-width="2"/>
+      <circle cx="83" cy="56" r="11" fill="#E8BE9C" stroke="#20261E" stroke-width="2"/>
+      <path d="M72 55c-1-8 4-13 11-13s12 5 11 12c-3-3-8-4-12-4-4 0-7 2-10 5Z" fill="#2F2A24" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="79.5" cy="58" r="1.3" fill="#20261E"/><circle cx="86.5" cy="58" r="1.3" fill="#20261E"/>
+      <path d="M81 62c1.4 1.2 2.6 1.2 4 0" fill="none" stroke="#20261E" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="il-lamp" viewBox="0 0 120 88">
+      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#CBD3BC"/>
+      <path d="M38 44a22 22 0 0 1 44 0Z" fill="#F3DDB0" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M44 44v-4M52 44V31M60 44V24M68 44V31M76 44v-4" stroke="#20261E" stroke-width="1.2" opacity=".35"/>
+      <path d="M60 44v26" stroke="#C99A66" stroke-width="4"/><path d="M58 44h4v26h-4Z" fill="none" stroke="#20261E" stroke-width="1.6"/>
+      <path d="M46 74c0-3 6-5 14-5s14 2 14 5Z" fill="#C99A66" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M30 30l-6-4M90 30l6-4M24 46h-7M96 46h7" stroke="#D9573F" stroke-width="2.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="il-food" viewBox="0 0 120 88">
+      <path d="M18 54c-4-22 16-40 42-40s46 12 44 34c-2 20-22 28-44 28-22 0-38-6-42-22Z" fill="#CBD3BC"/>
+      <ellipse cx="58" cy="50" rx="30" ry="22" fill="#FFFFFF" stroke="#20261E" stroke-width="2"/>
+      <ellipse cx="58" cy="50" rx="19" ry="13" fill="none" stroke="#20261E" stroke-width="1.6" opacity=".5"/>
+      <path d="M50 54c4-10 14-14 20-12-2 8-10 14-20 12Z" fill="#8FA085" stroke="#20261E" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M52 52c5-3 9-5 13-7" fill="none" stroke="#20261E" stroke-width="1.3"/>
+      <path d="M98 26v14a4 4 0 0 1-4 4v26M94 26v10M102 26v10" fill="none" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="47" cy="44" r="4" fill="#D9573F" stroke="#20261E" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="il-seed" viewBox="0 0 120 88">
+      <path d="M20 56c-6-22 12-42 40-42 26 0 46 12 42 34-4 20-22 28-44 28-18 0-34-6-38-20Z" fill="#CBD3BC"/>
+      <path d="M26 76c6-12 20-18 34-18s28 6 34 18Z" fill="#C99A66" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M60 60V36" stroke="#20261E" stroke-width="2" stroke-linecap="round"/>
+      <path d="M60 46c-4-10-14-14-22-12 2 10 12 16 22 12Z" fill="#8FA085" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M60 40c4-10 14-14 22-12-2 10-12 16-22 12Z" fill="#8FA085" stroke="#20261E" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="60" cy="31" r="5" fill="#D9573F" stroke="#20261E" stroke-width="1.8"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Ελίνα Κοσμίδου, αρχή σελίδας"><b>Ελίνα Κοσμίδου</b><span>Ψυχολόγος MSc</span></a>
+    <nav aria-label="Κύριο μενού">
+      <ul class="nav-links">
+        <li><a href="#help">Με τι βοηθάω</a></li>
+        <li><a href="#cbt">Η θεραπεία</a></li>
+        <li><a href="#about">Σχετικά</a></li>
+        <li><a href="#start">Πώς ξεκινάμε</a></li>
+        <li><a href="#contact">Επικοινωνία</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-call nav-call" data-tel href="#"><span>Κάλεσε <span data-phone></span></span></a>
+    <button class="burger" id="burger" aria-label="Άνοιγμα μενού" aria-expanded="false" aria-controls="drawer"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="#help">Με τι βοηθάω</a></li>
+    <li><a href="#cbt">Η θεραπεία</a></li>
+    <li><a href="#about">Σχετικά</a></li>
+    <li><a href="#start">Πώς ξεκινάμε</a></li>
+    <li><a href="#contact">Επικοινωνία</a></li>
+  </ul>
+  <a class="btn btn-call" data-tel href="#"><svg><use href="#i-phone"/></svg><span>Κάλεσε <span data-phone></span></span></a>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-photo"><img src="img/office.jpg" srcset="img/office-960.jpg 960w, img/office.jpg 1920w" sizes="100vw" alt="Το γραφείο στη Θέρμη: πολυθρόνα, καναπές και γραφείο με επιτραπέζιο φωτιστικό, σε απαλά χρώματα"></div>
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <h1><span data-in style="--i:0">Ας δούμε μαζί</span> <span data-in style="--i:1">τι σε βαραίνει.</span></h1>
+        <p class="lede" data-in style="--i:2">Γνωστική συμπεριφορική ψυχοθεραπεία για ενήλικες, εφήβους και γονείς. Στο γραφείο μου στη Θέρμη ή online.</p>
+        <div class="hero-actions" data-in style="--i:3">
+          <a class="btn btn-call" data-tel href="#"><svg><use href="#i-phone"/></svg><span>Κάλεσε <span data-phone></span></span></a>
+          <a class="btn btn-ghost" data-msg href="#"><svg><use href="#i-chat"/></svg><span data-msg-label>Στείλε μήνυμα στο Viber</span></a>
+        </div>
+        <p class="status" data-in style="--i:4" data-status><span class="dot"></span><span data-status-text>Τα ραντεβού κλείνονται τηλεφωνικά</span></p>
+        <p class="proof" data-in style="--i:5" data-proof>MSc Κλινική Ψυχική Υγεία, Ιατρική Σχολή ΑΠΘ. Εκπαίδευση στη γνωστική συμπεριφορική ψυχοθεραπεία κατά τα κριτήρια της EABCT.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HELP -->
+  <section class="sec help" id="help" aria-labelledby="help-h">
+    <div class="wrap row-head">
+      <div class="sec-head">
+        <h2 id="help-h">Με τι μπορώ να σε βοηθήσω</h2>
+        <p>Δεν χρειάζεται να ξέρεις από πριν πώς λέγεται αυτό που περνάς. Αυτά είναι τα θέματα με τα οποία δουλεύω πιο συχνά.</p>
+      </div>
+      <div class="arrows" aria-hidden="false">
+        <button class="arrow" data-prev="help-track" aria-label="Προηγούμενα θέματα"><svg><use href="#i-left"/></svg></button>
+        <button class="arrow" data-next="help-track" aria-label="Επόμενα θέματα"><svg><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+    <div class="track" id="help-track" role="list"></div>
+    <div class="dots" data-dots="help-track" aria-label="Θέση στη λίστα"></div>
+    <div class="wrap"><p class="help-note">Κάτι άλλο σε απασχολεί; <a data-tel href="#">Πάρε με τηλέφωνο</a> και το συζητάμε.</p></div>
+  </section>
+
+  <!-- CBT LOOP -->
+  <section class="sec loop" id="cbt" aria-labelledby="cbt-h">
+    <div class="wrap loop-grid">
+      <div>
+        <div class="sec-head">
+          <h2 id="cbt-h">Πώς δουλεύει η γνωστική συμπεριφορική θεραπεία</h2>
+          <p>Οι σκέψεις, τα συναισθήματα και οι πράξεις μας επηρεάζουν η μία την άλλη και συχνά κλειδώνουν σε έναν κύκλο. Στη θεραπεία μαθαίνουμε να τον βλέπουμε και να τον αλλάζουμε, με πρακτικά εργαλεία για την καθημερινότητα.</p>
+        </div>
+        <p class="pick-label" id="pick-l">Διάλεξε μια στιγμή</p>
+        <div class="chips" role="group" aria-labelledby="pick-l" id="chips"></div>
+        <div class="switch" id="switch" data-mode="before" role="group" aria-label="Δες τον κύκλο">
+          <span class="knob" aria-hidden="true"></span>
+          <button type="button" data-mode="before" aria-pressed="true">Όπως είναι τώρα</button>
+          <button type="button" data-mode="after" aria-pressed="false">Όπως μπορεί να γίνει</button>
+        </div>
+        <p class="loop-note">Τα παραδείγματα είναι ενδεικτικά. Στη θεραπεία δουλεύουμε με τις δικές σου στιγμές.</p>
+      </div>
+      <div>
+        <div class="diagram" id="diagram" data-mode="before" aria-live="polite">
+          <svg class="ring" viewBox="0 0 640 590" aria-hidden="true">
+            <defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#A47B4C"/></marker></defs>
+            <path d="M492 112 C585 160 612 300 566 404" marker-end="url(#ah)"/>
+            <path d="M492 584 C440 646 200 646 148 584" marker-end="url(#ah)"/>
+            <path d="M74 404 C28 300 62 160 160 112" marker-end="url(#ah)"/>
+          </svg>
+          <div class="node n-think"><div class="k"><i></i>Σκέψη</div><p data-node="think"></p></div>
+          <div class="node n-feel"><div class="k"><i></i>Συναίσθημα</div><p data-node="feel"></p></div>
+          <div class="node n-do"><div class="k"><i></i>Τι κάνω</div><p data-node="do"></p></div>
+        </div>
+        <p class="loop-caption" id="loop-caption">Ο ένας κρίκος τροφοδοτεί τον επόμενο.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS (rendered only when CONFIG.reviews has entries) -->
+  <section class="sec reviews" id="reviews" aria-labelledby="rev-h" hidden>
+    <div class="wrap row-head">
+      <div class="sec-head">
+        <h2 id="rev-h">Τι λένε όσοι έχουν έρθει</h2>
+        <p data-rev-sub></p>
+      </div>
+      <div class="arrows">
+        <button class="arrow" data-prev="rev-track" aria-label="Προηγούμενες κριτικές"><svg><use href="#i-left"/></svg></button>
+        <button class="arrow" data-next="rev-track" aria-label="Επόμενες κριτικές"><svg><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+    <div class="track" id="rev-track" role="list"></div>
+    <div class="dots" data-dots="rev-track"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec about" id="about" aria-labelledby="about-h">
+    <div class="about-grid">
+      <div class="about-photo"><img src="img/corner.jpg" alt="Η γωνιά του γραφείου με τη βιβλιοθήκη και την πολυθρόνα" loading="lazy"></div>
+      <div class="about-copy">
+        <h2 id="about-h">Λίγα λόγια για μένα</h2>
+        <p>Είμαι ψυχολόγος με άδεια άσκησης επαγγέλματος. Σπούδασα ψυχολογία στο Πανεπιστήμιο Δυτικής Μακεδονίας και ολοκλήρωσα με άριστα το μεταπτυχιακό μου στην Κλινική Ψυχική Υγεία, στην Ιατρική Σχολή του ΑΠΘ.</p>
+        <p>Εκπαιδεύομαι στη γνωστική συμπεριφορική ψυχοθεραπεία στην Ελληνική Εταιρεία Γνωστικής Συμπεριφορικής Ψυχοθεραπείας. Έχω δουλέψει σε δύο κέντρα ειδικών θεραπειών με παιδιά και εφήβους με συναισθηματικές, συμπεριφορικές και αναπτυξιακές δυσκολίες, και με τους γονείς τους.</p>
+        <p>Δουλεύω με ευαισθησία και επιστημονική τεκμηρίωση, με συνεχή εποπτεία και επιμόρφωση. Στόχος μου είναι να φύγεις από κάθε συνεδρία με κάτι που μπορείς να χρησιμοποιήσεις στη ζωή σου.</p>
+        <ul class="creds">
+          <li><svg><use href="#i-cap"/></svg><b>ΠΜΣ Κλινική Ψυχική Υγεία</b><span>Ιατρική Σχολή, Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης</span></li>
+          <li><svg><use href="#i-cap"/></svg><b>Πτυχίο Ψυχολογίας</b><span>Πανεπιστήμιο Δυτικής Μακεδονίας</span></li>
+          <li><svg><use href="#i-cap"/></svg><b>Ειδίκευση στη γνωστική συμπεριφορική ψυχοθεραπεία</b><span>Ελληνική Εταιρεία Γνωστικής Συμπεριφορικής Ψυχοθεραπείας, κατά τα κριτήρια της EABCT</span></li>
+          <li><svg><use href="#i-cap"/></svg><b>CBT in Practice: Essentials</b><span>Beck Institute, 2024</span></li>
+          <li><svg><use href="#i-cap"/></svg><b>Παιδοψυχιατρική και εφηβική ψυχιατρική</b><span>Εισαγωγικό σεμινάριο 32 ωρών, Γ΄ Πανεπιστημιακή Ψυχιατρική Κλινική ΑΠΘ, 2024</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- START -->
+  <section class="sec start" id="start" aria-labelledby="start-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="start-h">Πώς ξεκινάμε</h2>
+        <p>Το πρώτο βήμα είναι συνήθως το πιο δύσκολο. Γι’ αυτό το κρατάμε απλό.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Μου τηλεφωνείς ή μου στέλνεις μήνυμα</h3><p>Μιλάμε λίγα λεπτά για το τι σε φέρνει και κλείνουμε μια ώρα που σε βολεύει.</p></li>
+        <li><h3>Η πρώτη συνεδρία</h3><p>Γνωριζόμαστε, μου λες τι σε απασχολεί και ορίζουμε μαζί τι θα ήθελες να αλλάξει.</p></li>
+        <li><h3>Δουλεύουμε μαζί</h3><p>Συναντιόμαστε τακτικά, στο γραφείο στη Θέρμη ή online, και δοκιμάζουμε βήμα βήμα όσα μαθαίνουμε.</p></li>
+      </ol>
+
+      <div class="faq">
+        <h2>Συχνές ερωτήσεις</h2>
+        <div id="faq"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 id="contact-h">Το πρώτο βήμα είναι ένα τηλεφώνημα.</h2>
+        <p class="lede">Πάρε με τηλέφωνο για να κλείσουμε την πρώτη συνάντηση. Αν δεν απαντήσω αμέσως, θα σε καλέσω πίσω.</p>
+        <div class="contact-actions">
+          <a class="btn btn-call" data-tel href="#"><svg><use href="#i-phone"/></svg><span>Κάλεσε <span data-phone></span></span></a>
+          <a class="btn btn-ghost" data-msg href="#"><svg><use href="#i-chat"/></svg><span data-msg-label>Στείλε μήνυμα στο Viber</span></a>
+        </div>
+        <p class="small" data-email-line hidden>Ή γράψε μου στο <a data-email href="#"></a></p>
+      </div>
+      <div class="info">
+        <h3>Ώρες</h3>
+        <table class="hours" id="hours"><caption class="sr">Ώρες λειτουργίας</caption><tbody></tbody></table>
+        <h3>Πού θα με βρεις</h3>
+        <address class="addr" data-address></address>
+        <a class="btn btn-ghost" data-directions href="#" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Οδηγίες στο Google Maps</a>
+        <p class="online">Μένεις μακριά ή δεν μπορείς να έρθεις; Οι συνεδρίες γίνονται και online, με βιντεοκλήση.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>Ελίνα Κοσμίδου</b><br>Ψυχολόγος MSc, Θέρμη Θεσσαλονίκης<br><a data-tel href="#" style="color:#fff"><span data-phone></span></a></div>
+    <p class="crisis">Αν είσαι σε κίνδυνο ή σκέφτεσαι να κάνεις κακό στον εαυτό σου, κάλεσε τώρα τη Γραμμή Παρέμβασης για την Αυτοκτονία στο <a href="tel:1018">1018</a> ή το <a href="tel:166">166</a>. Είναι διαθέσιμα όλο το 24ωρο.</p>
+  </div>
+</footer>
+
+<div class="bar" id="bar" aria-label="Γρήγορη επικοινωνία">
+  <a class="btn btn-call" data-tel href="#"><svg><use href="#i-phone"/></svg><span data-phone></span></a>
+  <a class="btn btn-line" data-msg href="#" aria-label="Μήνυμα στο Viber"><svg><use href="#i-chat"/></svg>Viber</a>
+</div>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-h">
+  <div class="sheet-in">
+    <button class="close" id="sheet-close" aria-label="Κλείσιμο"><svg><use href="#i-x"/></svg></button>
+    <svg class="ill" aria-hidden="true"><use id="sheet-ill" href=""/></svg>
+    <h3 id="sheet-h"></h3>
+    <div id="sheet-body"></div>
+    <div class="sheet-cta">
+      <a class="btn btn-call" data-tel href="#"><svg><use href="#i-phone"/></svg><span>Κάλεσε <span data-phone></span></span></a>
+      <a class="btn btn-line" data-msg href="#"><svg><use href="#i-chat"/></svg><span data-msg-label>Στείλε μήνυμα στο Viber</span></a>
+    </div>
+    <p class="crisis" id="sheet-crisis" hidden>Αν έχεις σκέψεις να κάνεις κακό στον εαυτό σου, κάλεσε τώρα το 1018 (Γραμμή Παρέμβασης για την Αυτοκτονία, όλο το 24ωρο).</p>
+  </div>
+</dialog>
+
+<script>
+/* =====================================================================
+   CONFIG: everything about the practice lives here.
+   Values marked TODO are placeholders. Replace them with Elina's real
+   details before the site goes live.
+   ===================================================================== */
+const CONFIG = {
+  phone: "+306900000000",              // TODO: real number, international format
+  phoneDisplay: "69X XXX XXXX",        // TODO: how it reads on screen
+  viber: true,                          // true only if the number is a mobile with Viber
+  email: "",                            // TODO (optional): e.g. "info@elinakosmidou.gr"
+  address: ["Θέρμη Θεσσαλονίκης", "570 01"], // TODO: street and number on the first line
+  directions: "https://www.google.com/maps/dir/?api=1&destination=40.5481831,23.019569",
+  maps: "https://www.google.com/maps/place/data=!4m2!3m1!1s0x14a8410d99679aab:0x2b9c4f6a53fb3b5d",
+  geo: { lat: 40.5481831, lng: 23.019569 },
+  // TODO: real hours. 0 = Sunday … 6 = Saturday. [] = closed.
+  hours: { 1: [["10:00","21:00"]], 2: [["10:00","21:00"]], 3: [["10:00","21:00"]], 4: [["10:00","21:00"]], 5: [["10:00","18:00"]], 6: [], 0: [] },
+  // TODO: Google rating. Leave null to show credentials instead.
+  rating: null,                          // e.g. { value: 5.0, count: 12 }
+  // TODO: real Google reviews, word for word. The section stays hidden while this is empty.
+  reviews: [
+    // { text: "…", stars: 5, when: "πριν από 2 μήνες" }
+  ],
+  price: "" // TODO (optional): e.g. "Η συνεδρία διαρκεί 50 λεπτά και κοστίζει 50 €."
+};
+
+const HELP = [
+  { id:"anx", ill:"il-anx", t:"Άγχος και στρες", s:"Όταν η ανησυχία δεν σταματά, το σώμα σφίγγεται και ο ύπνος χαλάει.",
+    d:["Το άγχος είναι φυσιολογικό, όμως μερικές φορές γίνεται τόσο έντονο που σε εμποδίζει να ζήσεις όπως θέλεις: σκέψεις που γυρίζουν συνέχεια, σφίξιμο στο στήθος, καταστάσεις που αρχίζεις να αποφεύγεις."],
+    how:"Στη θεραπεία βρίσκουμε τι πυροδοτεί το άγχος, ελέγχουμε τις σκέψεις που το τροφοδοτούν και δοκιμάζουμε σταδιακά όσα αποφεύγεις, με τον δικό σου ρυθμό." },
+  { id:"mood", ill:"il-mood", t:"Κατάθλιψη και χαμηλή διάθεση", s:"Όταν όλα μοιάζουν βαριά και τίποτα δεν σου δίνει χαρά.",
+    d:["Η κούραση, η απώλεια ενδιαφέροντος και οι αρνητικές σκέψεις για τον εαυτό σου τροφοδοτούν η μία την άλλη, και η μέρα αδειάζει."],
+    how:"Δουλεύουμε με μικρά, εφικτά βήματα: ξαναβάζουμε στη μέρα σου πράγματα που σου δίνουν ενέργεια και εξετάζουμε μαζί τις σκέψεις που σε κρατούν κάτω.", crisis:true },
+  { id:"self", ill:"il-self", t:"Αυτοπεποίθηση", s:"Όταν η εσωτερική κριτική φωνή ακούγεται πιο δυνατά από όλες τις άλλες.",
+    d:["Ο τρόπος που μιλάς στον εαυτό σου επηρεάζει τις επιλογές σου, τις σχέσεις σου και τη δουλειά σου."],
+    how:"Μαθαίνουμε να εντοπίζουμε την αυστηρή κριτική, να τη συγκρίνουμε με τα γεγονότα και να χτίζουμε δεξιότητες για να διεκδικείς αυτό που χρειάζεσαι." },
+  { id:"rel", ill:"il-rel", t:"Σχέσεις, γάμος και διαζύγιο", s:"Όταν μια σχέση πονάει, μπερδεύει ή τελειώνει.",
+    d:["Συγκρούσεις που επαναλαμβάνονται, δυσκολία στην επικοινωνία ή ένας χωρισμός που σε έχει αναστατώσει."],
+    how:"Κοιτάμε πώς ερμηνεύεις όσα συμβαίνουν, πώς εκφράζεις τις ανάγκες σου και πώς στέκεσαι στα πόδια σου σε μια περίοδο αλλαγής." },
+  { id:"teen", ill:"il-teen", t:"Έφηβοι και γονείς", s:"Όταν το παιδί σου δυσκολεύεται και δεν ξέρεις πώς να βοηθήσεις.",
+    d:["Έχω δουλέψει σε κέντρα ειδικών θεραπειών με παιδιά και εφήβους με συναισθηματικές, συμπεριφορικές και αναπτυξιακές δυσκολίες, και με τους γονείς τους.","Σχέσεις με συνομηλίκους, άγχος για το σχολείο, πολλές ώρες στις οθόνες, ή μια μεγάλη αλλαγή στην οικογένεια, όπως ένα διαζύγιο ή μια υιοθεσία."],
+    how:"Η συμβουλευτική γονέων σε βοηθά να καταλάβεις τι συμβαίνει και να ξέρεις πώς να αντιδράς στο σπίτι." },
+  { id:"trauma", ill:"il-lamp", t:"Τραύμα και μετατραυματικό στρες", s:"Όταν κάτι που έγινε συνεχίζει να σε ακολουθεί.",
+    d:["Αναμνήσεις που επιστρέφουν, εφιάλτες, ένταση ή η αίσθηση ότι πρέπει να είσαι συνέχεια σε επιφυλακή."],
+    how:"Προχωράμε με τον δικό σου ρυθμό, ώστε πρώτα να νιώσεις ασφάλεια, μετά να καταλάβεις τις αντιδράσεις σου, και σιγά σιγά το παρελθόν να πάψει να ορίζει το σήμερα." },
+  { id:"food", ill:"il-food", t:"Φαγητό και σχέση με το σώμα", s:"Όταν το φαγητό και ο καθρέφτης γίνονται πηγή άγχους.",
+    d:["Περιορισμός, υπερφαγικά επεισόδια, ενοχές μετά το φαγητό ή συνεχής σύγκριση με τους άλλους."],
+    how:"Δουλεύουμε τις σκέψεις και τις συνήθειες που κρατούν τον κύκλο ζωντανό, για να χτίσεις μια πιο ήρεμη σχέση με το φαγητό και το σώμα σου." },
+  { id:"women", ill:"il-seed", t:"Γυναικεία θέματα και υπογονιμότητα", s:"Όταν η προσπάθεια για παιδί ή μια αλλαγή στη ζωή σε εξαντλεί.",
+    d:["Η διαδρομή της υπογονιμότητας, η πίεση για το πώς «πρέπει» να είναι μια γυναίκα, οι αλλαγές στη ζωή και στο σώμα."],
+    how:"Ένας χώρος για να μιλήσεις για όσα συχνά δεν λέγονται, και να βρεις τρόπους να φροντίζεις τον εαυτό σου μέσα σε όλα αυτά." }
+];
+
+const LOOPS = [
+  { c:"Δεν μου απάντησαν στο μήνυμα",
+    before:{ think:"«Κάτι έκανα και θύμωσαν μαζί μου.»", feel:"Άγχος και στενοχώρια.", do:"Κοιτάζω το κινητό ξανά και ξανά και ζητάω συγγνώμη χωρίς λόγο." },
+    after:{ think:"«Μπορεί απλώς να είναι απασχολημένοι.»", feel:"Λίγη ανυπομονησία, αλλά ηρεμία.", do:"Συνεχίζω τη μέρα μου και ρωτάω αργότερα." } },
+  { c:"Έχω παρουσίαση στη δουλειά αύριο",
+    before:{ think:"«Θα τα κάνω θάλασσα και θα με κρίνουν.»", feel:"Πανικός, σφίξιμο στο στήθος.", do:"Το αναβάλλω, δεν κοιμάμαι και σκέφτομαι να μην πάω." },
+    after:{ think:"«Έχω προετοιμαστεί. Αν κολλήσω, θα συνεχίσω.»", feel:"Τρακ, αλλά διαχειρίσιμο.", do:"Κάνω μια πρόβα, κοιμάμαι και πηγαίνω." } },
+  { c:"Το παιδί μου γύρισε θυμωμένο από το σχολείο",
+    before:{ think:"«Αποτυγχάνω ως γονιός.»", feel:"Ενοχές και εκνευρισμός.", do:"Του φωνάζω ή κλείνομαι στον εαυτό μου." },
+    after:{ think:"«Κάτι το δυσκόλεψε σήμερα. Ας μάθω τι.»", feel:"Ανησυχία, αλλά και ηρεμία.", do:"Κάθομαι δίπλα του και το ρωτάω τι έγινε." } },
+  { c:"Κοιτάζομαι στον καθρέφτη",
+    before:{ think:"«Δεν μου αρέσει τίποτα πάνω μου.»", feel:"Ντροπή.", do:"Αποφεύγω φωτογραφίες και εξόδους." },
+    after:{ think:"«Κάποιες μέρες με βλέπω πιο αυστηρά. Αυτό δεν είναι όλη η αλήθεια.»", feel:"Λιγότερη ένταση.", do:"Βγαίνω με τους φίλους μου κανονικά." } }
+];
+
+const FAQ = [
+  { q:"Πόσο κοστίζει μια συνεδρία;", a: () => CONFIG.price || "Πάρε με τηλέφωνο και θα σου πω αμέσως το κόστος και τη διάρκεια της συνεδρίας." },
+  { q:"Γίνονται συνεδρίες online;", a: () => "Ναι. Αν δεν μπορείς να έρθεις στο γραφείο στη Θέρμη, συναντιόμαστε με βιντεοκλήση, από έναν ήσυχο χώρο της επιλογής σου." },
+  { q:"Όσα λέμε μένουν μεταξύ μας;", a: () => "Ναι. Όλα όσα συζητάμε είναι εμπιστευτικά, σύμφωνα με τον κώδικα δεοντολογίας των ψυχολόγων." },
+  { q:"Πόσες συνεδρίες θα χρειαστώ;", a: () => "Εξαρτάται από το τι θέλεις να δουλέψεις. Η γνωστική συμπεριφορική θεραπεία είναι στοχευμένη, και το πλάνο το συζητάμε μαζί από την αρχή, ώστε να ξέρεις πού πηγαίνουμε." }
+];
+
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+  /* ---------- contact wiring ---------- */
+  const tel = "tel:" + CONFIG.phone;
+  const msgHref = CONFIG.viber ? "viber://chat?number=" + encodeURIComponent(CONFIG.phone) : "sms:" + CONFIG.phone;
+  $$("[data-phone]").forEach(e => e.textContent = CONFIG.phoneDisplay);
+  $$("[data-tel]").forEach(e => e.href = tel);
+  $$("[data-msg]").forEach(e => e.href = msgHref);
+  if (!CONFIG.viber) $$("[data-msg-label]").forEach(e => e.textContent = "Στείλε μου SMS");
+  if (CONFIG.email) { const l = $("[data-email-line]"); l.hidden = false; const a = $("[data-email]"); a.href = "mailto:" + CONFIG.email; a.textContent = CONFIG.email; }
+  $("[data-address]").innerHTML = CONFIG.address.map(esc).join("<br>");
+  $("[data-directions]").href = CONFIG.directions;
+
+  /* ---------- proof line ---------- */
+  if (CONFIG.rating) {
+    const v = CONFIG.rating.value.toLocaleString("el-GR", { minimumFractionDigits: 1 });
+    $("[data-proof]").innerHTML = `<span class="stars" aria-hidden="true">★★★★★</span> Βαθμολογία ${v} από ${CONFIG.rating.count} άτομα στο Google. MSc Κλινική Ψυχική Υγεία, ΑΠΘ.`;
+  }
+
+  /* ---------- open / closed, computed in Athens time ---------- */
+  const DAYS = ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"];
+  const DAYS_ACC = ["την Κυριακή","τη Δευτέρα","την Τρίτη","την Τετάρτη","την Πέμπτη","την Παρασκευή","το Σάββατο"];
+  const athens = () => {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone:"Europe/Athens", weekday:"short", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    return { day: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(p.weekday), min: (+p.hour) * 60 + (+p.minute) };
+  };
+  const toMin = t => { const [h, m] = t.split(":"); return h * 60 + +m; };
+  function status() {
+    const { day, min } = athens();
+    const today = CONFIG.hours[day] || [];
+    for (const [a, b] of today) if (min >= toMin(a) && min < toMin(b)) return { open: true, text: `Ανοιχτά τώρα, έως τις ${b}` };
+    const later = today.find(([a]) => toMin(a) > min);
+    if (later) return { open: false, text: `Κλειστά τώρα. Ανοίγει σήμερα στις ${later[0]}` };
+    for (let i = 1; i <= 7; i++) {
+      const d = (day + i) % 7, h = CONFIG.hours[d] || [];
+      if (h.length) return { open: false, text: `Κλειστά τώρα. Ανοίγει ${i === 1 ? "αύριο" : DAYS_ACC[d]} στις ${h[0][0]}` };
+    }
+    return { open: false, text: "Τα ραντεβού κλείνονται τηλεφωνικά" };
+  }
+  const st = status();
+  $("[data-status]").classList.toggle("closed", !st.open);
+  $("[data-status-text]").textContent = st.text;
+
+  const tb = $("#hours tbody"), today = athens().day;
+  [1,2,3,4,5,6,0].forEach(d => {
+    const h = CONFIG.hours[d] || [];
+    const tr = document.createElement("tr");
+    if (d === today) tr.className = "today";
+    tr.innerHTML = `<td>${DAYS[d]}</td><td>${h.length ? h.map(([a,b]) => `${a} – ${b}`).join(", ") : "Κλειστά"}</td>`;
+    tb.appendChild(tr);
+  });
+
+  /* ---------- help cards ---------- */
+  const track = $("#help-track");
+  track.innerHTML = HELP.map((h, i) => `
+    <article class="card" role="listitem">
+      <svg class="ill" aria-hidden="true"><use href="#${h.ill}"/></svg>
+      <h3>${h.t}</h3>
+      <p>${h.s}</p>
+      <button class="more" data-open="${i}" aria-haspopup="dialog">Διάβασε περισσότερα<span class="sr"> για: ${h.t}</span></button>
+    </article>`).join("");
+
+  /* ---------- detail sheet ---------- */
+  const sheet = $("#sheet");
+  let lastFocus = null;
+  function openSheet(i) {
+    const h = HELP[i];
+    $("#sheet-ill").setAttribute("href", "#" + h.ill);
+    $("#sheet-h").textContent = h.t;
+    $("#sheet-body").innerHTML = h.d.map(p => `<p>${esc(p)}</p>`).join("") + `<p class="how">${esc(h.how)}</p>`;
+    $("#sheet-crisis").hidden = !h.crisis;
+    lastFocus = document.activeElement;
+    sheet.classList.remove("closing");
+    sheet.showModal();
+    $(".sheet-in", sheet).scrollTop = 0;
+  }
+  function closeSheet() {
+    if (!sheet.open) return;
+    if (reduce) { sheet.close(); return; }
+    sheet.classList.add("closing");
+    sheet.addEventListener("animationend", () => { sheet.classList.remove("closing"); sheet.close(); }, { once: true });
+  }
+  sheet.addEventListener("close", () => lastFocus && lastFocus.focus());
+  sheet.addEventListener("cancel", e => { e.preventDefault(); closeSheet(); });
+  sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
+  $("#sheet-close").addEventListener("click", closeSheet);
+  track.addEventListener("click", e => { const b = e.target.closest("[data-open]"); if (b) openSheet(+b.dataset.open); });
+
+  /* ---------- swipe rows: arrows + dots ---------- */
+  function row(id) {
+    const t = document.getElementById(id); if (!t) return;
+    const items = [...t.children];
+    const dots = document.querySelector(`[data-dots="${id}"]`);
+    const prev = document.querySelector(`[data-prev="${id}"]`), next = document.querySelector(`[data-next="${id}"]`);
+    const step = () => (items[1] ? items[1].offsetLeft - items[0].offsetLeft : t.clientWidth);
+    if (dots) dots.innerHTML = items.map((_, i) => `<button aria-label="Μετάβαση στο ${i + 1} από ${items.length}"></button>`).join("");
+    const dotBtns = dots ? [...dots.children] : [];
+    dotBtns.forEach((d, i) => d.addEventListener("click", () => t.scrollTo({ left: items[i].offsetLeft - items[0].offsetLeft, behavior: reduce ? "auto" : "smooth" })));
+    function sync() {
+      const i = Math.round(t.scrollLeft / step());
+      const max = t.scrollWidth - t.clientWidth - 2;
+      dotBtns.forEach((d, k) => d.setAttribute("aria-current", k === Math.min(i, items.length - 1) ? "true" : "false"));
+      if (t.scrollLeft >= max && dotBtns.length) dotBtns.forEach((d, k) => d.setAttribute("aria-current", k === items.length - 1 ? "true" : "false"));
+      if (prev) prev.disabled = t.scrollLeft <= 2;
+      if (next) next.disabled = t.scrollLeft >= max;
+    }
+    prev && prev.addEventListener("click", () => t.scrollBy({ left: -step(), behavior: reduce ? "auto" : "smooth" }));
+    next && next.addEventListener("click", () => t.scrollBy({ left: step(), behavior: reduce ? "auto" : "smooth" }));
+    t.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+    addEventListener("resize", sync);
+    sync();
+  }
+  row("help-track");
+
+  /* ---------- reviews (only real ones, from CONFIG) ---------- */
+  if (CONFIG.reviews.length) {
+    const sec = $("#reviews"); sec.hidden = false;
+    if (CONFIG.rating) $("[data-rev-sub]").textContent = `Βαθμολογία ${CONFIG.rating.value.toLocaleString("el-GR",{minimumFractionDigits:1})} από ${CONFIG.rating.count} κριτικές στο Google.`;
+    else $("[data-rev-sub]").textContent = "Κριτικές από το Google.";
+    $("#rev-track").innerHTML = CONFIG.reviews.map(r => `
+      <figure class="rcard" role="listitem">
+        <div class="q" aria-hidden="true">“</div>
+        <blockquote>${esc(r.text)}</blockquote>
+        <footer><span class="stars" aria-label="${r.stars || 5} αστέρια">${"★".repeat(r.stars || 5)}</span><span>Κριτική στο Google${r.when ? ", " + esc(r.when) : ""}</span></footer>
+      </figure>`).join("");
+    row("rev-track");
+  }
+
+  /* ---------- CBT loop ---------- */
+  const chips = $("#chips"), diagram = $("#diagram"), sw = $("#switch");
+  let cur = 0, mode = "before";
+  chips.innerHTML = LOOPS.map((l, i) => `<button type="button" class="chip" aria-pressed="${i === 0}">${l.c}</button>`).join("");
+  function paint(animate) {
+    const data = LOOPS[cur][mode];
+    $$("[data-node]", diagram).forEach((p, k) => {
+      const set = () => { p.textContent = data[p.dataset.node]; p.classList.remove("swap"); };
+      if (!animate || reduce) return set();
+      setTimeout(() => { p.classList.add("swap"); setTimeout(set, 260); }, k * 90);
+    });
+    diagram.dataset.mode = mode; sw.dataset.mode = mode;
+    $$("button", sw).forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === mode));
+    $("#loop-caption").textContent = mode === "before" ? "Ο ένας κρίκος τροφοδοτεί τον επόμενο και ο κύκλος ξαναρχίζει." : "Μια πιο ισορροπημένη σκέψη αλλάζει και τους άλλους δύο κρίκους.";
+  }
+  chips.addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    cur = [...chips.children].indexOf(b);
+    [...chips.children].forEach(c => c.setAttribute("aria-pressed", c === b));
+    paint(true);
+  });
+  sw.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.dataset.mode === mode) return; mode = b.dataset.mode; paint(true); });
+  paint(false);
+
+  /* ---------- FAQ ---------- */
+  $("#faq").innerHTML = FAQ.map((f, i) => `
+    <div class="qa"><h3 style="font:inherit;margin:0"><button aria-expanded="false" aria-controls="qa${i}" id="qb${i}">${f.q}</button></h3>
+    <div class="a" id="qa${i}" role="region" aria-labelledby="qb${i}"><div><p>${esc(f.a())}</p></div></div></div>`).join("");
+  $("#faq").addEventListener("click", e => { const b = e.target.closest("button"); if (b) b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true"); });
+
+  /* ---------- nav: solid on scroll, active section, eased anchor glide ---------- */
+  const nav = $("#nav"), hero = $(".hero"), bar = $("#bar");
+  const onScroll = () => nav.classList.toggle("solid", scrollY > 40);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  new IntersectionObserver(([e]) => bar.classList.toggle("show", !e.isIntersecting), { threshold: 0, rootMargin: "-40% 0px 0px 0px" }).observe(hero);
+
+  const links = $$(".nav-links a");
+  const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  secs.forEach(s => s && spy.observe(s));
+
+  function glide(y) {
+    if (reduce) return scrollTo(0, y);
+    const start = scrollY, dist = y - start, dur = Math.min(1100, 420 + Math.abs(dist) * 0.25);
+    let t0 = null;
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const tick = ts => { if (t0 === null) t0 = ts; const p = Math.min(1, (ts - t0) / dur); scrollTo(0, start + dist * ease(p)); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute("href"); if (id.length < 2) return;
+    const el = document.querySelector(id); if (!el) return;
+    e.preventDefault(); setMenu(false);
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
+    glide(id === "#top" ? 0 : el.getBoundingClientRect().top + scrollY - navH + 1);
+    history.replaceState(null, "", id);
+  });
+
+  /* ---------- mobile menu ---------- */
+  const burger = $("#burger");
+  function setMenu(open) {
+    document.body.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+    burger.setAttribute("aria-label", open ? "Κλείσιμο μενού" : "Άνοιγμα μενού");
+  }
+  burger.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+  addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+  /* ---------- structured data ---------- */
+  const ld = {
+    "@context": "https://schema.org", "@type": ["MedicalBusiness", "LocalBusiness"],
+    name: "Ελίνα Κοσμίδου, Ψυχολόγος MSc", description: "Γνωστική συμπεριφορική ψυχοθεραπεία στη Θέρμη Θεσσαλονίκης και online.",
+    telephone: CONFIG.phone, image: "img/office.jpg", medicalSpecialty: "Psychiatric",
+    address: { "@type": "PostalAddress", streetAddress: CONFIG.address[0], addressLocality: "Θέρμη", addressRegion: "Θεσσαλονίκη", postalCode: "57001", addressCountry: "GR" },
+    geo: { "@type": "GeoCoordinates", latitude: CONFIG.geo.lat, longitude: CONFIG.geo.lng }, hasMap: CONFIG.maps,
+    openingHoursSpecification: Object.entries(CONFIG.hours).flatMap(([d, h]) => h.map(([o, c]) => ({ "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/" + ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d], opens: o, closes: c })))
+  };
+  if (CONFIG.rating) ld.aggregateRating = { "@type": "AggregateRating", ratingValue: CONFIG.rating.value, reviewCount: CONFIG.rating.count };
+  $("#ld").textContent = JSON.stringify(ld);
+})();
+</script>
+</body>
+</html>
