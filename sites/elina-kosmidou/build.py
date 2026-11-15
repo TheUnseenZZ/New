@@ -12,7 +12,8 @@ import zipfile
 
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
-ASSETS = ["fonts/literata.woff2", "fonts/commissioner.woff2", "img/office.jpg", "img/office-960.jpg", "img/corner.jpg"]
+ASSETS = ["fonts/literata.woff2", "fonts/commissioner.woff2", "img/elina.jpg", "img/elina-800.jpg", "img/desk.jpg",
+          "img/room-main.jpg", "img/room-second.jpg", "img/door.jpg", "img/hourglass.jpg"]
 MIME = {".woff2": "font/woff2", ".jpg": "image/jpeg"}
 
 
@@ -24,7 +25,7 @@ def data_uri(rel: str) -> str:
 def standalone(html: str) -> str:
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
     # one copy of the big hero image is enough offline
-    html = html.replace(' srcset="img/office-960.jpg 960w, img/office.jpg 1920w" sizes="100vw"', "")
+    html = html.replace(' srcset="img/elina-800.jpg 800w, img/elina.jpg 1600w" sizes="(max-width: 1100px) 100vw, 60vw"', "")
     html = html.replace(' loading="lazy"', "")
     for rel in ASSETS:
         if rel in html:

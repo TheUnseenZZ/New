@@ -23,7 +23,9 @@ Revised after finding her logo: navy and grey-sage replace the deep green as the
 - Scale: 14 · 17 · 21 · 27 · 36 · 48 · 72 (roughly 1.27 ratio). Sentence case throughout.
 
 ## Layout
-Desktop hero: the office photo full-bleed, darkened by a left-to-right gradient; text left-aligned over the dark bookshelf side, the room stays readable on the right.
+Desktop hero: Elina's portrait from her Maps listing, sized by height on the right and fading into navy under the left-aligned text. At 1100px and below it fills the hero behind bottom-anchored text; on phones it fills the top two-thirds so her face stays clear of the centred text.
+Nav and footer: her logo, traced to two-tone SVG symbols whose colours come from `--lg-navy` and `--lg-sage` (white over the photo, brand colours on the solid nav).
+About: desk-lamp photo, plus a square-cornered strip of four office photos.
 ```
 | Ελίνα Κοσμίδου        Με τι βοηθάω  Η θεραπεία  Σχετικά  Επικοινωνία [Κάλεσε 69…] |
 |                                                                          |
