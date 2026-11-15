@@ -229,11 +229,19 @@ p{margin:0}
 .creds span{color:var(--ink-soft);grid-column:2}
 .creds svg{width:18px;height:18px;color:var(--oak);grid-row:span 2;margin-top:2px}
 
-.space{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:var(--mist)}
-.space figure{margin:0;aspect-ratio:3/4;overflow:hidden}
-.space img{width:100%;height:100%;object-fit:cover}
-.space-cap{padding-top:16px;padding-bottom:56px;color:var(--ink-soft);font-size:.94rem}
-@media (max-width:640px){.space{grid-template-columns:repeat(2,minmax(0,1fr))}.space-cap{text-align:center;padding-bottom:44px}}
+/* office carousel in the about photo slot: crossfade, autoplay, pausable */
+.about-photo{overflow:hidden;background:var(--wall-2)}
+@media (min-width:901px){.about-grid{align-items:start}.about-photo{position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));min-height:520px}}
+.about-photo .slide{opacity:0;transform:scale(1.04);transition:opacity 1.2s var(--ease),transform 6s linear}
+.about-photo .slide.on{opacity:1;transform:scale(1)}
+.about-photo::after{content:"";position:absolute;inset:auto 0 0;height:130px;background:linear-gradient(0deg,rgba(28,31,46,.6),transparent);pointer-events:none;z-index:1}
+.car-ui{position:absolute;z-index:2;left:0;right:0;bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px}
+.car-dots{display:flex;gap:8px}
+.car-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;transition:width .35s var(--ease),background-color .35s}
+.car-dots button[aria-current="true"]{width:26px;border-radius:5px;background:#fff}
+.car-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(28,31,46,.25);color:#fff;cursor:pointer;display:grid;place-items:center}
+.car-btn svg{width:14px;height:14px}
+.car-cap{position:absolute;z-index:2;left:24px;right:24px;bottom:64px;margin:0;color:#fff;font-size:.95rem;text-align:center;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 
 /* ---------- start ---------- */
 .start{background:var(--wall)}
@@ -293,7 +301,7 @@ p{margin:0}
   .diagram{margin:0 auto}
   .steps{grid-template-columns:1fr;gap:28px}
   .about-grid{grid-template-columns:1fr;min-height:0}
-  .about-photo{min-height:0;aspect-ratio:4/3}
+  .about-photo{min-height:0;aspect-ratio:4/5}
   .about-copy{padding:48px var(--gutter) 64px;max-width:none}
 }
 @media (max-width:640px){
@@ -557,7 +565,18 @@ p{margin:0}
   <!-- ABOUT -->
   <section class="sec about" id="about" aria-labelledby="about-h">
     <div class="about-grid">
-      <div class="about-photo"><img src="img/desk.jpg" alt="Το γραφείο με το επιτραπέζιο φωτιστικό και τη βιβλιοθήκη" loading="lazy"></div>
+      <div class="about-photo" id="car" role="region" aria-roledescription="carousel" aria-label="Φωτογραφίες από το γραφείο">
+          <img class="slide on" src="img/room-second.jpg" alt="Ο δεύτερος χώρος με καναπέ, πολυθρόνα και στρογγυλό τραπεζάκι" data-cap="Ο δεύτερος χώρος του γραφείου">
+          <img class="slide" style="object-position:50% 72%" src="img/room-main.jpg" alt="Ο χώρος των συνεδριών με καναπέ, πολυθρόνα και γραφείο" data-cap="Ο χώρος των συνεδριών">
+          <img class="slide" src="img/desk.jpg" alt="Το γραφείο με το επιτραπέζιο φωτιστικό και τη βιβλιοθήκη" data-cap="Η γωνιά της βιβλιοθήκης">
+          <img class="slide" src="img/door.jpg" alt="Πινακίδα στην πόρτα: treatment in session" data-cap="Όσα λέγονται εδώ μένουν εδώ">
+          <img class="slide" src="img/hourglass.jpg" alt="Κλεψύδρα και βιβλία ψυχολογίας στη βιβλιοθήκη" data-cap="Ταβάκη 7, Θέρμη">
+          <p class="car-cap" id="car-cap" aria-live="polite"></p>
+          <div class="car-ui">
+            <div class="car-dots" id="car-dots"></div>
+            <button class="car-btn" id="car-toggle" type="button" aria-label="Παύση εναλλαγής φωτογραφιών"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="car-ico" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg></button>
+          </div>
+        </div>
       <div class="about-copy">
         <h2 id="about-h">Λίγα λόγια για μένα</h2>
         <p>Είμαι ψυχολόγος με άδεια άσκησης επαγγέλματος. Σπούδασα ψυχολογία στο Πανεπιστήμιο Δυτικής Μακεδονίας και ολοκλήρωσα με άριστα το μεταπτυχιακό μου στην Κλινική Ψυχική Υγεία, στην Ιατρική Σχολή του ΑΠΘ.</p>
@@ -572,13 +591,6 @@ p{margin:0}
         </ul>
       </div>
     </div>
-    <div class="space">
-      <figure><img src="img/room-main.jpg" alt="Ο χώρος των συνεδριών με πολυθρόνα, καναπέ και γραφείο" loading="lazy"></figure>
-      <figure><img src="img/room-second.jpg" alt="Δεύτερος χώρος με καναπέ, πολυθρόνα και στρογγυλό τραπεζάκι" loading="lazy"></figure>
-      <figure><img src="img/door.jpg" alt="Πινακίδα στην πόρτα: treatment in session" loading="lazy"></figure>
-      <figure><img src="img/hourglass.jpg" alt="Κλεψύδρα και βιβλία ψυχολογίας στη βιβλιοθήκη" loading="lazy"></figure>
-    </div>
-    <p class="wrap space-cap">Το γραφείο στην Ταβάκη 7, στη Θέρμη.</p>
   </section>
 
   <!-- START -->
@@ -857,6 +869,46 @@ const FAQ = [
       </figure>`).join("");
     row("rev-track");
   }
+
+  /* ---------- office carousel ---------- */
+  (() => {
+    const car = $("#car"); if (!car) return;
+    const slides = $$(".slide", car), dotsEl = $("#car-dots"), cap = $("#car-cap"), tog = $("#car-toggle"), ico = $("#car-ico");
+    const PAUSE = "M7 5h3v14H7zM14 5h3v14h-3z", PLAY = "M8 5l11 7-11 7z";
+    let i = 0, timer = null, userPaused = reduce, hover = false, visible = false;
+    dotsEl.innerHTML = slides.map((s, k) => `<button type="button" aria-label="Φωτογραφία ${k + 1} από ${slides.length}"></button>`).join("");
+    const dots = [...dotsEl.children];
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle("on", k === i); s.setAttribute("aria-hidden", k !== i); });
+      dots.forEach((d, k) => d.setAttribute("aria-current", k === i ? "true" : "false"));
+      cap.textContent = slides[i].dataset.cap;
+    }
+    const running = () => !userPaused && !hover && visible && !document.hidden;
+    function tick() { clearTimeout(timer); if (running()) timer = setTimeout(() => { show(i + 1); tick(); }, 5000); }
+    function setPaused(p) {
+      userPaused = p; ico.setAttribute("d", p ? PLAY : PAUSE);
+      tog.setAttribute("aria-label", p ? "Συνέχιση εναλλαγής φωτογραφιών" : "Παύση εναλλαγής φωτογραφιών");
+      tick();
+    }
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); tick(); }));
+    tog.addEventListener("click", () => setPaused(!userPaused));
+    car.addEventListener("mouseenter", () => { hover = true; tick(); });
+    car.addEventListener("mouseleave", () => { hover = false; tick(); });
+    car.addEventListener("focusin", () => { hover = true; tick(); });
+    car.addEventListener("focusout", () => { hover = false; tick(); });
+    let x0 = null;
+    car.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    car.addEventListener("touchend", e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) { show(i + (dx < 0 ? 1 : -1)); tick(); }
+      x0 = null;
+    });
+    document.addEventListener("visibilitychange", tick);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; tick(); }, { threshold: .25 }).observe(car);
+    show(0); setPaused(userPaused);
+  })();
 
   /* ---------- CBT loop ---------- */
   const chips = $("#chips"), diagram = $("#diagram"), sw = $("#switch");

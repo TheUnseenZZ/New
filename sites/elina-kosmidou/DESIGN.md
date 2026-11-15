@@ -25,7 +25,7 @@ Revised after finding her logo: navy and grey-sage replace the deep green as the
 ## Layout
 Desktop hero: Elina's portrait from her Maps listing, sized by height on the right and fading into navy under the left-aligned text. At 1100px and below it fills the hero behind bottom-anchored text; on phones it fills the top two-thirds so her face stays clear of the centred text.
 Nav and footer: her logo, traced to two-tone SVG symbols whose colours come from `--lg-navy` and `--lg-sage` (white over the photo, brand colours on the solid nav).
-About: desk-lamp photo, plus a square-cornered strip of four office photos.
+About: an office carousel in the photo slot (second room first, then main room, desk, door sign, hourglass). It crossfades every 5 s at the client's request, pauses on hover/focus/off-screen, has dots, swipe and a pause button, stays still under reduced motion, and is sticky on desktop so it stays in view beside the bio.
 ```
 | Ελίνα Κοσμίδου        Με τι βοηθάω  Η θεραπεία  Σχετικά  Επικοινωνία [Κάλεσε 69…] |
 |                                                                          |
