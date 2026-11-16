@@ -96,3 +96,14 @@ Taken, all of it "invisible quality":
 - Favicon and app icons drawn from her logo mark, a web manifest, and a 1200x630 social card (img/og.jpg) with og:image size and alt.
 - The skill's contrast scan and keyboard/accessible-name check. The CBT labels failed (3.0:1) and now use #73502C. The remaining flag (white caption on the carousel's dark gradient) is a false positive.
 Left out on purpose: custom cursor, intro loader, parallax and floating photos, glow under the cursor, letter-roll and magnetic buttons, breathing light pools, dust particles, odometer numbers, review deck, footer wordmark effect, chapter rail. The friend's memory notes (cursor, glowing motion, model-like hero) are that client's taste, not Giorgos's.
+
+## Palette v2: warm linen (client's pick, Nov 2026)
+Chosen over soft sage and deep navy from rendered options of the topics section. Navy (#272B3E) stays for the logo, headings and buttons.
+| token | hex | role |
+|---|---|---|
+| --wall | #F4EFE8 | warm linen, section backgrounds |
+| --wall-2 | #EAE2D7 | deeper linen |
+| --mist | #FBF8F4 | bouclé white: nav, hero panel, light sections |
+| cards | #FFFDF9 | rounded cards (26px), inset photos (18px) |
+| chip | #EDE3D6 | pill buttons inside cards |
+Shadows are warm-tinted (rgba(70,52,34,...)). The client asked for "more rounded stuff", which supersedes the earlier square-photo rule for cards. Full-bleed photos (hero, carousel) stay square.
