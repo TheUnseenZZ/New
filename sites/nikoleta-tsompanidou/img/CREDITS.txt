@@ -1,0 +1,8 @@
+Stock photos (CC0, StockSnap via Openverse):
+topic-anx: Woman Working | cc0 | https://stocksnap.io/photo/woman-working-N8RN8GIKZH
+topic-ocd: Dishes Sink | cc0 | https://stocksnap.io/photo/dishes-sink-06FF138848
+topic-adhd: Sticky Notes | cc0 | https://stocksnap.io/photo/sticky-notes-TA1YQZU9QT
+topic-self: Woman Mirror | cc0 | https://stocksnap.io/photo/woman-mirror-6ZANDTLIFX
+topic-rel: Couple Love | cc0 | https://stocksnap.io/photo/couple-love-FP4R72OQII
+
+Client photos (her Google Maps account): niko-*.webp (portrait), desk-*.webp, room-*.webp (office); logo-original.png and logo-tile.webp from her logo.
