@@ -13,11 +13,10 @@ import zipfile
 
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
-ASSETS = ["fonts/literata.woff2", "fonts/commissioner.woff2", "fonts/manrope.woff2",
-          "img/elina.jpg", "img/elina-800.jpg", "img/desk.jpg",
-          "img/room-main.jpg", "img/room-second.jpg", "img/door.jpg", "img/hourglass.jpg"] + [
-          f"img/topic-{t}.jpg" for t in ("anx", "mood", "self", "rel", "teen", "trauma", "food", "women")]
-MIME = {".woff2": "font/woff2", ".jpg": "image/jpeg"}
+# every font and image in the site folder (longest paths first, so no path is a prefix of another)
+ASSETS = sorted((str(p.relative_to(ROOT)) for d in ("fonts", "img") for p in (ROOT / d).iterdir()
+                 if p.suffix in (".woff2", ".jpg", ".webp", ".png")), key=len, reverse=True)
+MIME = {".woff2": "font/woff2", ".jpg": "image/jpeg", ".webp": "image/webp", ".png": "image/png"}
 
 
 def data_uri(rel: str) -> str:
@@ -44,8 +43,9 @@ def build(page: str, name: str) -> None:
     with zipfile.ZipFile(DIST / f"{name}-netlify.zip", "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("elina-kosmidou/index.html", html)
         z.write(ROOT / "privacy.html", "elina-kosmidou/privacy.html")
+        z.write(ROOT / "site.webmanifest", "elina-kosmidou/site.webmanifest")
         for rel in ASSETS:
-            if rel in html or rel == "fonts/manrope.woff2":
+            if rel in html or rel.startswith(("fonts/manrope", "img/icon-")):
                 z.write(ROOT / rel, f"elina-kosmidou/{rel}")
 
 

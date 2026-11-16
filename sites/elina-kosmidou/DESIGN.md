@@ -88,3 +88,11 @@ Generated from index.html by a script, so the two can be compared side by side. 
 - No decorative or "extra" animation: no scroll-triggered reveals, parallax, hover fades, floating or bouncing elements, animated counters or text effects. Motion is allowed only where it answers a visitor's action (menu, detail sheet, carousel the client asked for) and stays off under reduced motion.
 - When borrowing from another site or skill, take the structure and content ideas, not its effects.
 - No reviews, ratings or testimonials unless they are real, quoted word for word, with their source.
+
+## Taken from the friend's beauty-salon-website skill (and what was left out)
+Taken, all of it "invisible quality":
+- One shared grade on every photo (less saturation, lifted blacks, slight warmth), so the stock and office photos read as one shoot.
+- Responsive WebP (480/800 or 800/1200/1600) with srcset and sizes, explicit width and height, one priority hero image with a preload, lazy loading below the fold. Desktop weight with everything loaded went from 1.7 MB to 750 KB.
+- Favicon and app icons drawn from her logo mark, a web manifest, and a 1200x630 social card (img/og.jpg) with og:image size and alt.
+- The skill's contrast scan and keyboard/accessible-name check. The CBT labels failed (3.0:1) and now use #73502C. The remaining flag (white caption on the carousel's dark gradient) is a false positive.
+Left out on purpose: custom cursor, intro loader, parallax and floating photos, glow under the cursor, letter-roll and magnetic buttons, breathing light pools, dust particles, odometer numbers, review deck, footer wordmark effect, chapter rail. The friend's memory notes (cursor, glowing motion, model-like hero) are that client's taste, not Giorgos's.
