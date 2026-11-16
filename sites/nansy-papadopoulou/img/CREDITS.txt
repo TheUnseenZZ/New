@@ -1,0 +1,8 @@
+Stock photos (CC0, StockSnap via Openverse):
+topic-anger: Family Breakfast | cc0 | https://stocksnap.io/photo/family-breakfast-7XZMFAEY3G
+topic-self: Woman Mirror | cc0 | https://stocksnap.io/photo/woman-mirror-LZATFX5K7O
+topic-ocd: Dishes Sink | cc0 | https://stocksnap.io/photo/dishes-sink-06FF138848
+topic-personality: Bonnet People | cc0 | https://stocksnap.io/photo/bonnet-people-2KNGOEV8OU
+topic-teen: Students Backpack | cc0 | https://stocksnap.io/photo/students-backpack-38E811B1DF
+
+Client photos (her Google Maps listing): nansy-*.webp (portrait), room-*.webp (office)

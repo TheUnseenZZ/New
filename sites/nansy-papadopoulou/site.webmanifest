@@ -1,0 +1,11 @@
+{
+  "name": "Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια",
+  "short_name": "Νάνσυ Παπαδοπούλου",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#3B4632",
+  "background_color": "#FAF7F2",
+  "display": "standalone"
+}
