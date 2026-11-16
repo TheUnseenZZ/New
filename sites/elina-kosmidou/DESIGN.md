@@ -70,3 +70,14 @@ Plus a sticky call/Viber bar on mobile once the hero is out of view.
 - Eyebrows, middle dots, arrows: none. Section headings are plain sentences.
 - Numbering only on "Πώς ξεκινάμε", which really is a sequence. Services are not numbered.
 - A map was planned, then cut: I don't have street data, so a fake SVG map would mislead. A directions button does the job.
+
+## Draft: "professional pass" (draft.html)
+Generated from index.html by a script, so the two can be compared side by side. Requested after comparing with a competitor site that felt more established.
+- Manrope for everything (the reference site's font). Sans specimen: Manrope, Advent Pro, Commissioner, Didact Gothic.
+- Nav is always solid (light background, full-colour logo, navy button) and bigger: 88px, logo 80px.
+- No hover fades, sliding underlines or hero entrance animation. Only the carousel, menu and detail sheets move.
+- Topic cards use square-cornered detail photos from her office instead of cartoon illustrations.
+- The CBT section is a static three-step example (thought, feeling, behaviour) instead of the interactive loop.
+- Contact: tinted office photo with an angled top edge, a right-aligned heading with one call button, and an icon list (phone, Viber, email when set, address, short hours with today in bold, live status).
+- Footer adds a legal row: copyright, privacy policy (privacy.html) and licence number from CONFIG.
+- All copy uses the formal «εσείς».

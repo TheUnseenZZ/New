@@ -2,6 +2,7 @@
 
 dist/elina-kosmidou-standalone.html  one file, fonts and images inlined (offline demo, screen share)
 dist/elina-kosmidou-netlify.zip      elina-kosmidou/index.html + assets, for Netlify Drop
+dist/elina-kosmidou-draft-*          the same two files for draft.html (the "professional" proposal)
 
 Run: python3 build.py
 """
@@ -12,8 +13,10 @@ import zipfile
 
 ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
-ASSETS = ["fonts/literata.woff2", "fonts/commissioner.woff2", "img/elina.jpg", "img/elina-800.jpg", "img/desk.jpg",
-          "img/room-main.jpg", "img/room-second.jpg", "img/door.jpg", "img/hourglass.jpg"]
+ASSETS = ["fonts/literata.woff2", "fonts/commissioner.woff2", "fonts/manrope.woff2",
+          "img/elina.jpg", "img/elina-800.jpg", "img/desk.jpg",
+          "img/room-main.jpg", "img/room-second.jpg", "img/door.jpg", "img/hourglass.jpg"] + [
+          f"img/topic-{t}.jpg" for t in ("anx", "mood", "self", "rel", "teen", "trauma", "food", "women")]
 MIME = {".woff2": "font/woff2", ".jpg": "image/jpeg"}
 
 
@@ -35,15 +38,21 @@ def standalone(html: str) -> str:
     return html
 
 
+def build(page: str, name: str) -> None:
+    html = (ROOT / page).read_text(encoding="utf-8")
+    (DIST / f"{name}-standalone.html").write_text(standalone(html), encoding="utf-8")
+    with zipfile.ZipFile(DIST / f"{name}-netlify.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("elina-kosmidou/index.html", html)
+        z.write(ROOT / "privacy.html", "elina-kosmidou/privacy.html")
+        for rel in ASSETS:
+            if rel in html or rel == "fonts/manrope.woff2":
+                z.write(ROOT / rel, f"elina-kosmidou/{rel}")
+
+
 def main() -> None:
     DIST.mkdir(exist_ok=True)
-    html = (ROOT / "index.html").read_text(encoding="utf-8")
-    out = DIST / "elina-kosmidou-standalone.html"
-    out.write_text(standalone(html), encoding="utf-8")
-    with zipfile.ZipFile(DIST / "elina-kosmidou-netlify.zip", "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("elina-kosmidou/index.html", html)
-        for rel in ASSETS:
-            z.write(ROOT / rel, f"elina-kosmidou/{rel}")
+    build("index.html", "elina-kosmidou")
+    build("draft.html", "elina-kosmidou-draft")
     for f in sorted(DIST.iterdir()):
         print(f"{f.name}: {f.stat().st_size // 1024} KB")
 
