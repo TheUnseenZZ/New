@@ -28,7 +28,7 @@ def data_uri(rel: str) -> str:
 def standalone(html: str) -> str:
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
     # one copy of the big hero image is enough offline
-    html = html.replace(' srcset="img/elina-800.jpg 800w, img/elina.jpg 1600w" sizes="(max-width: 1100px) 100vw, 60vw"', "")
+    html = re.sub(r' srcset="[^"]*" sizes="[^"]*"', "", html)
     html = html.replace(' loading="lazy"', "")
     for rel in ASSETS:
         if rel in html:

@@ -313,6 +313,46 @@ p{margin:0}
   .bar .btn-line{flex:0 0 auto}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* split hero (draft): the portrait never sits behind the text */
+.hero{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);align-items:stretch;background:var(--mist);color:var(--ink);text-align:left;min-height:calc(100vh - var(--nav-h) - 86px);min-height:calc(100svh - var(--nav-h) - 86px)}
+.hero::after{display:none}
+.hero-photo{position:relative;inset:auto;grid-column:2;grid-row:1;min-height:520px}
+.hero-photo img{position:absolute;inset:0;top:0;right:0;bottom:auto;width:100%;height:100%;min-width:0;max-width:none;object-fit:cover;object-position:50% 22%;-webkit-mask-image:none;mask-image:none;filter:none;transform:none}
+.hero-in{grid-column:1;grid-row:1;align-self:center;max-width:none;margin:0;padding:56px clamp(24px,3.5vw,56px) 56px max(var(--gutter),calc((100vw - 1320px) / 2 + var(--gutter)))}
+.hero-copy{max-width:600px;margin:0}
+.hero h1{color:var(--sage)}
+.hero .lede{color:var(--ink-soft);opacity:1}
+.hero .btn-call{background:var(--sage);color:#fff}
+.hero .btn-call:hover{background:#363B55}
+.hero .btn-ghost{border-color:var(--sage);color:var(--sage)}
+.hero .btn-ghost:hover{background:rgba(39,43,62,.06)}
+.hero .status .dot{background:#5E9A68;box-shadow:0 0 0 4px rgba(94,154,104,.2)}
+.hero .status.closed .dot{background:#C46A4A;box-shadow:0 0 0 4px rgba(196,106,74,.18)}
+.hero .proof{opacity:1;color:var(--ink-soft)}
+.facts{background:var(--mist);border-top:1px solid rgba(39,43,62,.1);border-bottom:1px solid rgba(39,43,62,.1)}
+.facts-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.fact{display:flex;gap:14px;align-items:center;padding:20px 24px;margin:0}
+.fact+.fact{border-left:1px solid rgba(39,43,62,.12)}
+.fact svg{width:42px;height:42px;flex:none;padding:9px;border:1.5px solid rgba(39,43,62,.28);border-radius:50%;color:var(--sage)}
+.fact b{display:block;font-weight:700;color:var(--sage);line-height:1.3}
+.fact span{display:block;color:var(--ink-soft);font-size:.92rem;line-height:1.4}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-photo{grid-column:1;grid-row:1;min-height:0;height:44vh;height:44svh}
+  .hero-in{grid-column:1;grid-row:2;padding:30px var(--gutter) 36px}
+  .hero-copy{max-width:640px}
+  .facts-row{grid-template-columns:1fr}
+  .fact{padding:16px 4px}
+  .fact+.fact{border-left:0;border-top:1px solid rgba(39,43,62,.12)}
+}
+@media (max-width:640px){
+  .hero{text-align:center}
+  .hero-photo{height:40vh;height:40svh;min-height:260px}
+  .hero-photo img{object-position:47% 16%}
+  .hero-in{padding:24px var(--gutter) 30px}
+  .hero-copy{margin:0 auto}
+}
 </style>
 </head>
 <body>
@@ -329,6 +369,8 @@ p{margin:0}
     <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M3.5 6h17v12h-17z M3.8 6.4 12 13l8.2-6.6"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6.5" width="12.5" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M15.5 10.5 21 7.5v9l-5.5-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.9"/></symbol>
     <symbol id="i-cap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z M6.5 11v4.5c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11"/></symbol>
 
     <!-- logo, traced from her logo file; colours come from --lg-navy / --lg-sage -->
@@ -369,7 +411,7 @@ p{margin:0}
 <main id="main">
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-photo"><img src="img/elina.jpg" srcset="img/elina-800.jpg 800w, img/elina.jpg 1600w" sizes="(max-width: 1100px) 100vw, 60vw" alt="Η Ελίνα Κοσμίδου χαμογελαστή, στο γραφείο της στη Θέρμη"></div>
+    <div class="hero-photo"><img src="img/elina.jpg" srcset="img/elina-800.jpg 800w, img/elina.jpg 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Η Ελίνα Κοσμίδου χαμογελαστή, στο γραφείο της στη Θέρμη"></div>
     <div class="wrap hero-in">
       <div class="hero-copy">
         <h1><span data-in style="--i:0">Ας δούμε μαζί</span> <span data-in style="--i:1">τι σας βαραίνει.</span></h1>
@@ -381,6 +423,15 @@ p{margin:0}
         <p class="status" data-in style="--i:4" data-status><span class="dot"></span><span data-status-text>Τα ραντεβού κλείνονται τηλεφωνικά</span></p>
         <p class="proof" data-in style="--i:5" data-proof>MSc Κλινική Ψυχική Υγεία, Ιατρική Σχολή ΑΠΘ. Εκπαίδευση στη γνωστική συμπεριφορική ψυχοθεραπεία κατά τα κριτήρια της EABCT.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="facts" aria-label="Με μια ματιά">
+    <div class="wrap facts-row">
+      <p class="fact"><svg aria-hidden="true"><use href="#i-pin"/></svg><span><b>Δια ζώσης συνεδρίες</b><span>στη Θέρμη Θεσσαλονίκης</span></span></p>
+      <p class="fact"><svg aria-hidden="true"><use href="#i-video"/></svg><span><b>Online συνεδρίες</b><span>με βιντεοκλήση, από όπου βρίσκεστε</span></span></p>
+      <p class="fact"><svg aria-hidden="true"><use href="#i-lock"/></svg><span><b>Εμπιστευτικότητα</b><span>σύμφωνα με τον κώδικα δεοντολογίας</span></span></p>
     </div>
   </section>
 

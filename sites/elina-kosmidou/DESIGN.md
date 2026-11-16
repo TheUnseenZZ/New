@@ -76,7 +76,8 @@ Generated from index.html by a script, so the two can be compared side by side. 
 - Manrope for everything (the reference site's font). Sans specimen: Manrope, Advent Pro, Commissioner, Didact Gothic.
 - Nav is always solid (light background, full-colour logo, navy button) and bigger: 88px, logo 80px.
 - No hover fades, sliding underlines or hero entrance animation. Only the carousel, menu and detail sheets move.
-- Topic cards use square-cornered detail photos from her office instead of cartoon illustrations.
+- Topic cards use CC0 stock photos from StockSnap (found through Openverse) that show each problem in a calm way, mostly without identifiable faces. Sources are in img/CREDITS.txt.
+- Split hero, after a reference the client liked: copy and buttons on a plain light panel (55%), portrait in its own panel (45%) with no overlay. On phones the photo is on top and the text is on a solid panel below. A strip of three facts follows: in person, online, confidentiality.
 - The CBT section is a static three-step example (thought, feeling, behaviour) instead of the interactive loop.
 - Contact: tinted office photo with an angled top edge, a right-aligned heading with one call button, and an icon list (phone, Viber, email when set, address, short hours with today in bold, live status).
 - Footer adds a legal row: copyright, privacy policy (privacy.html) and licence number from CONFIG.
