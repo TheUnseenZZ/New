@@ -12,12 +12,12 @@ Built on the system approved for Elina Kosmidou (split hero, Manrope, rounded ca
 | chip | #E7E9DD | eucalyptus tint for pill buttons |
 | --cushion | #8A7433 | olive gold: stars and small accents (3.9:1, graphics only) |
 
-No logo exists, so the brand is an «ΝΠ» monogram (green circle) plus a Manrope wordmark. It's also used for the favicon, app icons and social card.
+Her logo (supplied by Giorgos, img/logo.png): a petal mark in taupe tones with thin spaced capitals. The nav and footer use the mark as an image plus the name in spaced Manrope capitals (#776C62, matching the logo). The mark is also the favicon, app icon and social card logo. The green stays as the action colour; the logo's taupe sits well with the cream.
 
 ## Structure
 1. Split hero: «Ένας ασφαλής χώρος για να μιλήσετε.», «Κλείστε ραντεβού online» (Doctoranytime) + «Καλέστε 694 479 1691», open-now line, real rating 4,9 / 35 linked to Google.
 2. Facts strip: in person at Παπαπέτρου 19, online, 45 € / 60 λεπτά.
-3. Topics: 5 rounded cards (θυμός, αυτοεκτίμηση, ΙΨΔ, διαταραχές προσωπικότητας, έφηβοι και σχολείο), each with a CC0 stock photo, plus a sixth green "something else?" booking tile.
+3. Topics: 6 rounded cards in a 3x2 grid (θυμός, αυτοεκτίμηση, σχέσεις, ΙΨΔ, διαταραχές προσωπικότητας, έφηβοι και σχολείο), each with a CC0 stock photo, then a full-width green «Σας απασχολεί κάτι άλλο;» banner with booking and call. On phones the banner is the last swipe card.
 4. «Πώς δουλεύουμε»: a static CBT example about anger, her first listed topic.
 5. Reviews: six real 5-star Google reviews, verbatim, no names, «Κριτική στο Google, <when>». The 3-star review counts in the rating but isn't featured.
 6. About: bio and experience, with her office photo in a rounded frame.

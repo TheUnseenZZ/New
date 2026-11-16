@@ -6,3 +6,5 @@ topic-personality: Bonnet People | cc0 | https://stocksnap.io/photo/bonnet-peopl
 topic-teen: Students Backpack | cc0 | https://stocksnap.io/photo/students-backpack-38E811B1DF
 
 Client photos (her Google Maps listing): nansy-*.webp (portrait), room-*.webp (office)
+topic-rel: Couple Love | cc0 | https://stocksnap.io/photo/couple-love-FP4R72OQII
+Logo: supplied by the client (logo.png, logo-mark.webp)

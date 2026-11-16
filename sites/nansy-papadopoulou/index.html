@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια στην Καλαμαριά Θεσσαλονίκης</title>
-<meta name="description" content="Ψυχολόγος ψυχοθεραπεύτρια στην Καλαμαριά Θεσσαλονίκης, με εκπαίδευση στη γνωστική συμπεριφορική ψυχοθεραπεία. Θυμός, αυτοεκτίμηση, ιδεοψυχαναγκαστική διαταραχή, διαταραχές προσωπικότητας, έφηβοι. Δια ζώσης και online. 4,9 στο Google από 35 κριτικές.">
+<meta name="description" content="Ψυχολόγος ψυχοθεραπεύτρια στην Καλαμαριά Θεσσαλονίκης, με εκπαίδευση στη γνωστική συμπεριφορική ψυχοθεραπεία. Θυμός, αυτοεκτίμηση, σχέσεις, ιδεοψυχαναγκαστική διαταραχή, διαταραχές προσωπικότητας, έφηβοι. Δια ζώσης και online. 4,9 στο Google από 35 κριτικές.">
 <meta name="theme-color" content="#3B4632">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="el_GR">
@@ -397,16 +397,21 @@ p{margin:0}
 .brand{gap:12px}
 .mono{width:46px;height:46px;flex:none;border-radius:50%;background:var(--sage);color:#FAF7F2;display:grid;place-items:center;font-weight:750;font-size:.98rem;letter-spacing:.02em}
 .wm{display:flex;flex-direction:column;line-height:1.1}
-.wm b{font-weight:750;font-size:1.3rem;letter-spacing:-.015em;color:var(--sage)}
-.wm span{font-size:.86rem;color:var(--ink-soft);margin-top:4px;font-weight:550}
+/* her logo: petal mark + thin spaced capitals in the logo's taupe (darkened slightly to stay readable) */
+.mark{width:56px;height:56px;flex:none;display:block}
+.wm b{font-weight:400;font-size:1.04rem;letter-spacing:.15em;color:#776C62}
+.wm span{font-size:.6rem;letter-spacing:.17em;color:#7E746A;margin-top:6px;font-weight:550}
 .foot .mono{background:#FAF7F2;color:var(--sage)}
-.foot .wm b{color:#fff}.foot .wm span{color:rgba(255,255,255,.72)}
+.foot .wm b{color:#fff}.foot .wm span{color:rgba(255,255,255,.75)}
+.foot .mark{width:64px;height:64px}
 .foot{background:var(--sage-ink)}
 .help .track{grid-template-columns:repeat(3,minmax(0,1fr))}
-.card-cta{background:var(--sage);border-color:transparent;padding:32px 28px;justify-content:center;color:#fff}
+.card-cta{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:28px;background:var(--sage);border-color:transparent;padding:28px 34px;color:#fff}
+.cta-btns{display:flex;flex-wrap:wrap;gap:10px;flex:none}
 .card-cta h3{color:#fff;font-size:1.4rem;padding:0}
-.card-cta p{color:rgba(255,255,255,.82);padding:0;margin-bottom:22px}
-.card-cta .btn{width:100%;margin-top:10px}
+.card-cta h3{margin-bottom:6px}
+.card-cta p{color:rgba(255,255,255,.82);padding:0;margin-bottom:0;max-width:34em}
+.card-cta .btn{margin:0}
 .card-cta .btn-call{background:#FAF7F2;color:var(--sage)}
 .card-cta .btn-call:hover{background:#fff}
 .card-cta .btn-line{border-color:rgba(255,255,255,.55);color:#fff}
@@ -436,10 +441,13 @@ p{margin:0}
 @media (max-width:1100px){.help .track{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.about-wrap{grid-template-columns:1fr}.about-fig{position:static;order:-1}}
 @media (max-width:640px){
-  .wm b{font-size:1.1rem}.wm span{font-size:.78rem}.mono{width:40px;height:40px;font-size:.88rem}
+  .mark{width:44px;height:44px}.wm b{font-size:.86rem;letter-spacing:.12em}.wm span{font-size:.5rem;letter-spacing:.13em}
   .rcard{flex-basis:84vw;padding:26px 22px 20px}
   .reviews .arrows{display:none}
   .reviews .sec-head{text-align:center}
+  .help .card-cta{flex-direction:column;align-items:stretch;padding:28px 22px}
+  .cta-btns{flex-direction:column}
+  .card-cta .btn{width:100%}
   .hero-photo{height:33vh;height:33svh;min-height:230px}
   .hero h1{font-size:2.05rem;margin-bottom:14px}
   .hero .lede{font-size:.98rem;margin-bottom:20px}
@@ -471,7 +479,7 @@ p{margin:0}
 
 <header class="nav solid" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια, αρχή σελίδας"><span class="mono" aria-hidden="true">ΝΠ</span><span class="wm" aria-hidden="true"><b>Νάνσυ Παπαδοπούλου</b><span>Ψυχολόγος Ψυχοθεραπεύτρια</span></span></a>
+    <a class="brand" href="#top" aria-label="Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια, αρχή σελίδας"><img class="mark" src="img/logo-mark.webp" width="267" height="268" alt=""><span class="wm" aria-hidden="true"><b>ΝΑΝΣΥ ΠΑΠΑΔΟΠΟΥΛΟΥ</b><span>ΨΥΧΟΛΟΓΟΣ – ΨΥΧΟΘΕΡΑΠΕΥΤΡΙΑ</span></span></a>
     <nav aria-label="Κύριο μενού">
       <ul class="nav-links">
         <li><a href="#help">Με τι βοηθάω</a></li>
@@ -635,7 +643,7 @@ p{margin:0}
 
 <footer class="foot">
   <div class="wrap foot-top">
-    <div><span class="brand" role="img" aria-label="Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια"><span class="mono" aria-hidden="true">ΝΠ</span><span class="wm" aria-hidden="true"><b>Νάνσυ Παπαδοπούλου</b><span>Ψυχολόγος Ψυχοθεραπεύτρια</span></span></span><p style="margin-top:14px">Παπαπέτρου 19, Καλαμαριά 551 31<br><a data-tel href="#" style="color:#fff"><span data-phone></span></a></p></div>
+    <div><span class="brand" role="img" aria-label="Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια"><img class="mark" src="img/logo-mark.webp" width="267" height="268" alt=""><span class="wm" aria-hidden="true"><b>ΝΑΝΣΥ ΠΑΠΑΔΟΠΟΥΛΟΥ</b><span>ΨΥΧΟΛΟΓΟΣ – ΨΥΧΟΘΕΡΑΠΕΥΤΡΙΑ</span></span></span><p style="margin-top:14px">Παπαπέτρου 19, Καλαμαριά 551 31<br><a data-tel href="#" style="color:#fff"><span data-phone></span></a></p></div>
     <p class="crisis">Αν βρίσκεστε σε κίνδυνο ή σκέφτεστε να κάνετε κακό στον εαυτό σας, καλέστε τώρα τη Γραμμή Παρέμβασης για την Αυτοκτονία στο <a href="tel:1018">1018</a> ή το <a href="tel:166">166</a>. Λειτουργούν όλο το 24ωρο.</p>
   </div>
   <div class="wrap"><p class="foot-legal">© <span data-year>2026</span> Νάνσυ Παπαδοπούλου, Ψυχολόγος Ψυχοθεραπεύτρια. Με επιφύλαξη παντός δικαιώματος.<span class="sep">|</span><a href="privacy.html">Πολιτική απορρήτου</a><span data-license hidden></span></p></div>
@@ -717,7 +725,7 @@ const REVIEWS = [
 ];
 
 const TOPIC_IMG = {
-  anger: "img/topic-anger-800.webp", self: "img/topic-self-800.webp", ocd: "img/topic-ocd-800.webp",
+  anger: "img/topic-anger-800.webp", self: "img/topic-self-800.webp", rel: "img/topic-rel-800.webp", ocd: "img/topic-ocd-800.webp",
   personality: "img/topic-personality-800.webp", teen: "img/topic-teen-800.webp"
 };
 
@@ -728,6 +736,9 @@ const HELP = [
   { id:"self", t:"Αυτοεκτίμηση", s:"Όταν η εσωτερική κριτική φωνή ακούγεται πιο δυνατά από όλες τις άλλες.",
     d:["Ο τρόπος που μιλάτε στον εαυτό σας επηρεάζει τις επιλογές σας, τις σχέσεις σας και τη δουλειά σας."],
     how:"Εντοπίζουμε την αυστηρή αυτοκριτική, τη συγκρίνουμε με τα πραγματικά δεδομένα και χτίζουμε σταδιακά μια πιο δίκαιη ματιά στον εαυτό σας." },
+  { id:"rel", t:"Σχέσεις", s:"Όταν οι ίδιες συγκρούσεις επαναλαμβάνονται ή νιώθετε ότι δεν σας καταλαβαίνουν.",
+    d:["Δυσκολίες με τον σύντροφο, την οικογένεια ή τους φίλους: τσακωμοί που επαναλαμβάνονται, απομάκρυνση, δυσκολία να πείτε τι χρειάζεστε ή να βάλετε όρια."],
+    how:"Εξετάζουμε μαζί τα μοτίβα που επαναλαμβάνονται στις σχέσεις σας, πώς ερμηνεύετε όσα συμβαίνουν και πώς μπορείτε να εκφράζετε πιο καθαρά τις ανάγκες σας." },
   { id:"ocd", t:"Ιδεοψυχαναγκαστική διαταραχή", s:"Όταν ανεπιθύμητες σκέψεις επιστρέφουν ξανά και ξανά και σας σπρώχνουν σε ελέγχους.",
     d:["Επαναλαμβανόμενοι έλεγχοι, πλύσιμο, ανάγκη για τάξη ή για βεβαιότητα, που σας κοστίζουν χρόνο και ηρεμία."],
     how:"Η γνωστική συμπεριφορική θεραπεία είναι από τις πιο μελετημένες προσεγγίσεις για την ιδεοψυχαναγκαστική διαταραχή. Δουλεύουμε σταδιακά και με τον δικό σας ρυθμό, ώστε οι σκέψεις να χάσουν τη δύναμή τους." },
@@ -825,10 +836,10 @@ const FAQ = [
       <button class="more" data-open="${i}" aria-haspopup="dialog">Διαβάστε περισσότερα<span class="sr"> για: ${h.t}</span><i aria-hidden="true"><svg><use href="#i-right"/></svg></i></button>
     </article>`).join("") + `
     <article class="card card-cta" role="listitem">
-      <h3>Σας απασχολεί κάτι άλλο;</h3>
-      <p>Δεν χρειάζεται να ταιριάζει σε μια κατηγορία. Κλείστε μια πρώτη συνάντηση και το συζητάμε.</p>
-      <a class="btn btn-call" href="${CONFIG.booking}" target="_blank" rel="noopener">Κλείστε ραντεβού online</a>
-      <a class="btn btn-line" href="tel:${CONFIG.phone}"><svg><use href="#i-phone"/></svg><span>Καλέστε ${CONFIG.phoneDisplay}</span></a>
+      <div class="cta-txt"><h3>Σας απασχολεί κάτι άλλο;</h3>
+      <p>Δεν χρειάζεται να ταιριάζει σε μια κατηγορία. Κλείστε μια πρώτη συνάντηση και το συζητάμε.</p></div>
+      <div class="cta-btns"><a class="btn btn-call" href="${CONFIG.booking}" target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg><span>Κλείστε ραντεβού online</span></a>
+      <a class="btn btn-line" href="tel:${CONFIG.phone}"><svg><use href="#i-phone"/></svg><span>Καλέστε ${CONFIG.phoneDisplay}</span></a></div>
     </article>`;
 
   /* ---------- detail sheet ---------- */
