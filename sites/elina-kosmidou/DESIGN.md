@@ -82,3 +82,9 @@ Generated from index.html by a script, so the two can be compared side by side. 
 - Contact: tinted office photo with an angled top edge, a right-aligned heading with one call button, and an icon list (phone, Viber, email when set, address, short hours with today in bold, live status).
 - Footer adds a legal row: copyright, privacy policy (privacy.html) and licence number from CONFIG.
 - All copy uses the formal «εσείς».
+
+## Standing rules from Giorgos
+- No custom mouse cursors, cursor trails or cursor effects.
+- No decorative or "extra" animation: no scroll-triggered reveals, parallax, hover fades, floating or bouncing elements, animated counters or text effects. Motion is allowed only where it answers a visitor's action (menu, detail sheet, carousel the client asked for) and stays off under reduced motion.
+- When borrowing from another site or skill, take the structure and content ideas, not its effects.
+- No reviews, ratings or testimonials unless they are real, quoted word for word, with their source.
