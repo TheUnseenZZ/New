@@ -171,16 +171,8 @@ p{margin:0}
 .chain li{background:var(--wall);padding:24px 26px 26px;position:relative}
 .chain li+li::before{content:"";position:absolute;left:-30px;top:50%;width:14px;height:14px;margin-top:-7px;border-top:2px solid var(--oak);border-right:2px solid var(--oak);transform:rotate(45deg)}
 .chain .k{display:block;font-weight:700;font-size:.9rem;color:var(--oak);margin-bottom:8px}
-.chain p{font-size:1.15rem;line-height:1.4;font-weight:600;color:var(--ink)}
+.chain p{font-size:1.08rem;line-height:1.45;font-weight:500;color:var(--ink)}
 .chain-after{margin-top:28px;max-width:46em;color:var(--ink-soft)}
-
-/* ---------- reviews ---------- */
-.reviews{background:var(--wall)}
-.rcard{flex:0 0 min(380px,82vw);scroll-snap-align:start;background:var(--mist);border-radius:18px;padding:28px 28px 24px;display:flex;flex-direction:column}
-.rcard .q{font:600 4.4rem/0.6 var(--serif);color:var(--cushion);height:34px;margin-bottom:14px}
-.rcard blockquote{margin:0 0 20px;font:400 1.08rem/1.6 var(--serif)}
-.rcard footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.88rem;color:var(--ink-soft)}
-.rcard .stars{color:var(--oak);letter-spacing:2px;font-size:1rem}
 
 /* ---------- about ---------- */
 .about{background:var(--mist);padding:0}
@@ -416,30 +408,14 @@ p{margin:0}
         <h2 id="cbt-h">Τι είναι η γνωστική συμπεριφορική θεραπεία</h2>
         <p>Είναι μια επιστημονικά τεκμηριωμένη μορφή ψυχοθεραπείας που εστιάζει στη σχέση ανάμεσα σε σκέψεις, συναισθήματα και συμπεριφορές. Μαζί εντοπίζουμε τα μοτίβα που σας δυσκολεύουν και αναπτύσσουμε πρακτικές δεξιότητες για την καθημερινότητα.</p>
       </div>
-      <p class="ex-label">Ένα παράδειγμα: έχετε μια παρουσίαση στη δουλειά αύριο.</p>
+      <p class="ex-label">Ενδεικτικό παράδειγμα: μια παρουσίαση στη δουλειά την επόμενη μέρα.</p>
       <ol class="chain">
-        <li><span class="k">Σκέψη</span><p>«Θα τα κάνω θάλασσα και θα με κρίνουν.»</p></li>
+        <li><span class="k">Σκέψη</span><p>Θα αποτύχω και θα με κρίνουν.</p></li>
         <li><span class="k">Συναίσθημα</span><p>Άγχος, σφίξιμο στο στήθος.</p></li>
-        <li><span class="k">Συμπεριφορά</span><p>Αναβάλλετε την προετοιμασία και δεν κοιμάστε.</p></li>
+        <li><span class="k">Συμπεριφορά</span><p>Αναβολή της προετοιμασίας, αϋπνία.</p></li>
       </ol>
-      <p class="chain-after">Στη θεραπεία εξετάζουμε μαζί μια πιο ισορροπημένη σκέψη, όπως «Έχω προετοιμαστεί. Αν κολλήσω, θα συνεχίσω.», και βλέπουμε πώς αλλάζουν το συναίσθημα και η συμπεριφορά.</p>
+      <p class="chain-after">Στη θεραπεία εξετάζουμε μαζί μια πιο ισορροπημένη σκέψη, όπως ότι έχετε προετοιμαστεί και μπορείτε να συνεχίσετε ακόμη κι αν κολλήσετε, και βλέπουμε πώς αλλάζουν το συναίσθημα και η συμπεριφορά.</p>
     </div>
-  </section>
-
-  <!-- REVIEWS (rendered only when CONFIG.reviews has entries) -->
-  <section class="sec reviews" id="reviews" aria-labelledby="rev-h" hidden>
-    <div class="wrap row-head">
-      <div class="sec-head">
-        <h2 id="rev-h">Τι λένε όσοι έχουν έρθει</h2>
-        <p data-rev-sub></p>
-      </div>
-      <div class="arrows">
-        <button class="arrow" data-prev="rev-track" aria-label="Προηγούμενες κριτικές"><svg><use href="#i-left"/></svg></button>
-        <button class="arrow" data-next="rev-track" aria-label="Επόμενες κριτικές"><svg><use href="#i-right"/></svg></button>
-      </div>
-    </div>
-    <div class="track" id="rev-track" role="list"></div>
-    <div class="dots" data-dots="rev-track"></div>
   </section>
 
   <!-- ABOUT -->
@@ -561,12 +537,6 @@ const CONFIG = {
   geo: { lat: 40.5481831, lng: 23.019569 },
   // Hours from her Google Maps listing. 0 = Sunday … 6 = Saturday. [] = closed.
   hours: { 1: [["09:00","21:00"]], 2: [["09:00","21:00"]], 3: [["09:00","21:00"]], 4: [["09:00","21:30"]], 5: [["09:00","21:00"]], 6: [], 0: [] },
-  // No Google reviews yet (Nov 2026). Add them here when she has some.
-  rating: null,                          // e.g. { value: 5.0, count: 12 }
-  // TODO: real Google reviews, word for word. The section stays hidden while this is empty.
-  reviews: [
-    // { text: "…", stars: 5, when: "πριν από 2 μήνες" }
-  ],
   price: "", // TODO (optional): e.g. "Η συνεδρία διαρκεί 50 λεπτά και κοστίζει 50 €."
   license: "" // TODO: αριθμός άδειας άσκησης επαγγέλματος, shown in the footer
 };
@@ -628,12 +598,6 @@ const FAQ = [
   $$("[data-directions]").forEach(a => a.href = CONFIG.directions);
   $$("[data-year]").forEach(e => e.textContent = new Date().getFullYear());
   if (CONFIG.license) $$("[data-license]").forEach(e => { e.hidden = false; e.textContent = " | Άδεια άσκησης επαγγέλματος: " + CONFIG.license; });
-
-  /* ---------- proof line ---------- */
-  if (CONFIG.rating) {
-    const v = CONFIG.rating.value.toLocaleString("el-GR", { minimumFractionDigits: 1 });
-    $("[data-proof]").innerHTML = `<span class="stars" aria-hidden="true">★★★★★</span> Βαθμολογία ${v} από ${CONFIG.rating.count} άτομα στο Google. MSc Κλινική Ψυχική Υγεία, ΑΠΘ.`;
-  }
 
   /* ---------- open / closed, computed in Athens time ---------- */
   const DAYS = ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"];
@@ -744,20 +708,6 @@ const FAQ = [
   }
   row("help-track");
 
-  /* ---------- reviews (only real ones, from CONFIG) ---------- */
-  if (CONFIG.reviews.length) {
-    const sec = $("#reviews"); sec.hidden = false;
-    if (CONFIG.rating) $("[data-rev-sub]").textContent = `Βαθμολογία ${CONFIG.rating.value.toLocaleString("el-GR",{minimumFractionDigits:1})} από ${CONFIG.rating.count} κριτικές στο Google.`;
-    else $("[data-rev-sub]").textContent = "Κριτικές από το Google.";
-    $("#rev-track").innerHTML = CONFIG.reviews.map(r => `
-      <figure class="rcard" role="listitem">
-        <div class="q" aria-hidden="true">“</div>
-        <blockquote>${esc(r.text)}</blockquote>
-        <footer><span class="stars" aria-label="${r.stars || 5} αστέρια">${"★".repeat(r.stars || 5)}</span><span>Κριτική στο Google${r.when ? ", " + esc(r.when) : ""}</span></footer>
-      </figure>`).join("");
-    row("rev-track");
-  }
-
   /* ---------- office carousel ---------- */
   (() => {
     const car = $("#car"); if (!car) return;
@@ -855,7 +805,6 @@ const FAQ = [
     geo: { "@type": "GeoCoordinates", latitude: CONFIG.geo.lat, longitude: CONFIG.geo.lng }, hasMap: CONFIG.maps,
     openingHoursSpecification: Object.entries(CONFIG.hours).flatMap(([d, h]) => h.map(([o, c]) => ({ "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/" + ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d], opens: o, closes: c })))
   };
-  if (CONFIG.rating) ld.aggregateRating = { "@type": "AggregateRating", ratingValue: CONFIG.rating.value, reviewCount: CONFIG.rating.count };
   $("#ld").textContent = JSON.stringify(ld);
 })();
 </script>

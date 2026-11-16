@@ -207,14 +207,6 @@ p{margin:0}
 .diagram[data-mode="after"] .node .k i{background:var(--sage)}
 .loop-caption{text-align:center;font-size:.92rem;color:var(--ink-soft);margin-top:64px}
 
-/* ---------- reviews ---------- */
-.reviews{background:var(--wall)}
-.rcard{flex:0 0 min(380px,82vw);scroll-snap-align:start;background:var(--mist);border-radius:18px;padding:28px 28px 24px;display:flex;flex-direction:column}
-.rcard .q{font:600 4.4rem/0.6 var(--serif);color:var(--cushion);height:34px;margin-bottom:14px}
-.rcard blockquote{margin:0 0 20px;font:400 1.08rem/1.6 var(--serif)}
-.rcard footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.88rem;color:var(--ink-soft)}
-.rcard .stars{color:var(--oak);letter-spacing:2px;font-size:1rem}
-
 /* ---------- about ---------- */
 .about{background:var(--mist);padding:0}
 .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:640px}
@@ -546,22 +538,6 @@ p{margin:0}
     </div>
   </section>
 
-  <!-- REVIEWS (rendered only when CONFIG.reviews has entries) -->
-  <section class="sec reviews" id="reviews" aria-labelledby="rev-h" hidden>
-    <div class="wrap row-head">
-      <div class="sec-head">
-        <h2 id="rev-h">Τι λένε όσοι έχουν έρθει</h2>
-        <p data-rev-sub></p>
-      </div>
-      <div class="arrows">
-        <button class="arrow" data-prev="rev-track" aria-label="Προηγούμενες κριτικές"><svg><use href="#i-left"/></svg></button>
-        <button class="arrow" data-next="rev-track" aria-label="Επόμενες κριτικές"><svg><use href="#i-right"/></svg></button>
-      </div>
-    </div>
-    <div class="track" id="rev-track" role="list"></div>
-    <div class="dots" data-dots="rev-track"></div>
-  </section>
-
   <!-- ABOUT -->
   <section class="sec about" id="about" aria-labelledby="about-h">
     <div class="about-grid">
@@ -680,12 +656,6 @@ const CONFIG = {
   geo: { lat: 40.5481831, lng: 23.019569 },
   // Hours from her Google Maps listing. 0 = Sunday … 6 = Saturday. [] = closed.
   hours: { 1: [["09:00","21:00"]], 2: [["09:00","21:00"]], 3: [["09:00","21:00"]], 4: [["09:00","21:30"]], 5: [["09:00","21:00"]], 6: [], 0: [] },
-  // No Google reviews yet (Nov 2026). Add them here when she has some.
-  rating: null,                          // e.g. { value: 5.0, count: 12 }
-  // TODO: real Google reviews, word for word. The section stays hidden while this is empty.
-  reviews: [
-    // { text: "…", stars: 5, when: "πριν από 2 μήνες" }
-  ],
   price: "" // TODO (optional): e.g. "Η συνεδρία διαρκεί 50 λεπτά και κοστίζει 50 €."
 };
 
@@ -718,17 +688,17 @@ const HELP = [
 
 const LOOPS = [
   { c:"Δεν μου απάντησαν στο μήνυμα",
-    before:{ think:"«Κάτι έκανα και θύμωσαν μαζί μου.»", feel:"Άγχος και στενοχώρια.", do:"Κοιτάζω το κινητό ξανά και ξανά και ζητάω συγγνώμη χωρίς λόγο." },
-    after:{ think:"«Μπορεί απλώς να είναι απασχολημένοι.»", feel:"Λίγη ανυπομονησία, αλλά ηρεμία.", do:"Συνεχίζω τη μέρα μου και ρωτάω αργότερα." } },
+    before:{ think:"Κάτι έκανα και θύμωσαν μαζί μου.", feel:"Άγχος και στενοχώρια.", do:"Κοιτάζω το κινητό ξανά και ξανά και ζητάω συγγνώμη χωρίς λόγο." },
+    after:{ think:"Μπορεί απλώς να είναι απασχολημένοι.", feel:"Λίγη ανυπομονησία, αλλά ηρεμία.", do:"Συνεχίζω τη μέρα μου και ρωτάω αργότερα." } },
   { c:"Έχω παρουσίαση στη δουλειά αύριο",
-    before:{ think:"«Θα τα κάνω θάλασσα και θα με κρίνουν.»", feel:"Πανικός, σφίξιμο στο στήθος.", do:"Το αναβάλλω, δεν κοιμάμαι και σκέφτομαι να μην πάω." },
-    after:{ think:"«Έχω προετοιμαστεί. Αν κολλήσω, θα συνεχίσω.»", feel:"Τρακ, αλλά διαχειρίσιμο.", do:"Κάνω μια πρόβα, κοιμάμαι και πηγαίνω." } },
+    before:{ think:"Θα τα κάνω θάλασσα και θα με κρίνουν.", feel:"Πανικός, σφίξιμο στο στήθος.", do:"Το αναβάλλω, δεν κοιμάμαι και σκέφτομαι να μην πάω." },
+    after:{ think:"Έχω προετοιμαστεί. Αν κολλήσω, θα συνεχίσω.", feel:"Τρακ, αλλά διαχειρίσιμο.", do:"Κάνω μια πρόβα, κοιμάμαι και πηγαίνω." } },
   { c:"Το παιδί μου γύρισε θυμωμένο από το σχολείο",
-    before:{ think:"«Αποτυγχάνω ως γονιός.»", feel:"Ενοχές και εκνευρισμός.", do:"Του φωνάζω ή κλείνομαι στον εαυτό μου." },
-    after:{ think:"«Κάτι το δυσκόλεψε σήμερα. Ας μάθω τι.»", feel:"Ανησυχία, αλλά και ηρεμία.", do:"Κάθομαι δίπλα του και το ρωτάω τι έγινε." } },
+    before:{ think:"Αποτυγχάνω ως γονιός.", feel:"Ενοχές και εκνευρισμός.", do:"Του φωνάζω ή κλείνομαι στον εαυτό μου." },
+    after:{ think:"Κάτι το δυσκόλεψε σήμερα. Ας μάθω τι.", feel:"Ανησυχία, αλλά και ηρεμία.", do:"Κάθομαι δίπλα του και το ρωτάω τι έγινε." } },
   { c:"Κοιτάζομαι στον καθρέφτη",
-    before:{ think:"«Δεν μου αρέσει τίποτα πάνω μου.»", feel:"Ντροπή.", do:"Αποφεύγω φωτογραφίες και εξόδους." },
-    after:{ think:"«Κάποιες μέρες με βλέπω πιο αυστηρά. Αυτό δεν είναι όλη η αλήθεια.»", feel:"Λιγότερη ένταση.", do:"Βγαίνω με τους φίλους μου κανονικά." } }
+    before:{ think:"Δεν μου αρέσει τίποτα πάνω μου.", feel:"Ντροπή.", do:"Αποφεύγω φωτογραφίες και εξόδους." },
+    after:{ think:"Κάποιες μέρες με βλέπω πιο αυστηρά. Αυτό δεν είναι όλη η αλήθεια.", feel:"Λιγότερη ένταση.", do:"Βγαίνω με τους φίλους μου κανονικά." } }
 ];
 
 const FAQ = [
@@ -754,12 +724,6 @@ const FAQ = [
   if (CONFIG.email) { const l = $("[data-email-line]"); l.hidden = false; const a = $("[data-email]"); a.href = "mailto:" + CONFIG.email; a.textContent = CONFIG.email; }
   $("[data-address]").innerHTML = CONFIG.address.map(esc).join("<br>");
   $("[data-directions]").href = CONFIG.directions;
-
-  /* ---------- proof line ---------- */
-  if (CONFIG.rating) {
-    const v = CONFIG.rating.value.toLocaleString("el-GR", { minimumFractionDigits: 1 });
-    $("[data-proof]").innerHTML = `<span class="stars" aria-hidden="true">★★★★★</span> Βαθμολογία ${v} από ${CONFIG.rating.count} άτομα στο Google. MSc Κλινική Ψυχική Υγεία, ΑΠΘ.`;
-  }
 
   /* ---------- open / closed, computed in Athens time ---------- */
   const DAYS = ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"];
@@ -855,20 +819,6 @@ const FAQ = [
     sync();
   }
   row("help-track");
-
-  /* ---------- reviews (only real ones, from CONFIG) ---------- */
-  if (CONFIG.reviews.length) {
-    const sec = $("#reviews"); sec.hidden = false;
-    if (CONFIG.rating) $("[data-rev-sub]").textContent = `Βαθμολογία ${CONFIG.rating.value.toLocaleString("el-GR",{minimumFractionDigits:1})} από ${CONFIG.rating.count} κριτικές στο Google.`;
-    else $("[data-rev-sub]").textContent = "Κριτικές από το Google.";
-    $("#rev-track").innerHTML = CONFIG.reviews.map(r => `
-      <figure class="rcard" role="listitem">
-        <div class="q" aria-hidden="true">“</div>
-        <blockquote>${esc(r.text)}</blockquote>
-        <footer><span class="stars" aria-label="${r.stars || 5} αστέρια">${"★".repeat(r.stars || 5)}</span><span>Κριτική στο Google${r.when ? ", " + esc(r.when) : ""}</span></footer>
-      </figure>`).join("");
-    row("rev-track");
-  }
 
   /* ---------- office carousel ---------- */
   (() => {
@@ -991,7 +941,6 @@ const FAQ = [
     geo: { "@type": "GeoCoordinates", latitude: CONFIG.geo.lat, longitude: CONFIG.geo.lng }, hasMap: CONFIG.maps,
     openingHoursSpecification: Object.entries(CONFIG.hours).flatMap(([d, h]) => h.map(([o, c]) => ({ "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/" + ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d], opens: o, closes: c })))
   };
-  if (CONFIG.rating) ld.aggregateRating = { "@type": "AggregateRating", ratingValue: CONFIG.rating.value, reviewCount: CONFIG.rating.count };
   $("#ld").textContent = JSON.stringify(ld);
 })();
 </script>

@@ -51,7 +51,7 @@ Mobile hero: its own page. Centred stack over the blurred and darkened photo, fu
 Sections in order:
 1. Help: 8 illustrated cards in a swipe row, each opening a detail sheet.
 2. The CBT loop. This is the one memorable element: pick an everyday situation and watch the thought, feeling and action chain, then switch to how it can go after therapy.
-3. Reviews: a carousel rendered from CONFIG, hidden until real reviews exist.
+3. Reviews: none. The section and its code are removed. Add a reviews section only once she has real Google reviews, quoted word for word with their source.
 4. About: the office corner photo bleeds off the left edge, with the bio and credentials beside it.
 5. How we start: three numbered steps (a real sequence) and a short FAQ.
 6. Contact: a dark sage section with hours (today highlighted), address, directions and the call action repeated.
@@ -61,7 +61,7 @@ Plus a sticky call/Viber bar on mobile once the hero is out of view.
 - The room is the brand. Every colour is in the photo, and no invented motif is placed over text.
 - Spend the boldness on the CBT loop, because it explains the method by letting people try it. Everything else stays quiet.
 - Motion: one staggered hero entrance. Everything else responds to the visitor (sheet, menu, loop switch, eased anchor scroll).
-- Nothing invented. Reviews, rating, hours and phone live in CONFIG, and a block with no data does not render.
+- Nothing invented: no reviews, ratings or testimonials. Example thoughts in the CBT section are labelled as examples and not shown as quotes.
 
 ## Review against the generic tells (what I changed)
 - Cream background: I first reached for the bouclé colour as the page base, but it sits near #F4F1EA. I switched the base to the sage wall `#E2E6D7`, so the page reads green-grey rather than cream.
